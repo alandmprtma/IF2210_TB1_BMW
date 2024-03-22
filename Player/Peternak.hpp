@@ -2,12 +2,16 @@
 
 class Peternak : public Player {
   private:
-    static int jumlah_peternak;
+    static int jumlahPeternak;
+    int jumlahBangunan;
 
   public:
     Peternak();
-
+    float getPajak();
+    
     void simpanHewanTernak();
-    void kasihMakanTernak();
-    void ambilHasilTernak();
+    void kasihMakanHewanTernak();
+
+    void panenTernak();
+    void cetakPeternakan();
 };
