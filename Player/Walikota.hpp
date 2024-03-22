@@ -2,7 +2,7 @@
 
 class Walikota : public Player {
   private:
-    static int jumlahWalikota;
+    static int jumlahWalikota; // ID Walikota
 
   public:
     Walikota();

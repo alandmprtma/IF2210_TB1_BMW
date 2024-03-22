@@ -2,7 +2,10 @@
 
 class Peternak : public Player {
   private:
-    static int jumlahPeternak;
+    static int jumlahPeternak; // ID Peternak
+    AreaInventory peternakan;
+
+  protected:
     int jumlahBangunan;
 
   public:
