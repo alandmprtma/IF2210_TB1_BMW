@@ -1,12 +1,19 @@
 #include "Player.hpp"
 
-class Petani : public Player {
-  private:
-    static int jumlah_petani;
+class Petani : public Player
+{
+private:
+  static int jumlahPetani; // ID Petani
+  // AreaInventory ladang;
 
-  public:
-    Petani();
+protected:
+  int jumlahBangunan;
 
-    void tanamTanaman();
-    void panenTanaman();
+public:
+  Petani();
+  int getPajak();
+
+  void tanamTanaman();
+  void panenTanaman();
+  void cetakLadang();
 };

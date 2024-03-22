@@ -1,20 +1,21 @@
 #include "Player.hpp"
 
-class Peternak : public Player {
-  private:
-    static int jumlahPeternak; // ID Peternak
-    AreaInventory peternakan;
+class Peternak : public Player
+{
+private:
+  static int jumlahPeternak; // ID Peternak
+  // AreaInventory peternakan;
 
-  protected:
-    int jumlahBangunan;
+protected:
+  int jumlahBangunan;
 
-  public:
-    Peternak();
-    float getPajak();
-    
-    void simpanHewanTernak();
-    void kasihMakanHewanTernak();
+public:
+  Peternak();
+  float getPajak();
 
-    void panenTernak();
-    void cetakPeternakan();
+  void simpanHewanTernak();
+  void kasihMakanHewanTernak();
+
+  void panenTernak();
+  void cetakPeternakan();
 };
