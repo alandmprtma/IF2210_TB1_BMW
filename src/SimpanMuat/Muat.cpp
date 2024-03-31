@@ -2,7 +2,7 @@
 
 
 int Muat::stringToInt(string num){
-    
+
     int n = 0;
     for (int i=0;i<num.size();i++){
 
@@ -20,7 +20,7 @@ std::vector<Plant> Muat::muatTanaman(string pathTanaman){
 
         if (!inputFile.is_open()){
 
-            std::cout<<"File is not found"<<std::endl;
+            throw FileNotFoundError();
             
         }else{
             
@@ -37,6 +37,9 @@ std::vector<Plant> Muat::muatTanaman(string pathTanaman){
                 std::getline(iss,token,' ');
                 
                 std::getline(iss,token,' ');
+                if (token.empty()){
+                    throw UndefinedSymbolError();
+                }
                 std::string kodeHuruf = token;
 
                 std::getline(iss,token,' ');
