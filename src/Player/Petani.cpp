@@ -39,3 +39,7 @@ void Petani::tanamTanaman() {
   cout << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
   cout << tanamanPilihan.getTanamanNameByID(tanamanPilihan.getIdTanaman()) << " berhasil ditanam!" << endl;
 }
+
+void Petani::tanamTanaman() {
+  
+}

@@ -21,6 +21,4 @@ protected:
   void setBeratBadan(int);
   int getBeratBadan();
   void makan();
-  void membeliDariToko();
-  void menjualKeToko();
 };
