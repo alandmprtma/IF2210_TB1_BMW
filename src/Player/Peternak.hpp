@@ -3,10 +3,6 @@
 
 class Peternak : public Player, public Toko
 {
-private:
-  static int jumlahPeternak; // ID Peternak
-  // AreaInventory peternakan;
-
 protected:
   Penyimpanan ternak;
   int jumlahBangunan;
