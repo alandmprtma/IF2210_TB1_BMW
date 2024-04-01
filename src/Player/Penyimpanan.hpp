@@ -1,3 +1,6 @@
+#ifndef PENYIMPANAN_HPP
+#define PENYIMPANAN_HPP
+
 #include <iostream>
 #include <vector>
 #include <iomanip>
@@ -17,3 +20,5 @@ class Penyimpanan {
     T getElement(int, int);
     void cetakPenyimpanan();
 };
+
+#endif

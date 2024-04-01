@@ -1,3 +1,6 @@
+#ifndef WALIKOTA_HPP
+#define WALIKOTA_HPP
+
 #include "Player.hpp"
 #include "../Bangunan/Bangunan.hpp"
 #include "../Toko/Toko.hpp"
@@ -21,3 +24,5 @@ class Walikota : public Player, public Toko {
     void addPetani();
     void addPeternak();
 };
+
+#endif

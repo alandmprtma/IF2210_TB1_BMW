@@ -1,3 +1,6 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
 #include "Penyimpanan.hpp"
 #include "../Item/Produk.hpp"
 #include <iostream>
@@ -22,3 +25,5 @@ protected:
   int getBeratBadan();
   void makan();
 };
+
+#endif

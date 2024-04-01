@@ -1,3 +1,6 @@
+#ifndef PETERNAK_HPP
+#define PETERNAK_HPP
+
 #include "Player.hpp"
 #include "../Item/Animal.hpp"
 #include "../Toko/Toko.hpp"
@@ -18,6 +21,7 @@ public:
 
   void simpanHewanTernak();
   void kasihMakanHewanTernak();
-
   void panenTernak();
 };
+
+#endif

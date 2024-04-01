@@ -1,3 +1,6 @@
+#ifndef PETANI_HPP
+#define PETANI_HPP
+
 #include "Player.hpp"
 #include "../Item/Plant.hpp"
 #include "../Toko/Toko.hpp"
@@ -19,3 +22,5 @@ public:
   void beli();
   void jual();
 };
+
+#endif

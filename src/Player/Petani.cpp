@@ -6,7 +6,9 @@ Petani::Petani() {
   this->IdPlayer = jumlahPlayer;
 }
 
-float Petani::getPajak() {}
+float Petani::getPajak() {
+  return 1.00;
+}
 
 void Petani::setUmurTanaman() {}
 
