@@ -3,6 +3,7 @@
 
 #include "../Item/Plant.hpp"
 #include "../Item/Produk.hpp"
+#include "../Item/Animal.hpp"
 #include "../Exception/Exception.hpp"
 #include <iostream>
 #include <fstream>
@@ -16,6 +17,7 @@ class Muat{
 private:
     std::vector<Plant> plantList;
     std::vector<Produk> produkList;
+    std::vector<Animal> animalList;
     
 
 public:
@@ -23,9 +25,11 @@ public:
     Muat();
     void muatTanaman(string pathTanaman);
     void muatProduk(string pathProduk);
+    void muatHewan(string pathHewan);
     int stringToInt(string num);
     std::vector<Plant> getPlantList();
     std::vector<Produk> getProdukList();
+    std::vector<Animal> getAnimalList();
 
 };
 
