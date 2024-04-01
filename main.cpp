@@ -6,12 +6,12 @@
 // #include "Player/Peternak.hpp"
 // #include "Player/Walikota.hpp"
 // #include "Bangunan/Bangunan.hpp"
-#include "./src/SimpanMuat/Muat.cpp"
+#include "./src/GameObject/GameObject.cpp"
 
 #include <iostream>
 using namespace std;
 int main (){
-    Muat *muat = new Muat();
+    GameObject *muat = new GameObject();
     muat->muatProduk("./Config/product.txt");
     muat->muatTanaman("./Config/plant.txt");
     muat->muatHewan("./Config/animal.txt");

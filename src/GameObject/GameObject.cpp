@@ -12,6 +12,9 @@ std::vector<Plant> GameObject::getPlantList(){
 std::vector<Produk> GameObject::getProdukList(){
     return this->produkList;
 }
+std::vector<Animal> GameObject::getAnimalList(){
+    return this->animalList;
+}
 int GameObject::stringToInt(string num){
 
     int n = 0;
@@ -137,4 +140,60 @@ void GameObject::muatProduk(string pathProduk){
             
         }
    
+}
+
+void GameObject::muatHewan(string pathHewan){
+
+        std::ifstream inputFile(pathHewan);
+
+        if (!inputFile.is_open()){
+
+            throw FileNotFoundError();
+            
+        }else{
+            
+            std::vector<Animal> animalList = std::vector<Animal>();
+            std::string line;
+
+            while (std::getline(inputFile,line))
+            {   
+
+                std::istringstream iss(line);
+                // parse string dipisah spasi
+                
+                // skip id
+                std::string token;
+                std::getline(iss,token,' ');
+                
+                std::getline(iss,token,' ');
+                if (token.empty()){
+                    throw UndefinedSymbolError();
+                }
+                std::string kodeHuruf = token;
+
+                std::getline(iss,token,' ');
+                std::string nama = token;
+    
+                std::getline(iss,token,' ');
+                std::string tipe = token;
+
+                std::getline(iss,token,' ');
+                int beratPanen = stringToInt(token);
+
+                std::getline(iss,token,' ');
+                int harga =  stringToInt(token);
+         
+                // simpan ke dalam list
+                this->animalList.push_back(Animal(
+                    kodeHuruf,
+                    nama,
+                    tipe,
+                    beratPanen,
+                    harga
+                ));
+
+            }
+            
+        }
+
 }

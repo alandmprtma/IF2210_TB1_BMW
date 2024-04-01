@@ -3,6 +3,8 @@
 #include <iomanip>
 using namespace std;
 
+
+
 class Penyimpanan {
   protected:
     vector<string> data;
@@ -14,3 +16,4 @@ class Penyimpanan {
     Penyimpanan(int, int);
     void cetakPenyimpanan();
 };
+
