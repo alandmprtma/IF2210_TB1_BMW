@@ -4,10 +4,10 @@ Penyimpanan::Penyimpanan(int m, int n) : m(m), n(n) {
   data.resize(m * n);
 }
 
-void Penyimpanan::printPenyimpanan() {
+void Penyimpanan::cetakPenyimpanan() {
   cout << " ";
   for (int i = 0; i < n; i++) {
-    cout << "     " << static_cast<char>('A' + i) << " ";
+    cout << "     " << (char) ('A' + i) << " ";
   }
   cout << endl;
   

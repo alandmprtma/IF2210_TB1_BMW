@@ -5,12 +5,12 @@ using namespace std;
 
 class Penyimpanan {
   protected:
-    vector<string> data; // Change the template parameter to string
+    vector<string> data;
     int m;
     int n;
     
   public:
+    Penyimpanan();
     Penyimpanan(int, int);
-
-    void printPenyimpanan();
+    void cetakPenyimpanan();
 };

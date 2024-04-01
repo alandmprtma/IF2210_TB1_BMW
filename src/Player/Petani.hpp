@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Penyimpanan.hpp"
 #include "../Toko/Toko.hpp"
 
 class Petani : public Player, public Toko {
@@ -16,8 +17,6 @@ public:
   // Virtual Function Toko
   void beli();
   void jual();
-
-
 
   int getPajak();
 

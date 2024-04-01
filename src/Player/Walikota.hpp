@@ -10,8 +10,12 @@ class Walikota : public Player {
   public:
     Walikota();
 
-    void tagihPajak(int);
+    void pungutPajak();
     void bangunBangunan();
+
+    // Virtual Function Toko
+    void beli();
+    void jual();
 
     void addPetani();
     void addPeternak();

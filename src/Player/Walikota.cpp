@@ -4,6 +4,6 @@ Walikota::Walikota() {
   this->peran = "Walikota";
 }
 
-void Walikota::tagihPajak(string username) {
+void Walikota::pungutPajak() {
   
 }
