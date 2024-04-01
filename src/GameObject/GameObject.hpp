@@ -24,7 +24,7 @@ private:
     std::vector<int> sizeCrops;
     std::vector<int> sizeFarm;
     
-
+    
 public:
     
     GameObject();
