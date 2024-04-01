@@ -1,9 +1,11 @@
 #include <iostream>
 using namespace std;
 
-class Player
-{
+class Player {
 protected:
+  static int jumlahPlayer;
+
+  int Id_Player;
   string username;
   string peran;
   int uang;
