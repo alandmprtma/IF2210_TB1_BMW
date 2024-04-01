@@ -14,6 +14,11 @@ T Penyimpanan<T>::getElement(int i, int j) {
 }
 
 template <class T>
+int Penyimpanan<T>::getSize() {
+  return data.size();
+}
+
+template <class T>
 void Penyimpanan<T>::cetakPenyimpanan() {
   cout << " ";
   for (int i = 0; i < n; i++) {
