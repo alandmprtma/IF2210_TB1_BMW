@@ -16,20 +16,20 @@ int main (){
     muat->muatTanaman("./Config/plant.txt");
     muat->muatHewan("./Config/animal.txt");
 
-    // cout<<"Tanaman"<<endl;
-    // for (int i=0;i<muat->getPlantList().size();i++){
-    //     cout<<"Kode Huruf: "<<muat->getPlantList()[i].getKodeHuruf()<<endl;
-    //     cout<<"Nama: "<<muat->getPlantList()[i].getNama()<<endl;}
-    // cout<<"Hewan"<<endl;
-    // for (int i=0;i<muat->getAnimalList().size();i++){
-    //     cout<<"Kode Huruf: "<<muat->getAnimalList()[i].getKodeHuruf()<<endl;
-    //     cout<<"Nama: "<<muat->getAnimalList()[i].getNama()<<endl;
-    // }
-    // cout<<"Produk"<<endl;
-    // for (int i=0;i<muat->getProdukList().size();i++){
-    //     cout<<"Kode Huruf: "<<muat->getProdukList()[i].getKodeHuruf()<<endl;
-    //     cout<<"Nama: "<<muat->getProdukList()[i].getNama()<<endl;
-    // }
+    cout<<"Tanaman"<<endl;
+    for (int i=0;i<muat->getPlantList().size();i++){
+        cout<<"Kode Huruf: "<<muat->getPlantList()[i].getKodeHuruf()<<endl;
+        cout<<"Nama: "<<muat->getPlantList()[i].getNama()<<endl;}
+    cout<<"Hewan"<<endl;
+    for (int i=0;i<muat->getAnimalList().size();i++){
+        cout<<"Kode Huruf: "<<muat->getAnimalList()[i].getKodeHuruf()<<endl;
+        cout<<"Nama: "<<muat->getAnimalList()[i].getNama()<<endl;
+    }
+    cout<<"Produk"<<endl;
+    for (int i=0;i<muat->getProdukList().size();i++){
+        cout<<"Kode Huruf: "<<muat->getProdukList()[i].getKodeHuruf()<<endl;
+        cout<<"Nama: "<<muat->getProdukList()[i].getNama()<<endl;
+    }
     
     return 0;
 }

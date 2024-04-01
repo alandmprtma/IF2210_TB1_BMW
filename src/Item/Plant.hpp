@@ -10,6 +10,9 @@ private:
 public: 
     static int jumlahTanaman;
     Plant(string,string,string,int,int);
+    int getIdTanaman();
+    int getDurasiPanen();
+    int getHarga();
 };
 
 #endif
