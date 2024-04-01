@@ -1,4 +1,5 @@
 #include "Penyimpanan.hpp"
+#include "../Item/Produk.hpp"
 #include <iostream>
 #include <any>
 using namespace std;
@@ -17,6 +18,8 @@ protected:
   public:
   Player();
   void setUsername(string);
+  void setBeratBadan(int);
+  int getBeratBadan();
   void makan();
   void membeliDariToko();
   void menjualKeToko();
