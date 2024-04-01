@@ -2,6 +2,7 @@
 #include "./src/Item/Plant.cpp"
 #include "./src/Item/Produk.cpp"
 #include "./src/Item/Animal.cpp"
+#include "./src/Item/Bangunan.cpp"
 // #include "Player/Petani.hpp"
 // #include "Player/Peternak.hpp"
 // #include "Player/Walikota.hpp"
@@ -15,6 +16,7 @@ int main (){
     muat->muatProduk("./Config/product.txt");
     muat->muatTanaman("./Config/plant.txt");
     muat->muatHewan("./Config/animal.txt");
+    muat->muatBangunan("./Config/recipe.txt");
 
     // cout<<"Tanaman"<<endl;
     // for (int i=0;i<muat->getPlantList().size();i++){
