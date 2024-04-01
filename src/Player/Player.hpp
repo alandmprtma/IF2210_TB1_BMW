@@ -1,5 +1,6 @@
 #include "Penyimpanan.hpp"
 #include <iostream>
+#include <any>
 using namespace std;
 
 class Player {
@@ -11,9 +12,9 @@ protected:
   string peran;
   int uang;
   int berat_badan;
-  Penyimpanan petiRahasia;
+  Penyimpanan<any> petiRahasia;
 
-public:
+  public:
   Player();
   void setUsername(string);
   void makan();

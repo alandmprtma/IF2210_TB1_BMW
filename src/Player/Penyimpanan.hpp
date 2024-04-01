@@ -3,9 +3,10 @@
 #include <iomanip>
 using namespace std;
 
+template <class T>
 class Penyimpanan {
   protected:
-    vector<string> data;
+    vector<T> data;
     int m;
     int n;
     

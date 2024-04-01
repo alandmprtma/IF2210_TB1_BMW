@@ -1,29 +1,22 @@
 #include "Player.hpp"
-#include "Penyimpanan.hpp"
+#include "../Item/Plant.hpp"
 #include "../Toko/Toko.hpp"
 
 class Petani : public Player, public Toko {
 
 protected:
-  Penyimpanan ladang;
+  Penyimpanan<Plant> ladang;
   int jumlahBangunan;
 
 public:
   Petani();
   float getPajak();
-
-  void cetakLadang();
+ 
   void setUmurTanaman();
+  void tanamTanaman();
+  void panenTanaman();
 
   // Virtual Function Toko
   void beli();
   void jual();
-
-  void tanamTanaman();
-  void panenTanaman();
 };
-
-// Catatan
-// Petani dapat memanen dua kategori tanaman :
-// 1. Material Plant
-// 2. Fruit Plant

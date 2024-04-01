@@ -1,10 +1,11 @@
 #include "Player.hpp"
+#include "../Item/Animal.hpp"
 #include "../Toko/Toko.hpp"
 
 class Peternak : public Player, public Toko
 {
 protected:
-  Penyimpanan ternak;
+  Penyimpanan<Animal> ternak;
   int jumlahBangunan;
 
 public:
@@ -19,5 +20,4 @@ public:
   void kasihMakanHewanTernak();
 
   void panenTernak();
-  void cetakPeternakan();
 };
