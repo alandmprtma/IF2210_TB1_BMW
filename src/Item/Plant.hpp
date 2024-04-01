@@ -9,6 +9,8 @@ private:
     int harga;
 public: 
     static int jumlahTanaman;
+    int getIdTanaman();
+    string getTanamanNameByID(int);
     Plant(string,string,string,int,int);
 };
 

@@ -13,5 +13,6 @@ class Penyimpanan {
   public:
     Penyimpanan();
     Penyimpanan(int, int);
+    T getElement(int, int);
     void cetakPenyimpanan();
 };

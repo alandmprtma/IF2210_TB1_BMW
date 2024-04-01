@@ -11,7 +11,6 @@ protected:
 public:
   Petani();
   float getPajak();
- 
   void setUmurTanaman();
   void tanamTanaman();
   void panenTanaman();

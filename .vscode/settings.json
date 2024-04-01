@@ -60,6 +60,7 @@
     "ratio": "cpp",
     "mutex": "cpp",
     "thread": "cpp",
-    "cinttypes": "cpp"
+    "cinttypes": "cpp",
+    "any": "cpp"
   }
 }

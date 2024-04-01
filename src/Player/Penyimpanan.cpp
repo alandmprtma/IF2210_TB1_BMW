@@ -1,10 +1,20 @@
 #include "Penyimpanan.hpp"
 
-Penyimpanan::Penyimpanan(int m, int n) : m(m), n(n) {
+template <class T>
+Penyimpanan<T>::Penyimpanan() : m(0), n(0) {}
+
+template <class T>
+Penyimpanan<T>::Penyimpanan(int m, int n) : m(m), n(n) {
   data.resize(m * n);
 }
 
-void Penyimpanan::cetakPenyimpanan() {
+template <class T>
+T Penyimpanan<T>::getElement(int i, int j) {
+  return data[row][col];
+}
+
+template <class T>
+void Penyimpanan<T>::cetakPenyimpanan() {
   cout << " ";
   for (int i = 0; i < n; i++) {
     cout << "     " << (char) ('A' + i) << " ";
