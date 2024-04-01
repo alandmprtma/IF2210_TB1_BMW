@@ -18,6 +18,11 @@ private:
     std::vector<Plant> plantList;
     std::vector<Produk> produkList;
     std::vector<Animal> animalList;
+    int winWeight;
+    int winGulden;
+    std::vector<int> sizeInventory;
+    std::vector<int> sizeCrops;
+    std::vector<int> sizeFarm;
     
 
 public:
@@ -26,10 +31,16 @@ public:
     void muatTanaman(string pathTanaman);
     void muatProduk(string pathProduk);
     void muatHewan(string pathHewan);
+    void muatMisc(string pathMisc);
     int stringToInt(string num);
     std::vector<Plant> getPlantList();
     std::vector<Produk> getProdukList();
     std::vector<Animal> getAnimalList();
+    int getWinWeight();
+    int getWinGulden();
+    std::vector<int> getSizeInventory();
+    std::vector<int> getSizeCrops();
+    std::vector<int> getSizeFarm();
 
 };
 

@@ -15,6 +15,25 @@ std::vector<Produk> GameObject::getProdukList(){
 std::vector<Animal> GameObject::getAnimalList(){
     return this->animalList;
 }
+
+std::vector<int> GameObject::getSizeInventory(){
+    return this->sizeInventory;
+}
+std::vector<int> GameObject::getSizeCrops(){
+    return this->sizeCrops;
+}
+std::vector<int> GameObject::getSizeFarm(){
+    return this->sizeFarm;
+}
+
+int GameObject::getWinWeight(){
+    return this->winWeight;
+}
+int GameObject::getWinGulden(){
+    return this->winGulden;
+}
+
+
 int GameObject::stringToInt(string num){
 
     int n = 0;
@@ -194,6 +213,68 @@ void GameObject::muatHewan(string pathHewan){
 
             }
             
+        }
+
+}
+
+void GameObject::muatMisc(string pathMisc){
+    std::ifstream inputFile(pathMisc);
+
+        if (!inputFile.is_open()){
+
+            throw FileNotFoundError();
+            
+        }else{
+            std::string line;
+            int lineNumber = 0;
+
+            while (std::getline(inputFile, line)) {
+                std::istringstream iss(line);
+                std::string token;
+                std::getline(iss,token,' ');
+                if (token.empty()){
+                    throw UndefinedSymbolError();
+                }
+                lineNumber++;
+        // Perform different actions based on the line number
+                switch(lineNumber) {
+                    case 1:
+                        this->winGulden = stringToInt(token);
+                        // Perform action for line 1
+                        break;
+                    case 2:
+                        this->winWeight = stringToInt(token);
+                        // Perform action for line 2
+                        break;
+                    case 3:
+                        this->sizeInventory.push_back(stringToInt(token));
+                        std::getline(iss,token,' ');
+                        if (token.empty()){
+                            throw UndefinedSymbolError();
+                        }
+                        this->sizeInventory.push_back(stringToInt(token));
+                        // Perform action for line 3
+                        break;
+                    case 4:
+                        this->sizeCrops.push_back(stringToInt(token));
+                        std::getline(iss,token,' ');
+                        if (token.empty()){
+                            throw UndefinedSymbolError();
+                        }
+                        this->sizeCrops.push_back(stringToInt(token));
+                        // Perform action for line 4
+                        break;
+                    case 5:
+                        this->sizeFarm.push_back(stringToInt(token));
+                        std::getline(iss,token,' ');
+                        if (token.empty()){
+                            throw UndefinedSymbolError();
+                        }
+                        this->sizeFarm.push_back(stringToInt(token));
+                        // Perform action for line 5
+                        break;
+                }
+            }
         }
 
 }
