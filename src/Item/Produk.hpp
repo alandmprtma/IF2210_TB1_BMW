@@ -2,7 +2,7 @@
 #define PRODUK_HPP
 #include "Item.hpp"
 
-class Produk : Item{
+class Produk : public Item{
 private:
     int id_produk;
     string orisinil;

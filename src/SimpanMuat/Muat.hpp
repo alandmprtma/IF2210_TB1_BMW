@@ -2,6 +2,7 @@
 #define MUAT_HPP
 
 #include "../Item/Plant.hpp"
+#include "../Item/Produk.hpp"
 #include "../Exception/Exception.hpp"
 #include <iostream>
 #include <fstream>
@@ -12,14 +13,19 @@
 
 class Muat{
 
-protected:
-
+private:
     std::vector<Plant> plantList;
+    std::vector<Produk> produkList;
+    
 
 public:
-
-    std::vector<Plant> muatTanaman(string pathTanaman);
+    
+    Muat();
+    void muatTanaman(string pathTanaman);
+    void muatProduk(string pathProduk);
     int stringToInt(string num);
+    std::vector<Plant> getPlantList();
+    std::vector<Produk> getProdukList();
 
 };
 

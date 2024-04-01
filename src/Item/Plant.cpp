@@ -10,3 +10,4 @@ Plant::Plant(string kodeHuruf, string nama, string tipe,int durasiPanen,int harg
 }
 
 
+

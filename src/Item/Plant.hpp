@@ -2,7 +2,7 @@
 #define PLANT_HPP
 #include "Item.hpp"
 
-class Plant: Item{
+class Plant: public Item{
 private:
     int id_tanaman;
     int durasiPanen;
