@@ -19,7 +19,7 @@ private:
     std::vector<Produk> produkList;
     std::vector<Animal> animalList;
     
-
+    
 public:
     
     GameObject();
