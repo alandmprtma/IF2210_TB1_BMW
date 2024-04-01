@@ -40,6 +40,38 @@ void Petani::tanamTanaman() {
   cout << tanamanPilihan.getTanamanNameByID(tanamanPilihan.getIdTanaman()) << " berhasil ditanam!" << endl;
 }
 
-void Petani::tanamTanaman() {
-  
+void Petani::panenTanaman() {
+  ladang.cetakPenyimpanan();
+
+  // TODO : Menyimpan petak yang memiliki isi; tipe dan jumlahnya
+
+  cout << "Pilig tanaman siap panen yang kamu miliki" << endl;
+
+
+  int NoTanaman;
+  cout << "Nomor tanaman yang ingin dipanen: ";
+  cin >> NoTanaman;
+
+  int NPetak;
+  cout << "Berapa petak yang ingin dipanen";
+  cin >> NPetak;
+
+  cout << "Pilih petak yang ingin dipanen:" << endl;
+  vector<Plant> tanamanSiapPanen(NPetak);
+  for (int i = 0; i < NPetak; i++) {
+    cout << "Petak ke-" << i+1 << ": ";
+    string pilihanTanaman;
+    cin >> pilihanTanaman;
+
+    int kolom = ((int) pilihanTanaman[0] - 'A') + 1;
+    int baris = (int) stoi(pilihanTanaman.substr(1, 2));
+
+    Plant tanamanPilihan = ladang.getElement(baris, kolom);
+    tanamanSiapPanen.push_back(tanamanPilihan);
+  }
+
+  // TODO : Cout tanaman yang berhasil dipanen
+
+  // TODO : Masukkan hasil panen ke inventory penyimpanan (petiRahasia)
+
 }
