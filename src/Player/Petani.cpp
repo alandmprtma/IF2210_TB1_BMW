@@ -1,8 +1,7 @@
 #include "Petani.hpp"
 
-int Petani::jumlah_petani = 0;
-
 Petani::Petani() {
+  jumlahPlayer++;
   this->peran = "Petani";
-  jumlah_petani++;
+  this->IdPlayer = jumlahPlayer;
 }
