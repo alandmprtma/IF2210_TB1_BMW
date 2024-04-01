@@ -10,6 +10,9 @@ private:
 public: 
     static int jumlahHewan;
     Animal(string,string,string,int,int);
+    int getHarga();
+    int getBeratPanen();
+    int getId_Hewan();
 };
 
 #endif
