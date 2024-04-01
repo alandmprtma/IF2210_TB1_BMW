@@ -1,6 +1,7 @@
 #include "Player.hpp"
+#include "../Toko/Toko.hpp"
 
-class Peternak : public Player
+class Peternak : public Player, public Toko
 {
 private:
   static int jumlahPeternak; // ID Peternak

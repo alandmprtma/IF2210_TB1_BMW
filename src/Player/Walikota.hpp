@@ -1,8 +1,9 @@
 #include "Player.hpp"
 #include "../Bangunan/Bangunan.hpp"
+#include "../Toko/Toko.hpp"
 #include <vector>
 
-class Walikota : public Player {
+class Walikota : public Player, public Toko {
   private:
     int uangPajak;
     Bangunan bangunan;

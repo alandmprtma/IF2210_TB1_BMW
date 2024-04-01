@@ -10,6 +10,7 @@ protected:
 
 public:
   Petani();
+  float getPajak();
 
   void cetakLadang();
   void setUmurTanaman();
@@ -17,8 +18,6 @@ public:
   // Virtual Function Toko
   void beli();
   void jual();
-
-  int getPajak();
 
   void tanamTanaman();
   void panenTanaman();
