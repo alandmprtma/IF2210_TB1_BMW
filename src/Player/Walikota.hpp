@@ -2,12 +2,12 @@
 
 class Walikota : public Player {
   private:
-    static int jumlahWalikota; // ID Walikota
+    int uangPajak;
 
   public:
     Walikota();
 
-    void pungutPajak();
+    void tagihPajak(int);
     void bangunBangunan();
 
     void addPetani();
