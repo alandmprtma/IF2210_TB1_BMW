@@ -36,6 +36,15 @@ T Penyimpanan<T>::getElement(int i, int j) {
 }
 
 template <class T>
+void Penyimpanan<T>::removeElement(int i, int j) {
+    if (i >= 0 && i < m && j >= 0 && j < n) {
+        data[i][j] = T();
+    } else {
+        cout << "Indeks di luar batas!" << endl;
+    }
+}
+
+template <class T>
 void Penyimpanan<T>::cetakPenyimpanan() {
     cout << "    ";
     /* Garis Judul Belum Dinamis*/

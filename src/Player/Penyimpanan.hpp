@@ -20,6 +20,7 @@ class Penyimpanan {
     int getSize();
     void setElement(T, int, int);
     T getElement(int, int);
+    void removeElement(int, int);
     void cetakPenyimpanan();
 };
 
