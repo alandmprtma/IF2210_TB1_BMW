@@ -7,9 +7,9 @@
 #include "./src/Player/Peternak.cpp"
 #include "./src/Player/Walikota.cpp"
 #include "./src/Bangunan/Bangunan.cpp"
-// #include "./src/SimpanMuat/Muat.cpp"
-// #include "./src/Player/Penyimpanan.cpp"
+#include "./src/Player/Penyimpanan.cpp"
 #include "./src/Toko/Toko.cpp"
+// #include "./src/SimpanMuat/Muat.cpp"
 
 #include <iostream>
 using namespace std;
@@ -41,6 +41,15 @@ int main (){
     P4.setBeratBadan(40);
     P4.printPlayer();
     cout << endl;
-    
+
+    cout << "# ========= Test Penyimpanan ======== #" << endl << endl;
+    Penyimpanan<int> Kotak(8, 8);
+    cout << "Size dari Kotak: " << Kotak.getSize() << endl;
+    Kotak.cetakPenyimpanan();
+    Kotak.setElement(1, 5, 5);
+    Kotak.setElement(2, 5, 6);
+    Kotak.cetakPenyimpanan();
+
+    cout << endl;
     return 0;
 }

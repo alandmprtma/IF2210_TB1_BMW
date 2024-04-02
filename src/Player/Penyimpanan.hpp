@@ -11,15 +11,15 @@ template <class T>
 class Penyimpanan {
   protected:
     vector<vector<T>> data;
-    int m;
-    int n;
+    int m; /* Baris */ 
+    int n; /* Kolom */
     
   public:
     Penyimpanan();
     Penyimpanan(int, int);
-    T getElement(int, int);
-    void setElement(int, int, T);
     int getSize();
+    void setElement(T, int, int);
+    T getElement(int, int);
     void cetakPenyimpanan();
 };
 
