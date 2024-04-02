@@ -1,21 +1,28 @@
 #include "Penyimpanan.hpp"
 
 template <class T>
-Penyimpanan<T>::Penyimpanan() : m(0), n(0) {}
+Penyimpanan<T>::Penyimpanan() {
+  
+}
 
 template <class T>
 Penyimpanan<T>::Penyimpanan(int m, int n) : m(m), n(n) {
-  data.resize(m * n);
+  data.resize(m, vector<T>(n));
 }
 
 template <class T>
 T Penyimpanan<T>::getElement(int i, int j) {
-  return data[row][col];
+  return data[i][j];
+}
+
+template <class T>
+void Penyimpanan<T>::setElement(int i, int j, T value) {
+  data[i][j] = value;
 }
 
 template <class T>
 int Penyimpanan<T>::getSize() {
-  return data.size();
+  return m * n;
 }
 
 template <class T>
@@ -38,10 +45,10 @@ void Penyimpanan<T>::cetakPenyimpanan() {
     for (int j = 0; j < n; j++) {
       cout << " ";
       
-      if (data[i * n + j] == "") {
+      if (data[i][j] == "") {
         cout << "     ";
       } else {
-        cout << data[i * n + j] << " ";
+        cout << data[i][j] << " ";
       }
       
       cout << "|";

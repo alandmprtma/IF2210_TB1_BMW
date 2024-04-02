@@ -5,23 +5,22 @@
 #include "../Item/Animal.hpp"
 #include "../Toko/Toko.hpp"
 
-class Peternak : public Player, public Toko
-{
-protected:
-  Penyimpanan<Animal> ternak;
-  int jumlahBangunan;
+class Peternak : public Player, public Toko {
+  protected:
+    // Penyimpanan<Animal> ternak;
+    int jumlahBangunan;
 
-public:
-  Peternak();
-  float getPajak();
+  public:
+    Peternak();
+    float getPajak();
+    void simpanHewanTernak();
+    void kasihMakanHewanTernak();
+    void panenTernak();
 
-  // Virtual Function Toko
-  void beli();
-  void jual();
+    void printPlayer();
 
-  void simpanHewanTernak();
-  void kasihMakanHewanTernak();
-  void panenTernak();
+    void jual();
+    void beli();
 };
 
 #endif

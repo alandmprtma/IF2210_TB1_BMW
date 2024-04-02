@@ -6,8 +6,10 @@ using namespace std;
 
 class Toko {
   public:
-    virtual void beli();
-    virtual void jual();
+    Toko();
+
+    virtual void beli() = 0; // Pure Virtual Function
+    virtual void jual() = 0; // Pure Virtual Function
 };
 
 #endif

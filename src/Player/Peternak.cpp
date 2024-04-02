@@ -1,21 +1,23 @@
 #include "Peternak.hpp"
 
 Peternak::Peternak(){
-    jumlahPlayer++;
     this->peran = "Peternak";
-    this->IdPlayer = jumlahPlayer;
 }
 
 float Peternak::getPajak(){
-  
+    return 1.00;
 }
-
-// Virtual Function Toko
-void beli(){}
-void jual(){}
 
 void Peternak::simpanHewanTernak(){}
 void Peternak::kasihMakanHewanTernak(){}
-
 void Peternak::panenTernak(){}
-void Peternak::cetakPeternakan(){}
+
+void Peternak::printPlayer() {
+    cout << "ID Player: " << this->IdPlayer << endl;
+    cout << "Username: " << this->username << endl;
+    cout << "Berat Badan: " << this->getBeratBadan() << endl;
+    cout << "Peran: " << this->peran << endl;
+}
+
+void Peternak::beli() {}
+void Peternak::jual() {}

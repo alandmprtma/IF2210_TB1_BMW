@@ -6,21 +6,21 @@
 #include "../Toko/Toko.hpp"
 
 class Petani : public Player, public Toko {
+  protected:
+    // Penyimpanan<Plant> ladang;
+    int jumlahBangunan;
 
-protected:
-  Penyimpanan<Plant> ladang;
-  int jumlahBangunan;
+  public:
+    Petani();
+    float getPajak();
+    void setUmurTanaman();
+    void tanamTanaman();
+    void panenTanaman();
 
-public:
-  Petani();
-  float getPajak();
-  void setUmurTanaman();
-  void tanamTanaman();
-  void panenTanaman();
+    void printPlayer();
 
-  // Virtual Function Toko
-  void beli();
-  void jual();
+    void beli();
+    void jual();
 };
 
 #endif

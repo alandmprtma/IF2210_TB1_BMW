@@ -8,22 +8,24 @@
 using namespace std;
 
 class Player {
-protected:
-  static int jumlahPlayer;
+  protected:
+    static int jumlahPlayer;
 
-  int IdPlayer;
-  string username;
-  string peran;
-  int uang;
-  int berat_badan;
-  Penyimpanan<any> petiRahasia;
+    int IdPlayer;
+    string username;
+    string peran;
+    int uang;
+    int berat_badan;
+    // Penyimpanan<any> petiRahasia;
 
   public:
-  Player();
-  void setUsername(string);
-  void setBeratBadan(int);
-  int getBeratBadan();
-  void makan();
+    Player();
+    void setUsername(string);
+    void setBeratBadan(int);
+    int getBeratBadan();
+    void makan();
+    
+    virtual void printPlayer();
 };
 
 #endif
