@@ -11,5 +11,9 @@ private:
 public:
     static int jumlahProduk;
     Produk(string,string,string,string,int,int);
+    int getIdProduk();
+    string getOrisinil();
+    int getBeratTambahan();
+    int getHarga();
 };
 #endif
