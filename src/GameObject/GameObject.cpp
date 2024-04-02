@@ -4,6 +4,8 @@
 GameObject::GameObject(){
     this->plantList = std::vector<Plant>();
     this->produkList = std::vector<Produk>();
+    this->animalList = std::vector<Animal>();
+    this->bangunanList = std::vector<Bangunan>();
 }
 
 std::vector<Plant> GameObject::getPlantList(){
@@ -34,6 +36,9 @@ int GameObject::getWinGulden(){
 }
 
 
+std::vector<Bangunan> GameObject::getBangunanList(){
+    return this->bangunanList;
+}
 int GameObject::stringToInt(string num){
 
     int n = 0;
@@ -274,6 +279,67 @@ void GameObject::muatMisc(string pathMisc){
                         // Perform action for line 5
                         break;
                 }
+            }
+        }
+
+}
+
+void GameObject::muatBangunan(string pathBangunan){
+
+        std::ifstream inputFile(pathBangunan);
+
+        if (!inputFile.is_open()){
+
+            throw FileNotFoundError();
+            
+        }else{
+            
+            std::vector<Bangunan> bangunanList = std::vector<Bangunan>();
+            std::string line;
+
+            while (std::getline(inputFile,line))
+            {   
+
+                std::istringstream iss(line);
+                // parse string dipisah spasi
+                
+                // skip id
+                std::string token;
+                std::getline(iss,token,' ');
+                
+                std::getline(iss,token,' ');
+                if (token.empty()){
+                    throw UndefinedSymbolError();
+                }
+                std::string kodeHuruf = token;
+                cout << kodeHuruf << endl;
+
+                std::getline(iss,token,' ');
+                std::string namaBangunan = token;
+                cout << namaBangunan << endl;
+
+                std::getline(iss,token,' ');
+                int price = stringToInt(token);
+                cout << price << endl;
+                Bangunan temp(kodeHuruf, namaBangunan, price);
+                
+                while (true) {
+                    std::getline(iss,token,' ');
+                    std::string namaMaterial = token;
+                    cout << namaMaterial << endl;
+
+                    std::getline(iss,token,' ');
+                    int materialQuantity = stringToInt(token);
+                    cout << materialQuantity << endl;
+                    
+                    temp.inputMaterial(namaMaterial, materialQuantity);
+                    // Baca jumlah material
+                    if (iss.peek() == '\n' || iss.peek() == EOF) {
+                        break; // Jika berikutnya adalah newline atau akhir file, keluar dari loop
+                    }
+                }
+                // simpan ke dalam list
+                this->bangunanList.push_back(temp);
             }
         }
 
