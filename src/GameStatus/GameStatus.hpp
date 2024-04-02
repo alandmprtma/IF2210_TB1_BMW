@@ -16,8 +16,11 @@ private:
     std::map<int,Petani> petaniList;
     std::map<int,Peternak> peternakList;
     Walikota walikota;
+    // Toko
+    bool endGame;
 public:
     GameStatus();
+    void turn();
     std::map<int,Petani> getPetaniList();
     std::map<int,Peternak> getPeternakList();
     Walikota getWalikota();

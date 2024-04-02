@@ -10,3 +10,15 @@ Produk::Produk(string kodeHuruf,string nama,string tipe,string orisinil,int bera
         jumlahProduk += 1;
         id_produk = jumlahProduk;
     }
+int Produk::getBeratTambahan(){
+    return beratTambahan;
+}
+int Produk::getHarga(){
+    return harga;
+}
+int Produk::getIdProduk(){
+    return id_produk;
+}
+string Produk::getOrisinil(){
+    return orisinil;
+}

@@ -8,6 +8,14 @@ Plant::Plant(string kodeHuruf, string nama, string tipe,int durasiPanen,int harg
         jumlahTanaman += 1;
         id_tanaman = jumlahTanaman;
 }
+int Plant::getIdTanaman(){
+        return id_tanaman;}
+int Plant::getHarga(){
+        return harga;
+}
+int Plant::getDurasiPanen() {
+        return durasiPanen;
+}
 
 
 

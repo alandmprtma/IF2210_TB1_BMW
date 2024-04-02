@@ -14,6 +14,9 @@ public:
     int getIdTanaman();
     string getTanamanNameByID(int);
     Plant(string,string,string,int,int);
+    int getIdTanaman();
+    int getDurasiPanen();
+    int getHarga();
 };
 
 #endif

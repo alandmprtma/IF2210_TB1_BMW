@@ -21,6 +21,7 @@ class Bangunan {
         string getNamaBangunan();
     private:
         string namaBangunan;
+        
 };
 
 #endif
