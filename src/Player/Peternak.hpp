@@ -1,27 +1,26 @@
+#ifndef PETERNAK_HPP
+#define PETERNAK_HPP
+
 #include "Player.hpp"
+#include "../Item/Animal.hpp"
 #include "../Toko/Toko.hpp"
 
-class Peternak : public Player, public Toko
-{
-private:
-  static int jumlahPeternak; // ID Peternak
-  // AreaInventory peternakan;
+class Peternak : public Player, public Toko {
+  protected:
+    // Penyimpanan<Animal> ternak;
+    int jumlahBangunan;
 
-protected:
-  Penyimpanan ternak;
-  int jumlahBangunan;
+  public:
+    Peternak();
+    float getPajak();
+    void simpanHewanTernak();
+    void kasihMakanHewanTernak();
+    void panenTernak();
 
-public:
-  Peternak();
-  float getPajak();
+    void printPlayer();
 
-  // Virtual Function Toko
-  void beli();
-  void jual();
-
-  void simpanHewanTernak();
-  void kasihMakanHewanTernak();
-
-  void panenTernak();
-  void cetakPeternakan();
+    void jual();
+    void beli();
 };
+
+#endif
