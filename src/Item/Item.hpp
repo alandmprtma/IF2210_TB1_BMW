@@ -10,7 +10,8 @@ using namespace std;
 #define NULL_ITEM Item()
 
 class Item{
-protected:    
+
+protected:
     string kodeHuruf;
     string nama;
     string tipe;
