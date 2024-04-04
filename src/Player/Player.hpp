@@ -2,10 +2,11 @@
 #define PLAYER_HPP
 
 #include <iostream>
+
 using namespace std;
 
-#include "../Penyimpanan/PetiRahasia.hpp"
-#include "../Item/Item.hpp"
+#define DEFAULT_GULDEN 50
+#define DEFAULT_BERAT_BADAN 40
 
 class Player {
   protected:
