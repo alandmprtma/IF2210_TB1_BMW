@@ -4,8 +4,10 @@
 int Plant::jumlahTanaman = 0;
 
 // constructor
-Plant::Plant(string kodeHuruf, string nama, string tipe,int durasiPanen,int harga):Item(kodeHuruf,nama,tipe),durasiPanen(durasiPanen), harga(harga){ 
-        jumlahTanaman += 1;
+Plant::Plant(string kodeHuruf, string nama, string tipe,int durasiPanen,int harga):Item(kodeHuruf,nama,tipe),
+        durasiPanen(durasiPanen), harga(harga),umur(0){
+                
+        jumlahTanaman +=1 ;
         id_tanaman = jumlahTanaman;
 }
 int Plant::getIdTanaman(){
@@ -16,6 +18,11 @@ int Plant::getHarga(){
 int Plant::getDurasiPanen() {
         return durasiPanen;
 }
-
+int Plant::getUmur(){
+        return umur;
+}
+void Plant::setUmur(int x){
+        umur = x;
+}
 
 

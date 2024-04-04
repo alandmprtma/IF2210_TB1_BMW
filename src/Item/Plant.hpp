@@ -7,16 +7,20 @@ private:
     int id_tanaman;
     int durasiPanen;
     int harga;
+    int umur;
 public: 
     static int jumlahTanaman;
 
     Plant();
-    int getIdTanaman();
     string getTanamanNameByID(int);
     Plant(string,string,string,int,int);
     int getIdTanaman();
     int getDurasiPanen();
     int getHarga();
+    int getIdTanaman();
+    int getUmur();
+    void setUmur(int x);
+
 };
 
 #endif
