@@ -14,6 +14,7 @@
 #include <iostream>
 using namespace std;
 int main (){
+    
     GameObject *muat = new GameObject();
     muat->muatProduk("./Config/product.txt");
     muat->muatTanaman("./Config/plant.txt");
