@@ -1,7 +1,8 @@
 #ifndef ITEM_HPP
 #define ITEM_HPP
-#include <iostream>
 using namespace std;
+#include <iostream>
+
 
 #define DEFAULT_KODE_HURUF_ITEM "@#$"
 #define DEFAULT_NAMA_ITEM "@#$"
@@ -9,7 +10,7 @@ using namespace std;
 #define NULL_ITEM Item()
 
 class Item{
-private:
+protected:    
     string kodeHuruf;
     string nama;
     string tipe;
@@ -19,8 +20,6 @@ public:
     string getKodeHuruf() const;
     string getNama() const;
     string getTipe() const;
-    bool operator==(const Item& other);
-    Item& operator=(const Item& other);
 
 };
 
