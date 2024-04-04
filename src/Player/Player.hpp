@@ -4,8 +4,11 @@
 #include "Penyimpanan.hpp"
 #include "../Item/Produk.hpp"
 #include <iostream>
-#include <any>
+
 using namespace std;
+
+#define DEFAULT_GULDEN 50
+#define DEFAULT_BERAT_BADAN 40
 
 class Player {
   protected:
