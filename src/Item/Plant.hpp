@@ -17,7 +17,6 @@ public:
     int getIdTanaman();
     int getDurasiPanen();
     int getHarga();
-    int getIdTanaman();
     int getUmur();
     void setUmur(int x);
 

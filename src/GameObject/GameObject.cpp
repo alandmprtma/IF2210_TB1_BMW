@@ -312,25 +312,20 @@ void GameObject::muatBangunan(string pathBangunan){
                     throw UndefinedSymbolError();
                 }
                 std::string kodeHuruf = token;
-                cout << kodeHuruf << endl;
 
                 std::getline(iss,token,' ');
                 std::string namaBangunan = token;
-                cout << namaBangunan << endl;
 
                 std::getline(iss,token,' ');
                 int price = stringToInt(token);
-                cout << price << endl;
                 Bangunan temp(kodeHuruf, namaBangunan, price);
                 
                 while (true) {
                     std::getline(iss,token,' ');
-                    std::string namaMaterial = token;
-                    cout << namaMaterial << endl;
+                    std::string namaMaterial = token;;
 
                     std::getline(iss,token,' ');
                     int materialQuantity = stringToInt(token);
-                    cout << materialQuantity << endl;
                     
                     temp.inputMaterial(namaMaterial, materialQuantity);
                     // Baca jumlah material
