@@ -15,13 +15,24 @@ class Penyimpanan {
     int n; /* Kolom */
     
   public:
+    /* Default Constructor */
     Penyimpanan();
     Penyimpanan(int, int);
+
+    /* Mendapatkan Size Data */
     int getSize();
-    void setElement(T, int, int);
+
+    /* Get Element */
     T getElement(int, int);
+    
+    /* Set Element */
+    void setElement(T, int, int);
+
+    /* Mereturn & Menghapus Element Dari Data */
     void removeElement(int, int);
-    void cetakPenyimpanan();
+
+    /* Mencetak Data */
+    virtual void cetakPenyimpanan(string);
 };
 
 #endif
