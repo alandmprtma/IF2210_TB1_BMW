@@ -1,15 +1,20 @@
 #include "Animal.hpp"
 
-Animal::Animal(): Item(){
-        id_hewan = DEFAULT_ID_HEWAN;
-        beratPanen = DEFAULT_BERAT_PANEN;
-        harga = DEFAULT_HARGA;
-}
 
 // Static variable Init
 int Animal::jumlahHewan = 0;
 
 // constructor
+Animal::Animal(): Item(){
+        id_hewan = DEFAULT_ID_HEWAN;
+        beratPanen = DEFAULT_BERAT_PANEN;
+        harga = DEFAULT_HARGA;
+}
+Animal::Animal(const Animal& other):Item(other.kodeHuruf,other.nama,other.tipe){
+        id_hewan = other.id_hewan;
+        beratPanen = other.beratPanen;
+        harga = other.harga;
+}
 Animal::Animal(string kodeHuruf, string nama, string tipe,int beratPanen,int harga):Item(kodeHuruf,nama,tipe),
         beratPanen(beratPanen), harga(harga),berat(0){ 
 

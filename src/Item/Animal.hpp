@@ -15,13 +15,14 @@ private:
     int berat;
 public: 
     Animal();
-    static int jumlahHewan;
+    Animal(const Animal& other);
     Animal(string,string,string,int,int);
     int getHarga()const;
     int getBeratPanen()const;
     int getId_Hewan()const;
     int getBerat()const;
     void setBerat(int x);
+    static int jumlahHewan;
     bool operator==(const Animal&);
     Animal&  operator!=(const Animal&);
 };
