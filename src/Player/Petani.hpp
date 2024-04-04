@@ -4,10 +4,11 @@
 #include "Player.hpp"
 #include "../Item/Plant.hpp"
 #include "../Toko/Toko.hpp"
+#include "../Penyimpanan/Ladang.hpp"
 
 class Petani : public Player, public Toko {
   protected:
-    // Penyimpanan<Plant> ladang;
+    Ladang data;
     int jumlahBangunan;
 
   public:

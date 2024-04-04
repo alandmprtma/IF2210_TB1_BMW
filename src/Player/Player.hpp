@@ -1,11 +1,11 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "Penyimpanan.hpp"
-#include "../Item/Produk.hpp"
 #include <iostream>
-#include <any>
 using namespace std;
+
+#include "../Penyimpanan/PetiRahasia.hpp"
+#include "../Item/Item.hpp"
 
 class Player {
   protected:
@@ -16,7 +16,7 @@ class Player {
     string peran;
     int uang;
     int berat_badan;
-    // Penyimpanan<any> petiRahasia;
+    PetiRahasia data;
 
   public:
     Player();
