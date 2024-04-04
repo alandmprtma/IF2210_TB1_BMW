@@ -3,7 +3,7 @@
 void Ternak::cetakPenyimpanan(string label) {
   cout << "    ";
   /* Garis Judul Belum Dinamis*/
-  cout << "================[ Penyimpanan ]=================" << endl << endl; 
+  cout << "================[ " << label << " ]=================" << endl << endl; 
 
   cout << "    ";
   for (int i = 0; i < n; i++) {

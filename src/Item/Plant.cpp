@@ -3,6 +3,8 @@
 // Static variable Init
 int Plant::jumlahTanaman = 0;
 
+Plant::Plant() {}
+
 // constructor
 Plant::Plant(string kodeHuruf, string nama, string tipe,int durasiPanen,int harga):Item(kodeHuruf,nama,tipe),durasiPanen(durasiPanen), harga(harga){ 
         jumlahTanaman += 1;

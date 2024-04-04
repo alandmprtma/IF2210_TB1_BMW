@@ -11,7 +11,7 @@ class Ladang : public Penyimpanan<Plant> {
     Ladang(int m, int n) : Penyimpanan<Plant>(m, n) {}
 
     /* Cetak Ladang */
-    void cetakPenyimpanan(string label) {}
+    void cetakLadang(string);
 };
 
 #endif

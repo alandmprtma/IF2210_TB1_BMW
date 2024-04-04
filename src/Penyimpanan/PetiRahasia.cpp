@@ -1,8 +1,8 @@
 #include "PetiRahasia.hpp"
 
-void PetiRahasia::cetakPenyimpanan(string label) {
+void PetiRahasia::cetakPeti(string label) {
   cout << "    ";
-  cout << "================[" << label <<  "]=================" << endl << endl; 
+  cout << "================[ " << label <<  " ]=================" << endl << endl; 
   cout << "    ";
   
   for (int i = 0; i < n; i++) {

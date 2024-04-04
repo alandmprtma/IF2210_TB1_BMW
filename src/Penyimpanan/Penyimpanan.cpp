@@ -44,6 +44,9 @@ void Penyimpanan<T>::removeElement(int i, int j) {
     }
 }
 
+template <class T>
+void Penyimpanan<T>::cetakPenyimpanan(string label) {}
+
 // cout << "    ";
 // /* Garis Judul Belum Dinamis*/
 // cout << "================[ Penyimpanan ]=================" << endl << endl; 

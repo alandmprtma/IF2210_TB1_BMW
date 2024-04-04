@@ -1,5 +1,7 @@
 #include "Item.hpp"
 
+Item::Item() {}
+
 Item::Item(string kodeHuruf, string nama, string tipe):kodeHuruf(kodeHuruf),nama(nama),tipe(tipe){
 
 }

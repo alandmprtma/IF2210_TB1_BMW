@@ -1,9 +1,9 @@
 #include "Ladang.hpp"
 
-void Ladang::cetakPenyimpanan(string label) {
+void Ladang::cetakLadang(string label) {
   cout << "    ";
   /* Garis Judul Belum Dinamis*/
-  cout << "================[ Penyimpanan ]=================" << endl << endl; 
+  cout << "================[ " << label << " ]=================" << endl << endl; 
 
   cout << "    ";
   for (int i = 0; i < n; i++) {
