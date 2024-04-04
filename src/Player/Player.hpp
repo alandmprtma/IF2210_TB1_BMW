@@ -2,7 +2,7 @@
 #define PLAYER_HPP
 
 #include <iostream>
-
+#include "../Penyimpanan/PetiRahasia.hpp"
 using namespace std;
 
 #define DEFAULT_GULDEN 50
