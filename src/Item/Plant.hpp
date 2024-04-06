@@ -8,7 +8,7 @@
 #define DEFAULT_UMUR -1
 
 class Plant: public Item{
-private:
+protected:
     int id_tanaman;
     int durasiPanen;
     int harga;
@@ -22,7 +22,6 @@ public:
     int getIdTanaman() const;
     int getDurasiPanen() const;
     int getHarga() const;
-    int getIdTanaman() const;
     int getUmur() const;
     void setUmur(int x);
     string getTanamanNameByID(int);

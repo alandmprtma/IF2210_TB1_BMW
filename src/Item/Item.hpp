@@ -18,6 +18,7 @@ protected:
 public:
     Item();
     Item(string,string,string);
+    virtual ~Item(){}
     string getKodeHuruf() const;
     string getNama() const;
     string getTipe() const;

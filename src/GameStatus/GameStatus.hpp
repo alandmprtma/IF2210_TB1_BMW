@@ -2,7 +2,6 @@
 #define GAMESTATUS_HPP
 
 
-#include "../Player/Penyimpanan.hpp"
 #include "../Player/Petani.hpp"
 #include "../Player/Peternak.hpp"
 #include "../Player/Walikota.hpp"
@@ -13,19 +12,24 @@
 class GameStatus{
 
 private:
-    std::map<int,Petani> petaniList;
-    std::map<int,Peternak> peternakList;
+    std::vector<Player*> playerTurnList;
+    std::vector<Petani> petaniList;
+    std::vector<Peternak> peternakList;
     Walikota walikota;
+    int turn;
     // Toko
     bool endGame;
 public:
     GameStatus();
-    void turn();
-    std::map<int,Petani> getPetaniList();
-    std::map<int,Peternak> getPeternakList();
     Walikota getWalikota();
     Petani getPetani(int id);
     Peternak getPeternak(int id);
+    
+    bool getEndGame();
+    void nextTurn();
+    void Inisiasi();
+    void cetakPenyimpanan();
+    void pungutPajak();
     
 };
 
