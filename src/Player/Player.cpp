@@ -3,10 +3,21 @@
 int Player::jumlahPlayer = 0;
 
 Player::Player() {
+  jumlahPlayer += 1;
   this->IdPlayer = this->jumlahPlayer;
   this->uang = 50;
   this->berat_badan = 40;
-  jumlahPlayer += 1;
+  this->peran = "";
+}
+
+Player::Player(string username,int uang, int berat_badan, PetiRahasia data){
+  jumlahPlayer ++;
+  this->IdPlayer = this->jumlahPlayer;
+  this->username = username;
+  this->uang = uang;
+  this->berat_badan = berat_badan;
+  this->data = data;
+  this->peran = "";
 }
 
 void Player::setUsername(string username) {

@@ -1,9 +1,19 @@
 #include "Walikota.hpp"
 
-Walikota::Walikota() {
-  jumlahPlayer += 1;
-  this->IdPlayer = jumlahPlayer;
+Walikota::Walikota():Player() {
   this->username = "Walikota";
+  this->peran = "Walikota";
+  this->berat_badan = DEFAULT_BERAT_BADAN;
+  this->uang = DEFAULT_GULDEN;
+  this->TeakWood = DEFAULT_TEAK_WOOD;
+  this->SandalWood = DEFAULT_SANDAL_WOOD;
+  this->AloeWood = DEFAULT_ALOE_WOOD;
+  this->IronWood = DEFAULT_IRONWOOD;
+}
+
+Walikota::Walikota(string username,int uang, int berat_badan, PetiRahasia data):
+Player(username,uang,berat_badan,data){
+  bangunan = vector<Bangunan>();
   this->peran = "Walikota";
   this->berat_badan = DEFAULT_BERAT_BADAN;
   this->uang = DEFAULT_GULDEN;

@@ -21,6 +21,7 @@ class Player {
 
   public:
     Player();
+    Player(string username,int uang, int berat_badan, PetiRahasia data);
     void setUsername(string);
     void setBeratBadan(int);
     int getBeratBadan();

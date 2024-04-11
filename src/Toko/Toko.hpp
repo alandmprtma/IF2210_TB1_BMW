@@ -7,7 +7,7 @@ using namespace std;
 class Toko {
   public:
     Toko();
-
+  
     virtual void beli() = 0; // Pure Virtual Function
     virtual void jual() = 0; // Pure Virtual Function
 };
