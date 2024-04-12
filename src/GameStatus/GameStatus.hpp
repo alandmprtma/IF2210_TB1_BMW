@@ -8,6 +8,7 @@
 #include "../Player/Walikota.hpp"
 #include "../Toko/Toko.hpp"
 #include "../GameObject/GameObject.hpp"
+#include "../Exception/Exception.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>

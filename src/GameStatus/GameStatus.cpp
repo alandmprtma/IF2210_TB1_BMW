@@ -32,8 +32,12 @@ void GameStatus::Inisiasi(){
 }
 
 Player* GameStatus::getCurrentPlayer(){
+    if (!this->playerTurnList.empty()){
+        throw NoPLayerException();
+    }
     return playerTurnList[turn];
 }
+
 int GameStatus::stringToInt(string num){
 
     int n = 0;

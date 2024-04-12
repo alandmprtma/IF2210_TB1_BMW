@@ -33,4 +33,11 @@ class MaterialTidakCukupException : public Exception{
     }
 };
 
+class NoPLayerException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "[ERROR]: No Player Assigned yet";
+    }
+};
+
 #endif
