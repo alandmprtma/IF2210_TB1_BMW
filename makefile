@@ -6,7 +6,7 @@ SOURCES = main.cpp src/GameObject/GameObject.cpp src/Player/Walikota.cpp src/Ite
 
 OUTPUT_FOLDER = bin
 
-OBJECTS = $(patsubst %.cpp,$(OUTPUT_FOLDER)/%.o,$(notdir $(SOURCES)))
+OBJECTS = $(patsubst %.cpp,$(OUTPUT_FOLDER)/%.o,$(SOURCES))
 
 EXECUTABLE = $(OUTPUT_FOLDER)/main
 
@@ -16,7 +16,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@
 
 $(OBJECTS): $(OUTPUT_FOLDER)/%.o: %.cpp
-	@mkdir -p $(@D)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
