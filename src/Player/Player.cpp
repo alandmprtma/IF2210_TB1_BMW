@@ -28,6 +28,9 @@ void Player::setBeratBadan(int berat_badan) {
   this->berat_badan = berat_badan;
 }
 
+string Player::getPeran(){
+  return this->peran;
+}
 int Player::getBeratBadan() {
   return this->berat_badan;
 }

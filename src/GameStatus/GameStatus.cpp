@@ -11,19 +11,7 @@ GameStatus::GameStatus(){
 
 }
 
-Walikota GameStatus::getWalikota(){
-    return walikota;
-}
-
-Petani GameStatus::getPetani(int id){  
-    return petaniList[id];
-}
-
-Peternak GameStatus::getPeternak(int id){
-    return peternakList[id];
-}
-
-bool GameStatus::getEndGame(){
+bool GameStatus::isEndGame(){
     return endGame;
 }
 
@@ -35,13 +23,6 @@ void GameStatus::Inisiasi(){
     // TODO muat state.txt atau muat default
 }
 
-void GameStatus::cetakPenyimpanan(){
-    
-}
-
-void GameStatus::pungutPajak(){
-
-}
 
 int GameStatus::stringToInt(string num){
 
@@ -56,7 +37,7 @@ int GameStatus::stringToInt(string num){
     return n;
 }
 
-void GameStatus::muatStatus(string path){
+void GameStatus::muat(string path, GameObject objek){
 
     std::ifstream inputFile(path);
 
@@ -94,12 +75,20 @@ void GameStatus::muatStatus(string path){
             if (tipe=="Petani"){
                 Petani pet = Petani();
                 std::getline(inputFile,line);
-                
-                for (int j=0;j<stringToInt(line);j++){
+                PetiRahasia data;
+                int max = stringToInt(line);
+                int i = 0;
+                int j = 0;
+                while (max > 0)
+                {
+                    if (j==objek.getSizeInventory()[1]){
+                        j==0;
+                        i++;
+                    }
                     
+                    j++;
+                    max--;
                 }
-
-
             }
 
         }
@@ -126,4 +115,40 @@ void GameStatus::muatStatus(string path){
         }
         
     }
+}
+void GameStatus::cetakPenyimpanan(){
+
+}
+void GameStatus::pungutPajak(){
+
+}
+void GameStatus::cetakLadang(){
+
+}
+void GameStatus::cetakPeternakan(){
+
+}
+void GameStatus::tanam(){
+
+}
+void GameStatus::ternak(){
+
+}
+void GameStatus::bangunBangunan(){
+
+}
+void GameStatus::makan(){
+
+}
+void GameStatus::memberiPangan(){
+
+}
+void GameStatus::membeli(){
+
+}
+void GameStatus::menjual(){
+
+}
+void GameStatus::memanen(){
+
 }

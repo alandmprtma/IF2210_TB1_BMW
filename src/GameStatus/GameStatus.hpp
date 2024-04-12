@@ -5,6 +5,7 @@
 #include "../Player/Petani.hpp"
 #include "../Player/Peternak.hpp"
 #include "../Player/Walikota.hpp"
+#include "../Toko/Toko.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -19,25 +20,41 @@ private:
     std::vector<Player*> playerTurnList;
     std::map<int,Petani> petaniList;
     std::map<int,Peternak> peternakList;
+    Toko toko;
     Walikota walikota;
     int turn;
     // Toko
     bool endGame;
 public:
     GameStatus();
-    Walikota getWalikota();
-    Petani getPetani(int id);
-    Peternak getPeternak(int id);
     
-    void muatStatus(string path);
     int stringToInt(string num);
 
 
-    bool getEndGame();
+    Player* getCurrentPlayer();
+    Petani getPetani(string username);
+    Peternak getPeternak(string username);
+    Walikota getWalikota();
+
+
+    bool isEndGame();
     void nextTurn();
     void Inisiasi();
     void cetakPenyimpanan();
     void pungutPajak();
+    void cetakLadang();
+    void cetakPeternakan();
+    void tanam();
+    void ternak();
+    void bangunBangunan();
+    void makan();
+    void memberiPangan();
+    void membeli();
+    void menjual();
+    void memanen();
+    void muat(string path,GameObject objek);
+    void simpan(string path, GameObject objek);
+    void tambahPemain();
     
 };
 

@@ -45,6 +45,11 @@ public:
     std::vector<int> getSizeCrops();
     std::vector<int> getSizeFarm();
     std::vector<Bangunan> getBangunanList();
+    
+    Plant findPlant(string name);
+    Animal findAnimal(string name);
+    Produk findProduk(string name);
+
 };
 
 
