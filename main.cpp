@@ -23,11 +23,11 @@ int main (){
     
     GameObject game_object = GameObject();
 
-    game_object.muatTanaman("./Config/plant.txt");
-    game_object.muatHewan("./Config/animal.txt");
-    game_object.muatProduk("./Config/product.txt");
-    game_object.muatBangunan("./Config/recipe.txt");
-    game_object.muatMisc("./Config/misc.txt");
+    game_object.muatTanaman("../Config/plant.txt");
+    game_object.muatHewan("../Config/animal.txt");
+    game_object.muatProduk("../Config/product.txt");
+    game_object.muatBangunan("../Config/recipe.txt");
+    game_object.muatMisc("../Config/misc.txt");
 
     GameStatus game_status = GameStatus();
 
