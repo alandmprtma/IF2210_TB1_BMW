@@ -32,10 +32,35 @@ void GameStatus::Inisiasi(){
 }
 
 Player* GameStatus::getCurrentPlayer(){
-    if (!this->playerTurnList.empty()){
+    if (this->playerTurnList.empty()){
         throw NoPLayerException();
     }
     return playerTurnList[turn];
+}
+Petani GameStatus::getPetani(string username){
+    if (this->petaniList.empty()){
+        throw NoPetaniException();
+    }
+    for (size_t i=0;i<petaniList.size();i++){
+        if (petaniList[i].getUsername()==username){
+            return petaniList[i];
+        }
+    }
+    return Petani();
+}
+Peternak GameStatus::getPeternak(string username){
+    if (this->peternakList.empty()){
+        throw NoPeternakException();
+    }
+    for (size_t i=0;i<peternakList.size();i++){
+        if (peternakList[i].getUsername()==username){
+            return peternakList[i];
+        }
+    }
+    return Peternak();
+}
+Walikota GameStatus::getWalikota(){
+    return this->walikota;
 }
 
 int GameStatus::stringToInt(string num){
