@@ -50,6 +50,7 @@ class Bangunan : public Item {
         string namaBangunan;
         int price;
         map<string,int> material;
+        bool operator==(const Bangunan&);
 };
 
 #endif

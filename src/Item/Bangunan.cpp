@@ -31,4 +31,12 @@ int Bangunan::getMaterialQuantity(string namaMaterial){
     auto it = material.find(namaMaterial);
     return it->second;
 }
+bool Bangunan::operator==(const Bangunan& other){
+    return this->kodeHuruf == other.kodeHuruf &&
+        this->nama == other.nama &&
+        this->tipe == other.tipe &&
+        this->price == other.price
+        ;
+}
+
 
