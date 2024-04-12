@@ -32,7 +32,8 @@ public:
     GameStatus();
     
     int stringToInt(string num);
-
+    int charToInt(string char1);
+    int charToInt(char char1);
 
     Player* getCurrentPlayer();
     Petani getPetani(string username);

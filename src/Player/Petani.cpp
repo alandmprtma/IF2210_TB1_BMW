@@ -14,6 +14,9 @@ Player(username,uang,berat_badan,data),Toko()
 float Petani::getPajak() {
   return 1.00;
 }
+Ladang Petani::getLadang(){
+  return this->dataLadang;
+}
 
 void Petani::setUmurTanaman() {}
 

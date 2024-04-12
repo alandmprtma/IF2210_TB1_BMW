@@ -28,3 +28,9 @@ int Produk::getIdProduk(){
 string Produk::getOrisinil(){
     return orisinil;
 }
+bool Produk::operator==(const Produk& other){
+     return  this->kodeHuruf == other.kodeHuruf &&
+                this->harga == other.harga &&
+                this->nama == other.nama &&
+                this->tipe == other.tipe;
+}

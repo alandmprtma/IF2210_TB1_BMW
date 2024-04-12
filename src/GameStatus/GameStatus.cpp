@@ -75,6 +75,13 @@ int GameStatus::stringToInt(string num){
 
     return n;
 }
+// A -> 1, B->2
+int GameStatus::charToInt(string char1){
+    return char1[0] - 64;
+}
+int GameStatus::charToInt(char char1){
+    return char1 - 64;
+}
 
 void GameStatus::muat(string path, GameObject objek){
 
@@ -124,10 +131,34 @@ void GameStatus::muat(string path, GameObject objek){
                         j=0;
                         i++;
                     }
-                    
+                    std::getline(inputFile,line);
+                    if (!(objek.findPlant(line)==Plant())){
+                        pet.getData().setElement(&Plant(objek.findPlant(line)),i,j);
+                    }else if (!(objek.findAnimal(line)==Animal())){
+                        pet.getData().setElement(&Animal(objek.findAnimal(line)),i,j);
+                    }else if (!(objek.findProduk(line)==Produk())){
+                        pet.getData().setElement(&Produk(objek.findProduk(line)),i,j);
+                    }
                     j++;
                     max--;
                 }
+                std::getline(inputFile,line);
+                max = stringToInt(line);
+                while (max>0)
+                {
+                    std::getline(inputFile,line);
+                    std::istringstream iss(line);
+
+                    std::getline(iss,token,' ');
+                    int col = this->charToInt(token[0]) - 1;
+                    int row = this->stringToInt(token.substr(1,token.size())) - 1;
+
+                    std::getline(iss,token,' ');
+                    pet.getLadang().setElement(Plant(objek.findPlant(token)),row,col);
+                    max--;
+                }
+                
+
             }
 
         }

@@ -21,5 +21,6 @@ public:
     string getOrisinil();
     int getBeratTambahan();
     int getHarga();
+    bool operator==(const Produk& other);
 };
 #endif

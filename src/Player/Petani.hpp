@@ -19,6 +19,7 @@ class Petani : public Player, public Toko {
     void tanamTanaman();
     void panenTanaman();
 
+    Ladang getLadang();
     void printPlayer();
 
     void beli();
