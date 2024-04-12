@@ -1,5 +1,6 @@
 #include "Bangunan.hpp"
 
+
 Bangunan::Bangunan() {}
 
 Bangunan::Bangunan(string namaBangunan) {}

@@ -6,6 +6,7 @@
 using namespace std;
 
 class Bangunan {
+    
     public:
         /*
             Membuat objek Bangunan dengan nama "Bangunan Kosong"

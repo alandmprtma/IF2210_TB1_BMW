@@ -38,7 +38,7 @@ public:
 
 
     bool isEndGame();
-    void nextTurn();
+    void nextTurn(GameObject objek);
     void Inisiasi();
     void cetakPenyimpanan();
     void pungutPajak();

@@ -15,15 +15,25 @@ bool GameStatus::isEndGame(){
     return endGame;
 }
 
-void GameStatus::nextTurn(){
+void GameStatus::nextTurn(GameObject objek){
     // TODO turn ++, umur ladang ++
+    turn ++;
+    for (int i=0;i<petaniList.size();i++){
+        for (int j=0;j<objek.getSizeFarm()[0];j++){
+            for (int k=0;k<objek.getSizeFarm()[1];k++){
+                // set umur tiap tanaman = umur + 1, ntar ae dah
+            }
+        }
+    }
 }
 
 void GameStatus::Inisiasi(){
     // TODO muat state.txt atau muat default
 }
 
-
+Player* GameStatus::getCurrentPlayer(){
+    return playerTurnList[turn];
+}
 int GameStatus::stringToInt(string num){
 
     int n = 0;
@@ -151,4 +161,11 @@ void GameStatus::menjual(){
 }
 void GameStatus::memanen(){
 
+}
+
+void GameStatus::simpan(string path, GameObject objek){
+
+}
+void GameStatus::tambahPemain(){
+    
 }

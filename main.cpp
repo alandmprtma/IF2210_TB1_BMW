@@ -3,11 +3,15 @@
 #include "./src/Item/Animal.cpp"
 #include "./src/Item/Produk.cpp"
 #include "./src/Item/Bangunan.cpp"
+#include "./src/Penyimpanan/Penyimpanan.cpp"
+#include "./src/Penyimpanan/PetiRahasia.cpp"
+#include "./src/Penyimpanan/Ladang.cpp"
+#include "./src/Penyimpanan/Ternak.cpp"
 #include "src/Player/Player.cpp"
 #include "src/Player/Petani.cpp"
 #include "src/Player/Peternak.cpp"
 #include "src/Player/Walikota.cpp"
-#include "src/Bangunan/Bangunan.hpp"
+#include "src/Toko/Toko.cpp"
 #include "./src/GameObject/GameObject.cpp"
 #include "src/GameStatus/GameStatus.cpp"
 
@@ -19,11 +23,11 @@ int main (){
     
     GameObject game_object = GameObject();
 
-    game_object.muatTanaman("./config/plant.txt");
-    game_object.muatHewan("./config/animal.txt");
-    game_object.muatProduk("./config/prduct.txt");
-    game_object.muatBangunan("./config/recipe.txt");
-    game_object.muatMisc("./config/misc.txt");
+    game_object.muatTanaman("./Config/plant.txt");
+    game_object.muatHewan("./Config/animal.txt");
+    game_object.muatProduk("./Config/product.txt");
+    game_object.muatBangunan("./Config/recipe.txt");
+    game_object.muatMisc("./Config/isc.txt");
 
     GameStatus game_status = GameStatus();
 
@@ -41,7 +45,7 @@ int main (){
             // Validasi 
 
             // Panggil fungsi
-            game_status.nextTurn();
+            game_status.nextTurn(game_object);
         }else if (opsi==2){
             // Validasi
 
