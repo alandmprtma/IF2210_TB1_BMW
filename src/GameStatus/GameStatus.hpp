@@ -2,7 +2,7 @@
 #define GAMESTATUS_HPP
 
 
-#include "../Player/Penyimpanan.hpp"
+#include "../Penyimpanan/Penyimpanan.hpp"
 #include "../Player/Petani.hpp"
 #include "../Player/Peternak.hpp"
 #include "../Player/Walikota.hpp"
