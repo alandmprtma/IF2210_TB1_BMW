@@ -1,19 +1,19 @@
-#include "./src/Item/Item.cpp"
-#include "./src/Item/Plant.cpp"
-#include "./src/Item/Animal.cpp"
-#include "./src/Item/Produk.cpp"
+#include "./src/Item/Item.hpp"
+#include "./src/Item/Plant.hpp"
+#include "./src/Item/Animal.hpp"
+#include "./src/Item/Produk.hpp"
 #include "./src/Item/Bangunan.cpp"
-#include "./src/Penyimpanan/Penyimpanan.cpp"
-#include "./src/Penyimpanan/PetiRahasia.cpp"
-#include "./src/Penyimpanan/Ladang.cpp"
-#include "./src/Penyimpanan/Ternak.cpp"
-#include "src/Player/Player.cpp"
-#include "src/Player/Petani.cpp"
-#include "src/Player/Peternak.cpp"
-#include "src/Player/Walikota.cpp"
-#include "src/Toko/Toko.cpp"
-#include "./src/GameObject/GameObject.cpp"
-#include "src/GameStatus/GameStatus.cpp"
+#include "./src/Penyimpanan/Penyimpanan.hpp"
+#include "./src/Penyimpanan/PetiRahasia.hpp"
+#include "./src/Penyimpanan/Ladang.hpp"
+#include "./src/Penyimpanan/Ternak.hpp"
+#include "src/Player/Player.hpp"
+#include "src/Player/Petani.hpp"
+#include "src/Player/Peternak.hpp"
+#include "src/Player/Walikota.hpp"
+#include "src/Toko/Toko.hpp"
+#include "./src/GameObject/GameObject.hpp"
+#include "src/GameStatus/GameStatus.hpp"
 
 // #include "src/Player/Player.cpp"
 
@@ -27,7 +27,7 @@ int main (){
     game_object.muatHewan("./Config/animal.txt");
     game_object.muatProduk("./Config/product.txt");
     game_object.muatBangunan("./Config/recipe.txt");
-    game_object.muatMisc("./Config/isc.txt");
+    game_object.muatMisc("./Config/misc.txt");
 
     GameStatus game_status = GameStatus();
 

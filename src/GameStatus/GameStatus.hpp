@@ -2,10 +2,12 @@
 #define GAMESTATUS_HPP
 
 
+#include "../Penyimpanan/Penyimpanan.hpp"
 #include "../Player/Petani.hpp"
 #include "../Player/Peternak.hpp"
 #include "../Player/Walikota.hpp"
 #include "../Toko/Toko.hpp"
+#include "../GameObject/GameObject.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>

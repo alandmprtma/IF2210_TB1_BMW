@@ -18,7 +18,7 @@ bool GameStatus::isEndGame(){
 void GameStatus::nextTurn(GameObject objek){
     // TODO turn ++, umur ladang ++
     turn ++;
-    for (int i=0;i<petaniList.size();i++){
+    for (size_t i=0;i<petaniList.size();i++){
         for (int j=0;j<objek.getSizeFarm()[0];j++){
             for (int k=0;k<objek.getSizeFarm()[1];k++){
                 // set umur tiap tanaman = umur + 1, ntar ae dah
@@ -37,7 +37,7 @@ Player* GameStatus::getCurrentPlayer(){
 int GameStatus::stringToInt(string num){
 
     int n = 0;
-    for (int i=0;i<num.size();i++){
+    for (size_t i=0;i<num.size();i++){
 
         n *= 10;
         n += num[i] - '0';
@@ -92,7 +92,7 @@ void GameStatus::muat(string path, GameObject objek){
                 while (max > 0)
                 {
                     if (j==objek.getSizeInventory()[1]){
-                        j==0;
+                        j=0;
                         i++;
                     }
                     

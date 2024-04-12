@@ -7,7 +7,7 @@ Peternak::Peternak(string username,int uang, int berat_badan, PetiRahasia data,T
 :Player(username,uang,berat_badan,data),Toko()
 {
     this->peran = "Peternak";
-    this->dataTernak;
+    this->dataTernak = dataTernak;
     this->jumlahBangunan = jumlahBangunan;
 }
 float Peternak::getPajak(){

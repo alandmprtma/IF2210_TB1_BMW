@@ -43,7 +43,7 @@ std::vector<Bangunan> GameObject::getBangunanList(){
 int GameObject::stringToInt(string num){
 
     int n = 0;
-    for (int i=0;i<num.size();i++){
+    for (size_t i=0;i<num.size();i++){
 
         n *= 10;
         n += num[i] - '0';
@@ -54,7 +54,7 @@ int GameObject::stringToInt(string num){
 }
 
 Plant GameObject::findPlant(string name){
-    for (int i=0;i<plantList.size();i++){
+    for (size_t i=0;i<plantList.size();i++){
         if (plantList[i].getNama() == name){
             return plantList[i];
         }
@@ -62,7 +62,7 @@ Plant GameObject::findPlant(string name){
     return Plant();
 }
 Animal GameObject::findAnimal(string name){
-    for (int i=0;i<animalList.size();i++){
+    for (size_t i=0;i<animalList.size();i++){
         if (animalList[i].getNama() == name){
             return animalList[i];
         }
@@ -70,7 +70,7 @@ Animal GameObject::findAnimal(string name){
     return Animal();
 }
 Produk GameObject::findProduk(string name){
-    for (int i=0;i<produkList.size();i++){
+    for (size_t i=0;i<produkList.size();i++){
         if (animalList[i].getNama() == name){
             return produkList[i];
         }

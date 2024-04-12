@@ -31,7 +31,7 @@ void Walikota::bangunBangunan(string kodeHuruf, string namaBangunan, int price, 
     Bangunan b(kodeHuruf,namaBangunan,price);
     this->bangunan.push_back(b);
     cout << namaBangunan << " berhasil dibangun dan telah menjadi hak milik walikota!" << endl;
-  }catch(MaterialTidakCukupException e){
+  }catch(const MaterialTidakCukupException& e){
     cout << e.what();
     cout << " Masih memerlukan ";
     if (this->uang < price){
