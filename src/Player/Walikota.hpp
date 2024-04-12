@@ -3,16 +3,15 @@
 
 #include "Player.hpp"
 #include "../Item/Bangunan.hpp"
-// #include "../Toko/Toko.hpp"
+#include "../Toko/Toko.hpp"
 #include "../Exception/Exception.hpp"
-#include <vector>
 
 #define DEFAULT_TEAK_WOOD 0
 #define DEFAULT_SANDAL_WOOD 0
 #define DEFAULT_ALOE_WOOD 0
 #define DEFAULT_IRONWOOD 0
 
-class Walikota : public Player{
+class Walikota : public Player, Toko{
   protected:
     vector<Bangunan> bangunan;
     int TeakWood;
