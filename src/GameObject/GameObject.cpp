@@ -39,10 +39,11 @@ int GameObject::getWinGulden(){
 std::vector<Bangunan> GameObject::getBangunanList(){
     return this->bangunanList;
 }
+
 int GameObject::stringToInt(string num){
 
     int n = 0;
-    for (int i=0;i<num.size();i++){
+    for (size_t i=0;i<num.size();i++){
 
         n *= 10;
         n += num[i] - '0';
@@ -50,6 +51,31 @@ int GameObject::stringToInt(string num){
     }
 
     return n;
+}
+
+Plant GameObject::findPlant(string name){
+    for (size_t i=0;i<plantList.size();i++){
+        if (plantList[i].getNama() == name){
+            return plantList[i];
+        }
+    }
+    return Plant();
+}
+Animal GameObject::findAnimal(string name){
+    for (size_t i=0;i<animalList.size();i++){
+        if (animalList[i].getNama() == name){
+            return animalList[i];
+        }
+    }
+    return Animal();
+}
+Produk GameObject::findProduk(string name){
+    for (size_t i=0;i<produkList.size();i++){
+        if (animalList[i].getNama() == name){
+            return produkList[i];
+        }
+    }
+    return Produk();
 }
 
 void GameObject::muatTanaman(string pathTanaman){

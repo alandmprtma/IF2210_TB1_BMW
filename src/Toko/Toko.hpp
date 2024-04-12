@@ -4,14 +4,17 @@
 #include "../Item/Bangunan.hpp"
 
 #include <iostream>
+
+#include <map>
 using namespace std;
+
 
 template <class T>
 void taruhBarang(T barang, vector<T> etalaseBarang){
 
 }
 template <class T>
-void ambilBarang(T barang, vector<T> etalaseBarang){
+T ambilBarang(T barang, vector<T> etalaseBarang){
 
 }
 
@@ -40,8 +43,17 @@ class Toko {
     virtual void beli();
     // Virtual Function jual
     virtual void jual();
+
+// class Toko {
+//   private:
+//     map<string,int> stok;
+//   public:
+//     Toko();
+//     // key: nama bahan, value: jumlah stok
+//     map<string,int> getStok();
+//     void beli();
+//     void jual();
+// };
 };
-
-
 
 #endif

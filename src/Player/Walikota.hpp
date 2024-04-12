@@ -21,6 +21,7 @@ class Walikota : public Player, Toko{
 
   public:
     Walikota();
+    Walikota(string username,int uang, int berat_badan, PetiRahasia data);
     void pungutPajak();
     void bangunBangunan(string kodeHuruf,string namaBangunan, int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree);
     void pakaiMaterial (int, int, int, int, int);

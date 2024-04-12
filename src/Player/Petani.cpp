@@ -1,7 +1,14 @@
 #include "Petani.hpp"
 
-Petani::Petani() {
+Petani::Petani():Player(),Toko() {
   this->peran = "Petani";
+}
+Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Ladang dataLadang, int jumlahBangunan):
+Player(username,uang,berat_badan,data),Toko()
+{
+  this->peran = "Petani";
+  this->dataLadang = dataLadang;
+  this->jumlahBangunan = jumlahBangunan;
 }
 
 float Petani::getPajak() {

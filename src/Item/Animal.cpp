@@ -45,7 +45,7 @@ bool Animal::operator==(const Animal& other){
         return (this->getNama() == other.getNama());
 }
 
-Animal& Animal::operator=(const Animal& other){
+Animal& Animal::operator=(const Animal& other) {
         this->nama = other.getNama();
         this->tipe = other.getTipe();
         this->kodeHuruf = other.getKodeHuruf();

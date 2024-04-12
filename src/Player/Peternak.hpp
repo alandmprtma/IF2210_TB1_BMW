@@ -8,11 +8,12 @@
 
 class Peternak : public Player, public Toko {
   protected:
-    Ternak data;
+    Ternak dataTernak;
     int jumlahBangunan;
 
   public:
     Peternak();
+    Peternak(string username,int uang, int berat_badan, PetiRahasia data,Ternak dataTernak, int jumlahBangunan);
     float getPajak();
     void simpanHewanTernak();
     void kasihMakanHewanTernak();

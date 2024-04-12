@@ -3,8 +3,6 @@
 // Static variable Init
 int Plant::jumlahTanaman = 0;
 
-Plant::Plant() {}
-
 // constructor
 
 Plant::Plant():Item(){
@@ -58,5 +56,7 @@ Plant& Plant::operator=(const Plant& other){
         this->nama = other.nama;
         this->kodeHuruf = other.kodeHuruf;
         this->tipe = other.tipe;
+
+        return *this;
 }
 

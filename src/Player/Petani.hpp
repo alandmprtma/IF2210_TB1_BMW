@@ -8,11 +8,12 @@
 
 class Petani : public Player, public Toko {
   protected:
-    Ladang data;
+    Ladang dataLadang;
     int jumlahBangunan;
 
   public:
     Petani();
+    Petani(string username,int uang, int berat_badan, PetiRahasia data, Ladang dataLadang, int jumlahBangunan);
     float getPajak();
     void setUmurTanaman();
     void tanamTanaman();

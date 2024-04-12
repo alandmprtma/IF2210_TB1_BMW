@@ -24,7 +24,7 @@ public:
     void setBerat(int x);
     static int jumlahHewan;
     bool operator==(const Animal&);
-    Animal&  operator!=(const Animal&);
+    Animal&  operator=(const Animal&);
 };
 
 #endif
