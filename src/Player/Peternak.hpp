@@ -8,19 +8,34 @@
 
 class Peternak : public Player, public Toko {
   protected:
-    Ternak dataTernak;
     int jumlahBangunan;
 
   public:
+    Ternak dataTernak;
+    
+    /* Constructor */
     Peternak();
     Peternak(string username,int uang, int berat_badan, PetiRahasia data,Ternak dataTernak, int jumlahBangunan);
-    float getPajak();
-    void simpanHewanTernak();
+
+    /* Fungsi Menyimpan Hewan Ternak */
+    void simpanTernak();
+
+    /* Fungsi Memberi Makan Hewan Ternak */
     void kasihMakanHewanTernak();
+
+    /* Fungsi Panen Ternak */
     void panenTernak();
 
+    /* Getter Ternak */
+    Ternak getTernak();
+
+    /* Getter Pajak */
+    float getPajak();
+
+    /* Mencetak Data Player */
     void printPlayer();
 
+    /* Virtual Function Toko. Fungsi Jual Beli*/
     void jual();
     void beli();
 };

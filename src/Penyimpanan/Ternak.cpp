@@ -1,8 +1,7 @@
 #include "Ternak.hpp"
 
-void Ternak::cetakPenyimpanan(string label) {
+void Ternak::cetakTernak(string label) {
   cout << "    ";
-  /* Garis Judul Belum Dinamis*/
   cout << "================[ " << label << " ]=================" << endl << endl; 
 
   cout << "    ";
@@ -22,10 +21,10 @@ void Ternak::cetakPenyimpanan(string label) {
 
       for (int j = 0; j < n; j++) {
           cout << "| ";
-          if (data[i][j].getKodeHuruf().empty()) {
-              cout << setw(3) << "   "; // Jika elemen kosong, cetak spasi
+          if (data[i][j].getId_Hewan() == DEFAULT_ID_HEWAN || data[i][j].getKodeHuruf() == DEFAULT_KODE_HURUF_ITEM) {
+              cout << setw(3) << "   ";
           } else {
-              cout << setw(3) << data[i][j].getKodeHuruf(); // Cetak nama tanaman
+              cout << setw(3) << data[i][j].getKodeHuruf(); 
           }
           cout << " ";
       }
