@@ -11,12 +11,6 @@ Player(username,uang,berat_badan,data),Toko()
   this->jumlahBangunan = jumlahBangunan;
 }
 
-float Petani::getPajak() {
-  return 1.00;
-}
-
-void Petani::setUmurTanaman() {}
-
 void Petani::tanamTanaman() {
   // cout << "Pilih tanaman dari penyimpanan" << endl;
 
@@ -81,6 +75,16 @@ void Petani::panenTanaman() {
 
   // TODO : Masukkan hasil panen ke inventory penyimpanan (petiRahasia)
 
+}
+
+void Petani::setUmurTanaman(int row, int col) {}
+
+Ladang Petani::getLadang() {
+  return this->dataLadang;
+}
+
+float Petani::getPajak() {
+  return 1.00;
 }
 
 void Petani::jual() {}

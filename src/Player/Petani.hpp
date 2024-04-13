@@ -12,15 +12,29 @@ class Petani : public Player, public Toko {
     int jumlahBangunan;
 
   public:
+    /* Constructor */
     Petani();
     Petani(string username,int uang, int berat_badan, PetiRahasia data, Ladang dataLadang, int jumlahBangunan);
-    float getPajak();
-    void setUmurTanaman();
+    
+    /* Fungsi Menanam Tanaman */
     void tanamTanaman();
+
+    /* Fungsi Panen Tanaman */
     void panenTanaman();
 
+    /* Setter Umur Tanaman */
+    void setUmurTanaman(int, int);
+
+    /* Getter Ladang */
+    Ladang getLadang();
+
+    /* Getter Pajak */
+    float getPajak();
+
+    /* Mencetak Data Player */
     void printPlayer();
 
+    /* Virtual Function Toko. Fungsi Jual Beli*/
     void beli();
     void jual();
 };
