@@ -8,6 +8,7 @@ Player::Player() {
   this->uang = 50;
   this->berat_badan = 40;
   this->peran = "";
+  this->data = PetiRahasia(8, 8); /* Untuk Sementara. Default 8 x 8 */
 }
 
 Player::Player(string username,int uang, int berat_badan, PetiRahasia data){
@@ -31,8 +32,13 @@ void Player::setBeratBadan(int berat_badan) {
 string Player::getPeran(){
   return this->peran;
 }
+
 int Player::getBeratBadan() {
   return this->berat_badan;
+}
+
+PetiRahasia Player::getPetiRahasia() {
+  return this->data;
 }
 
 void Player::makan() {

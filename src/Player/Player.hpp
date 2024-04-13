@@ -20,14 +20,33 @@ class Player {
     PetiRahasia data;
 
   public:
+    /* Constructor */
     Player();
     Player(string username,int uang, int berat_badan, PetiRahasia data);
+    
+    /* Setter Username */
     void setUsername(string);
+
+    /* Setter Berat Badan */
     void setBeratBadan(int);
-    int getBeratBadan();
+
+    /* Getter Peran */
     string getPeran();
+
+    /* Getter Berat Badan */
+    int getBeratBadan();
+
+    /* Getter Peti Rahasia */
+    PetiRahasia getPetiRahasia();
+
+    /* 
+    Fungsi Makan. 
+    Player dapat memakan dari inventorynya.
+    Jumlah berat badan yang ditambahkan bergantung pada makanan yang dimakan.
+    */
     void makan();
     
+    /* Mencetak Data Player */
     virtual void printPlayer();
 };
 
