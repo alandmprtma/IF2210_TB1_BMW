@@ -82,7 +82,7 @@ public:
 
       for (int j = 0; j < n; j++) {
         cout << "| ";
-        if (data[i][j] == 0) {
+        if (data[i][j] == nullptr || data[i][j] == 0) {
           cout << "   "; // Jika elemen kosong, cetak spasi
         } else {
           cout << setw(3) << data[i][j]; // Cetak nilai elemen vektor

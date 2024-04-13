@@ -17,9 +17,10 @@ class Player {
     string peran;
     int uang;
     int berat_badan;
-    PetiRahasia data;
 
   public:
+    PetiRahasia data;
+    
     /* Constructor */
     Player();
     Player(string username,int uang, int berat_badan, PetiRahasia data);
