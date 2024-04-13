@@ -46,12 +46,9 @@ void Peternak::simpanTernak() {
     cout << endl << newAnimal.getNama() << " telah menjadi peliharaanmu sekarang!" << endl;
 }
 
+void Peternak::beriMakanHewanTernak() {}
 
-void Peternak::kasihMakanHewanTernak(){}
-
-
-void Peternak::panenTernak(){}
-
+void Peternak::panenTernak() {}
 
 Ternak Peternak::getTernak() {
     return this->dataTernak;

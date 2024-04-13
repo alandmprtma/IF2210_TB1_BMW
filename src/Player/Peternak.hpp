@@ -21,7 +21,7 @@ class Peternak : public Player, public Toko {
     void simpanTernak();
 
     /* Fungsi Memberi Makan Hewan Ternak */
-    void kasihMakanHewanTernak();
+    void beriMakanHewanTernak();
 
     /* Fungsi Panen Ternak */
     void panenTernak();
