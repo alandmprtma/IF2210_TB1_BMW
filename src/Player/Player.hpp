@@ -26,7 +26,7 @@ class Player {
     void setBeratBadan(int);
     int getBeratBadan();
     PetiRahasia getData();
-    string getPeran();
+    string getPeran() const;
     void makan();
     
     virtual void printPlayer();

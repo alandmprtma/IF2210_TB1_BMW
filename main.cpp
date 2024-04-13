@@ -34,7 +34,7 @@ int main (){
 
     //inisiasi gameStatus
     GameStatus game_status = GameStatus();
-    cout << game_status.getCurrentPlayer().getPeran();
+    // cout << game_status.getCurrentPlayer()->getPeran();
 
     // Game 
     while (! game_status.isEndGame())
@@ -93,8 +93,8 @@ int main (){
 
         }else if (opsi==8){
             // validasi
-            cout<<"11";
-            if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+            // cout<<"11";
+            // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
                 try{
                     cout<<"Resep bangunan yang ada adalah sebagai berikut." << endl;
                      for (const auto& bangunan: game_object.getBangunanList()) {
@@ -116,13 +116,16 @@ int main (){
                         }
                         ++it;
                     }
-                }catch(const MaterialTidakCukupException& e){
+                    if (found == false){
+                        throw RecipeNotFoundException();
+                    }
+                }catch(const RecipeNotFoundException& e){
                     cout << e.what() << endl;
                 }
-            }
-            else{
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl; 
-            }
+            // }
+            // else{
+            //     cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl; 
+            // }
 
             // game_status.bangunBangunan();
         }else if (opsi==9){

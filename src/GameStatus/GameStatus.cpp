@@ -31,7 +31,7 @@ void GameStatus::Inisiasi(){
     // TODO muat state.txt atau muat default
 }
 
-Player* GameStatus::getCurrentPlayer(){
+Player* GameStatus::getCurrentPlayer() const{
     return playerTurnList[turn];
 }
 int GameStatus::stringToInt(string num){
