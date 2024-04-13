@@ -8,10 +8,11 @@
 
 class Petani : public Player, public Toko {
   protected:
-    Ladang dataLadang;
     int jumlahBangunan;
 
   public:
+    Ladang dataLadang;
+
     /* Constructor */
     Petani();
     Petani(string username,int uang, int berat_badan, PetiRahasia data, Ladang dataLadang, int jumlahBangunan);

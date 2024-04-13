@@ -19,6 +19,7 @@ Player::Player(string username,int uang, int berat_badan, PetiRahasia data){
   this->berat_badan = berat_badan;
   this->data = data;
   this->peran = "";
+  this->data = PetiRahasia(8, 8); /* Untuk Sementara. Default 8 x 8 */
 }
 
 void Player::setUsername(string username) {
