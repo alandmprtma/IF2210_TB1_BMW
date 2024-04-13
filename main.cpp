@@ -20,18 +20,21 @@
 #include <iostream>
 using namespace std;
 int main (){
-    
     GameObject game_object = GameObject();
+    try{
+        game_object.muatTanaman("Config/plant.txt");
+        game_object.muatHewan("Config/animal.txt");
+        game_object.muatProduk("Config/product.txt");
+        game_object.muatBangunan("Config/recipe.txt");
+        game_object.muatMisc("Config/misc.txt");
+    }
+    catch (const FileNotFoundError &e){
+        cout << e.what() << endl;
+    }
 
-    game_object.muatTanaman("../Config/plant.txt");
-    game_object.muatHewan("../Config/animal.txt");
-    game_object.muatProduk("../Config/product.txt");
-    game_object.muatBangunan("../Config/recipe.txt");
-    game_object.muatMisc("../Config/misc.txt");
-
+    //inisiasi gameStatus
     GameStatus game_status = GameStatus();
-
-    // game_status.Inisiasi();
+    cout << game_status.getCurrentPlayer().getPeran();
 
     // Game 
     while (! game_status.isEndGame())
@@ -89,9 +92,39 @@ int main (){
             }
 
         }else if (opsi==8){
-            // validasi 
+            // validasi
+            cout<<"11";
+            if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+                try{
+                    cout<<"Resep bangunan yang ada adalah sebagai berikut." << endl;
+                     for (const auto& bangunan: game_object.getBangunanList()) {
+                        cout << bangunan.getNama() << " (" << bangunan.getPrice() << " gulden, ";
+                        for (const auto& pair : bangunan.getMaterial()) {
+                            cout << pair.first << " " << pair.second << ", ";
+                        }
+                        cout << "\b\b)" << endl;
+                    }
+                    cout<<"Bangunan yang ingin dibangun: ";
+                    string nama_bangunan;
+                    cin >> nama_bangunan;
+                    bool found = false;
+                    auto bangunanList = game_object.getBangunanList();
+                    auto it = bangunanList.begin();
+                    while (it != bangunanList.end() && found == false) {
+                        if (it->getNama() == nama_bangunan) {
+                            found = true;
+                        }
+                        ++it;
+                    }
+                }catch(const MaterialTidakCukupException& e){
+                    cout << e.what() << endl;
+                }
+            }
+            else{
+                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl; 
+            }
 
-            game_status.bangunBangunan();
+            // game_status.bangunBangunan();
         }else if (opsi==9){
             // validasi
 

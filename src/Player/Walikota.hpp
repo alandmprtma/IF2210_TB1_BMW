@@ -30,6 +30,10 @@ class Walikota : public Player, Toko{
     void tambahSandalWood(int num);
     void tambahAloeWood(int num);
     void tambahIronWood(int num);
+    void setTeakWood(int num);
+    void setSandalWood(int num);
+    void setAloeWood(int num);
+    void setIronWood(int num);
     void addPetani();
     void addPeternak();
     void jual();

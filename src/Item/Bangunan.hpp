@@ -38,11 +38,15 @@ class Bangunan : public Item {
         /*
             Mendapatkan biaya Bangunan
         */
-        int getPrice();
+        int getPrice() const;
         /*
         Mendapatkan Jumlah Material
         */
-        int getMaterialQuantity(string material);       
+        int getMaterialQuantity(string material);  
+        /*
+        Mendapatkan jumlah material
+        */
+        map<string,int> getMaterial() const;     
 
 
     private:

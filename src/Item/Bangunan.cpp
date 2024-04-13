@@ -23,7 +23,7 @@ string Bangunan::getNamaBangunan(){
     return namaBangunan;
 }
 
-int Bangunan::getPrice(){
+int Bangunan::getPrice() const{
     return price;
 }
 
@@ -32,3 +32,6 @@ int Bangunan::getMaterialQuantity(string namaMaterial){
     return it->second;
 }
 
+map<string,int> Bangunan::getMaterial() const{
+    return this->material;
+}

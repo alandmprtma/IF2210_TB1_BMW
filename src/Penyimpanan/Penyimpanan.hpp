@@ -33,6 +33,16 @@ public:
     return m * n;
   }
 
+  int getM()
+  {
+    return m;
+  }
+
+  int getN()
+  {
+    return n;
+  }
+
   /* Get Element */
   T getElement(int i, int j)
   {
