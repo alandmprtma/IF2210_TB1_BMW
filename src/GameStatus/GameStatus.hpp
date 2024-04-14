@@ -8,6 +8,7 @@
 #include "../Player/Walikota.hpp"
 #include "../Toko/Toko.hpp"
 #include "../GameObject/GameObject.hpp"
+#include "../Exception/Exception.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -31,8 +32,9 @@ public:
     GameStatus();
     
     int stringToInt(string num);
+    int charToInt(string char1);
+    int charToInt(char char1);
 
-    int getNumPlayers();
     Player* getCurrentPlayer() const;
     Player* getPlayer(int);
     Petani getPetani(string username);
@@ -49,7 +51,7 @@ public:
     void cetakPeternakan();
     void tanam();
     void ternak();
-    void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
+     void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
     void makan();
     void memberiPangan();
     void membeli();

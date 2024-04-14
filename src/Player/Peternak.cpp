@@ -103,6 +103,10 @@ Ternak Peternak::getTernak() {
 float Peternak::getPajak() {
     return 1.00;
 }
+Ternak Peternak::getPeternakan(){
+    return dataTernak;
+}
+
 
 void Peternak::beli() {}
 
