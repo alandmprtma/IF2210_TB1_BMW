@@ -5,6 +5,8 @@
 #include "../Item/Plant.hpp"
 #include "../Toko/Toko.hpp"
 #include "../Penyimpanan/Ladang.hpp"
+#include "../Item/Produk.hpp"
+#include "../GameObject/GameObject.hpp"
 
 class Petani : public Player, public Toko {
   protected:

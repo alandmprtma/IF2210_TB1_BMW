@@ -2,6 +2,7 @@
 #define PLAYER_HPP
 
 #include <iostream>
+#include "../GameObject/GameObject.hpp"
 #include "../Penyimpanan/PetiRahasia.hpp"
 using namespace std;
 
