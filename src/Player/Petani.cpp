@@ -1,53 +1,48 @@
 #include "Petani.hpp"
 
-Petani::Petani():Player(),Toko() {
+Petani::Petani(): Player(), Toko() {
   this->peran = "Petani";
+  this->dataLadang = Ladang(8, 8); /* Untuk Sementara. Default 8 x 8*/
 }
-Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Ladang dataLadang, int jumlahBangunan):
-Player(username,uang,berat_badan,data),Toko()
-{
+
+Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Ladang dataLadang, int jumlahBangunan): Player(username,uang,berat_badan,data), Toko() {
   this->peran = "Petani";
   this->dataLadang = dataLadang;
   this->jumlahBangunan = jumlahBangunan;
 }
 
-float Petani::getPajak() {
-  return 1.00;
-}
-Ladang Petani::getLadang(){
-  return this->dataLadang;
-}
-
-void Petani::setUmurTanaman() {}
-
 void Petani::tanamTanaman() {
-  // cout << "Pilih tanaman dari penyimpanan" << endl;
+  cout << "Pilih tanaman dari penyimpanan" << endl << endl;
+  this->data.cetakPeti("Peti Rahasia");
 
-  // petiRahasia.cetakPenyimpanan();
+  /* Memilih tanaman dari peti rahasia */
+  string slot;
+  cout << endl << "Slot: ";
+  cin >> slot;
+  int row = (int) stoi(slot.substr(1, 2)) - 1;
+  int col = ((int) slot[0] - 'A');
 
-  // string slot;
-  // cout << "Slot: ";
-  // cin >> slot;
+  Item* selectedPlant = data.getElement(row, col);
+  data.removeElement(row, col);
+  cout << endl << "Kamu memilih " << selectedPlant->getNama() << "." << endl;
 
-  // int kolom = ((int) slot[0] - 'A') + 1;
-  // int baris = (int) stoi(slot.substr(1, 2));
+  /* Construct tanaman baru */
+  Plant newPlant(selectedPlant->getKodeHuruf(), selectedPlant->getNama(), selectedPlant->getTipe(), 0, 0);
 
-  // Plant tanamanPilihan = ladang.getElement(baris, kolom);
+  cout << endl << "Pilih petak tanah yang akan ditanami" << endl << endl;
+  dataLadang.cetakLadang("Ladang");
 
-  // cout << "Kami memilih " << tanamanPilihan.getTanamanNameByID(tanamanPilihan.getIdTanaman()) << "." << endl;
+  /* Memilih area untuk ditanami tanaman */
+  string petakTanah;
+  cout << endl << "Petak tanah: ";
+  cin >> petakTanah;
+  int rowPetak = (int) stoi(petakTanah.substr(1, 2)) - 1;
+  int colPetak = ((int) petakTanah[0] - 'A');
 
-  // cout << "Pilih petak tanah yang akan ditanami" <<  endl;
-  // ladang.cetakPenyimpanan();
-
-  // string petakTanah;
-  // cout << "Petak tanah: ";
-  // cin >> petakTanah;
-
-  // int kolomPetak = ((int) petakTanah[0] - 'A') + 1;
-  // int barisPetak = (int) stoi(petakTanah.substr(1, 2));
-
-  // cout << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
-  // cout << tanamanPilihan.getTanamanNameByID(tanamanPilihan.getIdTanaman()) << " berhasil ditanam!" << endl;
+  /* Menanam Tanaman */
+  cout << endl << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
+  dataLadang.setElement(newPlant, rowPetak, colPetak);
+  cout << newPlant.getNama() << " berhasil ditanam!" << endl;
 }
 
 void Petani::panenTanaman() {
@@ -84,6 +79,16 @@ void Petani::panenTanaman() {
 
   // TODO : Masukkan hasil panen ke inventory penyimpanan (petiRahasia)
 
+}
+
+void Petani::setUmurTanaman(int row, int col) {}
+
+Ladang Petani::getLadang() {
+  return this->dataLadang;
+}
+
+float Petani::getPajak() {
+  return 1.00;
 }
 
 void Petani::jual() {}

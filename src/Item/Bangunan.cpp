@@ -33,7 +33,7 @@ string Bangunan::getNamaBangunan(){
     return namaBangunan;
 }
 
-int Bangunan::getPrice(){
+int Bangunan::getPrice() const{
     return price;
 }
 
@@ -48,5 +48,6 @@ bool Bangunan::operator==(const Bangunan& other){
         this->price == other.price
         ;
 }
-
-
+map<string,int> Bangunan::getMaterial() const{
+    return this->material;
+}

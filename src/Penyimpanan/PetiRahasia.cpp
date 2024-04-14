@@ -21,7 +21,7 @@ void PetiRahasia::cetakPeti(string label) {
 
     for (int j = 0; j < n; j++) {
         cout << "| ";
-        if (data[i][j]->getKodeHuruf().empty()) {
+        if (data[i][j] == nullptr || data[i][j]->getKodeHuruf().empty()) {
             cout << setw(3) << "   "; // Jika elemen kosong, cetak spasi
         } else {
             cout << setw(3) << data[i][j]->getKodeHuruf(); // Cetak kodeHuruf

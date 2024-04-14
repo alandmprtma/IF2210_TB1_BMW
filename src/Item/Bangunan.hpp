@@ -5,7 +5,7 @@
 
 #include <string>
 #include <map>
-
+#include <vector>
 #define TIPE_BANGUNAN "Bangunan"
 #define DEFAULT_HARGA_BANGUNAN -1
 
@@ -42,13 +42,16 @@ class Bangunan : public Item {
         /*
             Mendapatkan biaya Bangunan
         */
-        int getPrice();
+        int getPrice() const;
         /*
         Mendapatkan Jumlah Material
         */
-        int getMaterialQuantity(string material);       
+        int getMaterialQuantity(string material);   
+  
 
         bool operator==(const Bangunan&);
+
+        map<string,int> getMaterial() const;     
         
     private:
         int idBangunan;
