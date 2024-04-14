@@ -5,6 +5,8 @@
 #include "../Item/Animal.hpp"
 #include "../Toko/Toko.hpp"
 #include "../Penyimpanan/Ternak.hpp"
+#include "../Item/Produk.hpp"
+#include "../GameObject/GameObject.hpp"
 
 class Peternak : public Player, public Toko {
   protected:
@@ -21,7 +23,7 @@ class Peternak : public Player, public Toko {
     void simpanTernak();
 
     /* Fungsi Memberi Makan Hewan Ternak */
-    void beriMakanHewanTernak();
+    void beriMakanHewanTernak(GameObject);
 
     /* Fungsi Panen Ternak */
     void panenTernak();
