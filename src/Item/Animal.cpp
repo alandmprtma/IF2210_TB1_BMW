@@ -44,8 +44,13 @@ void Animal::setBerat(int x){
 }
 
 bool Animal::operator==(const Animal& other){
-        return (this->getNama() == other.getNama());
+        return  this->kodeHuruf == other.kodeHuruf &&
+                this->harga == other.harga &&
+                this->berat == other.berat &&
+                this->nama == other.nama &&
+                this->tipe == other.tipe;
 }
+
 
 Animal& Animal::operator=(const Animal& other) {
         this->nama = other.getNama();
