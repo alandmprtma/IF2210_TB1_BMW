@@ -30,6 +30,16 @@ public:
     return m * n;
   }
 
+  /* Mendapatkan Size Baris */
+  int getM() {
+    return m;
+  }
+
+  /* Mendapatkan Size Kolom */
+  int getN() {
+    return n;
+  }
+
   /* Get Element */
   T getElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {

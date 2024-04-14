@@ -31,7 +31,7 @@ void GameStatus::Inisiasi(){
     // TODO muat state.txt atau muat default
 }
 
-Player* GameStatus::getCurrentPlayer(){
+Player* GameStatus::getCurrentPlayer() const{
     return playerTurnList[turn];
 }
 int GameStatus::stringToInt(string num){
@@ -45,6 +45,10 @@ int GameStatus::stringToInt(string num){
     }
 
     return n;
+}
+
+Walikota GameStatus::getWalikota(){
+    return this->walikota;
 }
 
 void GameStatus::muat(string path, GameObject objek){
@@ -144,9 +148,34 @@ void GameStatus::tanam(){
 void GameStatus::ternak(){
 
 }
-void GameStatus::bangunBangunan(){
-
+void GameStatus::bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood){
+    int TeakWood = 0;
+    int SandalWood = 0;
+    int AloeWood = 0;
+    int IronWood = 0;
+    for(int i = 0; i < this->getCurrentPlayer()->getData().getM(); i++){
+        for(int j = 0; j < this->getCurrentPlayer()->getData().getN(); j++){
+            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "TEAK_WOOD"){
+                TeakWood++;
+            }
+            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "SANDAL_WOOD"){
+                SandalWood++;
+            }
+            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "SANDAL_WOOD"){
+                AloeWood++;
+            }
+            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "SANDAL_WOOD"){
+                IronWood++;
+            }
+        }
+    }
+    this->getWalikota().setTeakWood(TeakWood);
+    this->getWalikota().setSandalWood(SandalWood);
+    this->getWalikota().setAloeWood(AloeWood);
+    this->getWalikota().setIronWood(IronWood);
+    this->getWalikota().bangunBangunan(kodeHuruf, namaBangunan, price, teak, sandalwood, aloe, ironwood);
 }
+
 void GameStatus::makan(){
 
 }
