@@ -25,6 +25,22 @@ void Player::setUsername(string username) {
   this->username = username;
 }
 
+bool Player::isKosong(){
+  bool empty = true;
+  int i = 0;
+  while (i < data.getM() && empty) {
+      int j = 0;
+      while (j < data.getN() && empty) {
+          if (data.getElement(i, j) != 0) {
+              empty = false;
+          }
+          j++;
+      }
+      i++;
+  }
+  return empty;
+}
+
 void Player::setBeratBadan(int berat_badan) {
   this->berat_badan = berat_badan;
 }

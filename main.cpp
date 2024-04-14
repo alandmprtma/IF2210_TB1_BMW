@@ -34,7 +34,12 @@ int main (){
 
     //inisiasi gameStatus
     GameStatus game_status = GameStatus();
-    // cout << game_status.getCurrentPlayer()->getPeran();
+    cout << game_status.getCurrentPlayer()->getPeran();
+    game_status.getToko().welcome();
+    Plant *a = new Plant();
+    game_status.getWalikota().data.setElement(a, 1, 1);
+    cout<<game_status.getWalikota().data.getElement(1,1)->getKodeHuruf();
+    cout << game_status.getWalikota().isKosong();
 
     // Game 
     while (! game_status.isEndGame())

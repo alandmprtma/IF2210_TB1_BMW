@@ -5,6 +5,7 @@ GameStatus::GameStatus(){
     playerTurnList = vector<Player*>();
     petaniList = map<int,Petani>();
     peternakList = map<int,Peternak>();
+    toko = Toko();
     walikota = Walikota();
     turn = 0;
     endGame = false;
@@ -49,6 +50,10 @@ int GameStatus::stringToInt(string num){
 
 Walikota GameStatus::getWalikota(){
     return this->walikota;
+}
+
+Toko GameStatus::getToko(){
+    return this->toko;
 }
 
 void GameStatus::muat(string path, GameObject objek){
@@ -153,18 +158,18 @@ void GameStatus::bangunBangunan(string kodeHuruf, string namaBangunan, int price
     int SandalWood = 0;
     int AloeWood = 0;
     int IronWood = 0;
-    for(int i = 0; i < this->getCurrentPlayer()->getData().getM(); i++){
-        for(int j = 0; j < this->getCurrentPlayer()->getData().getN(); j++){
-            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "TEAK_WOOD"){
+    for(int i = 0; i < this->getCurrentPlayer()->data.getM(); i++){
+        for(int j = 0; j < this->getCurrentPlayer()->data.getN(); j++){
+            if(this->getCurrentPlayer()->data.getElement(i,j)->getNama() == "TEAK_WOOD"){
                 TeakWood++;
             }
-            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "SANDAL_WOOD"){
+            if(this->getCurrentPlayer()->data.getElement(i,j)->getNama() == "ALOE_WOOD"){
                 SandalWood++;
             }
-            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "SANDAL_WOOD"){
+            if(this->getCurrentPlayer()->data.getElement(i,j)->getNama() == "SANDALWOOD_WOOD"){
                 AloeWood++;
             }
-            if(this->getCurrentPlayer()->getData().getElement(i,j)->getNama() == "SANDAL_WOOD"){
+            if(this->getCurrentPlayer()->data.getElement(i,j)->getNama() == "IRONWOOD_WOOD"){
                 IronWood++;
             }
         }

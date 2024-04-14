@@ -2,6 +2,7 @@
 #define TOKO_HPP
 
 #include "../Item/Bangunan.hpp"
+#include "../Item/Plant.hpp"
 
 #include <iostream>
 
@@ -20,7 +21,9 @@ T ambilBarang(T barang, vector<T> etalaseBarang){
 
 class Toko {
   protected:
-    vector<Bangunan> stok;
+    vector<Bangunan> stokBangunan;
+    vector<Plant> stokTanaman;
+
 
   public:
     /*
