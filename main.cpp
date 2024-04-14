@@ -33,19 +33,16 @@ int main (){
     }
 
     GameStatus game_status = GameStatus();
-    cout << game_status.getCurrentPlayer()->getPeran();
-    game_status.getToko().welcome();
-    Plant *a = new Plant();
-    game_status.getWalikota().data.setElement(a, 1, 1);
-    cout<<game_status.getWalikota().data.getElement(1,1)->getKodeHuruf();
-    cout << game_status.getWalikota().isKosong();
 
-    // game_status.muat("Config/state.txt",game_object);
-    cout<<game_status.getWalikota().getUsername()<<endl;
-    cout<<game_status.getWalikota().getId()<<endl;
+    game_status.Inisiasi(game_object);
+    cout<<game_status.getCurrentPlayer()->getPeran()<<endl;
     
-    cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
-    cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
+    // game_status.muat("Config/state.txt",game_object);
+    // cout<<game_status.getWalikota().getUsername()<<endl;
+    // cout<<game_status.getWalikota().getId()<<endl;
+    
+    // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
+    // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
     while (! game_status.isEndGame())
     {
