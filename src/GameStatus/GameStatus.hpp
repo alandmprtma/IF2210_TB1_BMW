@@ -32,8 +32,9 @@ public:
     
     int stringToInt(string num);
 
-
+    int getNumPlayers();
     Player* getCurrentPlayer() const;
+    Player* getPlayer(int);
     Petani getPetani(string username);
     Peternak getPeternak(string username);
     Walikota getWalikota();

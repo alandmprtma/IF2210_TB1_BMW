@@ -34,6 +34,11 @@ void GameStatus::Inisiasi(){
 Player* GameStatus::getCurrentPlayer() const{
     return playerTurnList[turn];
 }
+
+Player* GameStatus::getPlayer(int num){
+    return playerTurnList[num];
+}
+
 int GameStatus::stringToInt(string num){
 
     int n = 0;
@@ -45,6 +50,10 @@ int GameStatus::stringToInt(string num){
     }
 
     return n;
+}
+
+int GameStatus::getNumPlayers(){
+    return playerTurnList.size();
 }
 
 Walikota GameStatus::getWalikota(){

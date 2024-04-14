@@ -5,6 +5,7 @@
 #include "../Item/Bangunan.hpp"
 #include "../Toko/Toko.hpp"
 #include "../Exception/Exception.hpp"
+#include "../GameStatus/GameStatus.hpp"
 
 #define DEFAULT_TEAK_WOOD 0
 #define DEFAULT_SANDAL_WOOD 0
@@ -22,7 +23,7 @@ class Walikota : public Player, Toko{
   public:
     Walikota();
     Walikota(string username,int uang, int berat_badan, PetiRahasia data);
-    void pungutPajak();
+    void pungutPajak(GameStatus&);
     void bangunBangunan(string kodeHuruf,string namaBangunan, int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree);
     void pakaiMaterial (int, int, int, int, int);
     void tambahGulden(int num);
