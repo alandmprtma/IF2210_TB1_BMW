@@ -172,8 +172,8 @@ int main (){
             game_status.simpan(pathSimpan,game_object);
         }else if (opsi==16){
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Walikota"){
-                game_status.tambahPemain();
+            if (game_status.getCurrentPlayer()->getPeran()=="Walikota" && game_status.getCurrentPlayer()->getUang()>=50){
+                game_status.tambahPemain(game_object);
             }else{
                 cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
             }
