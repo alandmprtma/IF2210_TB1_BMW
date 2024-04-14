@@ -23,7 +23,7 @@ class Petani : public Player, public Toko {
     void tanamTanaman();
 
     /* Fungsi Panen Tanaman */
-    void panenTanaman();
+    void panenTanaman(GameObject);
 
     /* Setter Umur Tanaman */
     void tambahUmurTanaman(int, int, int);

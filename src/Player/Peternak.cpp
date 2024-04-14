@@ -96,14 +96,30 @@ void Peternak::beriMakanHewanTernak(GameObject objek) {
 
 void Peternak::panenTernak(GameObject objek) {
     vector<Animal*> hewanDapatDipanen;
+    std::map<std::string, std::pair<int, int>> hewanSiapPanen; 
 
     dataTernak.cetakTernak("Peternakan");
 
     /* Menampilkan hewan ternak yang tersedia */
     char columnChar = 'A';
-    std::map<std::string, std::pair<int, int>> hewanSiapPanen; // Map untuk menyimpan indeks dan jumlah petak siap panen berdasarkan kode hewan
 
-    cout << endl << endl << "Pilih hewan siap panen yang kamu miliki" << endl;
+    cout << endl;
+    for (int i = 0; i < dataTernak.getM(); ++i) {
+        std::string rowNumber = std::to_string(i + 1);
+        if (rowNumber.size() == 1) {
+            rowNumber = "0" + rowNumber;
+        }
+
+        for (int j = 0; j < dataTernak.getN(); ++j) {
+            if (dataTernak.getElement(i, j) != nullptr) {
+                std::cout << "- " << columnChar << rowNumber << ": " << dataTernak.getElement(i, j)->getKodeHuruf() << std::endl;
+            }
+            ++columnChar;
+        }
+        columnChar = 'A'; // Reset columnChar for the next row
+    }
+
+    cout << endl << "Pilih hewan siap panen yang kamu miliki" << endl;
 
     int index = 1;
     for (int i = 0; i < dataTernak.getM(); ++i) {
@@ -152,6 +168,7 @@ void Peternak::panenTernak(GameObject objek) {
     /* Memilih petak yang ingin dipanen */
     cout << endl << "Pilih petak yang ingin dipanen" << endl;
     vector<Animal*> hewanDipanen;
+    vector<string> petakDipanen;
     for (int i = 0; i < numPetak; i++) {
         string petakTanah;
         cout << "Petak ke-" << i + 1 << " : ";
@@ -161,10 +178,19 @@ void Peternak::panenTernak(GameObject objek) {
         int colPetak = ((int) petakTanah[0] - 'A');
 
         hewanDipanen.push_back(dataTernak.getElement(rowPetak, colPetak));
-
-        cout << "1 petak hewan " << dataTernak.getElement(rowPetak, colPetak)->getNama() << " pada petak " << petakTanah << " telah dipanen!" << endl;
         dataTernak.removeElement(rowPetak, colPetak);
+        petakDipanen.push_back(petakTanah);
     }
+
+    // TODO : Ganti index tanamanDipanen menjadi benar
+    cout << endl << numPetak << " petak tanaman " << hewanDipanen[0]->getKodeHuruf() << " pada petak ";
+    for (int i = 0; i < petakDipanen.size(); i++) {
+        cout << petakDipanen[i];
+        if (i != petakDipanen.size() - 1) {
+            cout << ", ";
+        }
+    }
+    cout << " telah dipanen!" << endl;
 
     /* Memasukkan ke inventory sebagai produk */
     int row = 0;
