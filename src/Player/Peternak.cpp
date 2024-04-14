@@ -96,7 +96,7 @@ void Peternak::beriMakanHewanTernak(GameObject objek) {
 
 void Peternak::panenTernak() {}
 
-Ternak Peternak::getTernak() {
+Ternak& Peternak::getTernak() {
     return this->dataTernak;
 }
 

@@ -34,12 +34,14 @@ int main (){
 
     GameStatus game_status = GameStatus();
 
-    game_status.muat("Config/state.txt",game_object);
-    cout<<game_status.getWalikota().getUsername()<<endl;
-    cout<<game_status.getWalikota().getId()<<endl;
+    game_status.Inisiasi(game_object);
     
-    cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
-    cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
+    // game_status.muat("Config/state.txt",game_object);
+    // cout<<game_status.getWalikota().getUsername()<<endl;
+    // cout<<game_status.getWalikota().getId()<<endl;
+    
+    // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
+    // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
     while (! game_status.isEndGame())
     {

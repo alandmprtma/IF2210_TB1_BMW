@@ -29,7 +29,7 @@ class Player {
     /* Setter Username */
     void setUsername(string);
     string getUsername();
-    PetiRahasia getData();
+    PetiRahasia& getData();
     int getUang();
     void setUang(int);
 

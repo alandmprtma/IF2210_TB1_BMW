@@ -83,7 +83,7 @@ void Petani::panenTanaman() {
 
 void Petani::setUmurTanaman(int row, int col) {}
 
-Ladang Petani::getLadang() {
+Ladang& Petani::getLadang() {
   return this->dataLadang;
 }
 

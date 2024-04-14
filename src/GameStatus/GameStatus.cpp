@@ -17,7 +17,7 @@ bool GameStatus::isEndGame(){
 
 void GameStatus::nextTurn(GameObject objek){
     // TODO turn ++, umur ladang ++
-    turn ++;
+    turn = (turn + 1) % this->playerTurnList.size();
     for (size_t i=0;i<petaniList.size();i++){
         for (int j=0;j<objek.getSizeFarm()[0];j++){
             for (int k=0;k<objek.getSizeFarm()[1];k++){
@@ -27,8 +27,53 @@ void GameStatus::nextTurn(GameObject objek){
     }
 }
 
-void GameStatus::Inisiasi(){
+void GameStatus::Inisiasi(GameObject objek){
+
     // TODO muat state.txt atau muat default
+    
+    int opsi;
+    do{
+        cout<<"Pilihlah cara memuat state permainan ! "<<endl;
+        cout<<"1. Default"<<endl;
+        cout<<"2. Membaca berkas"<<endl;
+        cout<<"Masukkan opsi memulai game yang diinginkan ! "<<endl;
+        cout<<"Opsi: ";
+        cin>>opsi;
+        if (opsi!= 1 && opsi != 2){
+            cout<<"Opsi di luar jangkauan !"<<endl;
+        }
+    }while( opsi <=0 || opsi > 2);
+
+    if (opsi==1){
+        Petani petani = Petani("Petani1",50,40,
+            PetiRahasia(objek.getSizeInventory()[0],objek.getSizeInventory()[1]),
+            Ladang(objek.getSizeCrops()[0],objek.getSizeCrops()[1]),
+            0
+        );
+        Peternak peternak = Peternak("Peternak1",50,40,
+            PetiRahasia(objek.getSizeInventory()[0],objek.getSizeInventory()[1]),
+            Ternak(objek.getSizeFarm()[0],objek.getSizeFarm()[1]),
+            0
+        );
+        Walikota wal = Walikota("Walikota",50,40,
+            PetiRahasia(objek.getSizeInventory()[0],objek.getSizeInventory()[1])
+        );
+
+        // store player
+        this->walikota = wal;
+        this->petaniList[petani.getId()] = petani;
+        this->peternakList[peternak.getId()] = peternak;
+        this->playerTurnList.push_back(&this->petaniList[petani.getId()]);
+        this->playerTurnList.push_back(&this->peternakList[peternak.getId()]);
+        this->playerTurnList.push_back(&this->walikota);
+        
+        // order player turn
+        sort(this->playerTurnList.begin(),this->playerTurnList.end());
+
+    }else if (opsi==2){
+        // TODO command muat
+
+    }
 }
 
 Player* GameStatus::getCurrentPlayer() const{
@@ -59,7 +104,7 @@ Peternak GameStatus::getPeternak(string username){
     }
     return Peternak();
 }
-Walikota GameStatus::getWalikota(){
+Walikota& GameStatus::getWalikota(){
     return this->walikota;
 }
 

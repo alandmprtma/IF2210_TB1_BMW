@@ -9,6 +9,7 @@
 #include "../Toko/Toko.hpp"
 #include "../GameObject/GameObject.hpp"
 #include "../Exception/Exception.hpp"
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -40,12 +41,12 @@ public:
     Player* getPlayer(int);
     Petani getPetani(string username);
     Peternak getPeternak(string username);
-    Walikota getWalikota();
+    Walikota& getWalikota();
 
 
     bool isEndGame();
     void nextTurn(GameObject objek);
-    void Inisiasi();
+    void Inisiasi(GameObject);
     void cetakPenyimpanan();
     void pungutPajak();
     void cetakLadang();
