@@ -41,7 +41,7 @@ void Petani::tanamTanaman() {
 
   /* Menanam Tanaman */
   cout << endl << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
-  dataLadang.setElement(newPlant, rowPetak, colPetak);
+  dataLadang.setElement(&newPlant, rowPetak, colPetak);
   cout << newPlant.getNama() << " berhasil ditanam!" << endl;
 }
 
@@ -81,7 +81,10 @@ void Petani::panenTanaman() {
 
 }
 
-void Petani::setUmurTanaman(int row, int col) {}
+void Petani::tambahUmurTanaman(int umurTambahan, int row, int col) {
+  Plant* tanaman = dataLadang.getElement(row, col);
+  tanaman->setUmur(tanaman->getUmur() + umurTambahan);
+}
 
 Ladang Petani::getLadang() {
   return this->dataLadang;

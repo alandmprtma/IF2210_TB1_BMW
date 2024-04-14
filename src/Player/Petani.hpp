@@ -26,7 +26,7 @@ class Petani : public Player, public Toko {
     void panenTanaman();
 
     /* Setter Umur Tanaman */
-    void setUmurTanaman(int, int);
+    void tambahUmurTanaman(int, int, int);
 
     /* Getter Ladang */
     Ladang getLadang();
