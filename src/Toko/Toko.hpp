@@ -1,20 +1,47 @@
 #ifndef TOKO_HPP
 #define TOKO_HPP
 
+#include "../Item/Bangunan.hpp"
+
 #include <iostream>
 
 #include <map>
 using namespace std;
 
 
+template <class T>
+void taruhBarang(T barang, vector<T> etalaseBarang){
+
+}
+template <class T>
+T ambilBarang(T barang, vector<T> etalaseBarang){
+
+}
+
 class Toko {
-  private:
-    map<string,int> stok;
+  protected:
+    vector<Bangunan> stok;
+
   public:
+    /*
+    default ctor
+    */
     Toko();
-    // key: nama bahan, value: jumlah stok
-    map<string,int> getStok();
+    /*
+    Method untuk melakukan penjualan dengan objek yang memiliki tipe Bangunan
+    */
+    void titipJual(Bangunan el);
+    /*
+    Method untuk melakukan pembelian dengan objek yang memiliki tipe Bangunan
+    */
+    void mauBeli(Bangunan el);
+    /*
+    Mencetak tampilan toko ke dalam CLI
+    */
+    void welcome();
+    // Virtual Function beli
     void beli();
+    // Virtual Function jual
     void jual();
 };
 

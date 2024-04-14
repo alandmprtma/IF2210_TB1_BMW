@@ -33,4 +33,11 @@ class MaterialTidakCukupException : public Exception{
     }
 };
 
+class RecipeNotFoundException : public Exception{
+    public:
+    const char* what() const throw(){
+        return  "Kamu tidak punya resep bangunan tersebut!";
+    }
+};
+
 #endif

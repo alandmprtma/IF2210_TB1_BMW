@@ -33,7 +33,7 @@ public:
     int stringToInt(string num);
 
 
-    Player* getCurrentPlayer();
+    Player* getCurrentPlayer() const;
     Petani getPetani(string username);
     Peternak getPeternak(string username);
     Walikota getWalikota();
@@ -48,7 +48,7 @@ public:
     void cetakPeternakan();
     void tanam();
     void ternak();
-    void bangunBangunan();
+    void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
     void makan();
     void memberiPangan();
     void membeli();

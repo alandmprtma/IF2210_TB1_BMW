@@ -85,7 +85,23 @@ void Walikota::tambahIronWood(int num){
   this->IronWood += num;
 }
 
-void Walikota::addPetani() {}
+void Walikota::setTeakWood(int num){
+  this->TeakWood = num;
+}
+
+void Walikota::setSandalWood(int num){
+  this->SandalWood = num;
+}
+
+void Walikota::setAloeWood(int num){
+  this->AloeWood  = num;
+}
+
+void Walikota::setIronWood(int num){
+  this->IronWood = num;
+}
+
+void Walikota::addPetani(){}
 
 void Walikota::addPeternak() {}
 

@@ -40,16 +40,21 @@ std::vector<Bangunan> GameObject::getBangunanList(){
     return this->bangunanList;
 }
 
-int GameObject::stringToInt(string num){
-
+int GameObject::stringToInt(string num) {
     int n = 0;
-    for (size_t i=0;i<num.size();i++){
-
-        n *= 10;
-        n += num[i] - '0';
-
+    bool foundDigit = false; // Menandakan apakah angka telah ditemukan dalam string
+    for (size_t i = 0; i < num.size(); i++) {
+        if (num[i] != ' ' && num[i] != '\n') {
+            if (isdigit(num[i])) {
+                n *= 10;
+                n += num[i] - '0';
+                foundDigit = true;
+            } else if (foundDigit) {
+                // Jika sudah menemukan angka dan karakter setelahnya bukan angka, berhenti loop
+                break;
+            }
+        }
     }
-
     return n;
 }
 

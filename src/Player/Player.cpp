@@ -7,6 +7,7 @@ Player::Player() {
   this->IdPlayer = this->jumlahPlayer;
   this->uang = 50;
   this->berat_badan = 40;
+  this->data = PetiRahasia(8,8);
   this->peran = "";
 }
 
@@ -28,14 +29,18 @@ void Player::setBeratBadan(int berat_badan) {
   this->berat_badan = berat_badan;
 }
 
-string Player::getPeran(){
+string Player::getPeran() const{
   return this->peran;
 }
 int Player::getBeratBadan() {
   return this->berat_badan;
 }
 
-void Player::makan() {
+PetiRahasia Player::getData(){
+  return this->data;
+}
+
+void Player::makan() {}
   // cout << "Pilih makanan dari penyimpanan" << endl;
 
   // petiRahasia.cetakPenyimpanan();
@@ -73,7 +78,7 @@ void Player::makan() {
   //       cout << "Silahkan masukan slot yang berisi makanan." << endl; 
   //   }
   // }
-}
+
 
 void Player::printPlayer() {
   cout << "ID Player: " << this->IdPlayer << endl; 
