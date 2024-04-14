@@ -33,6 +33,25 @@ class MaterialTidakCukupException : public Exception{
     }
 };
 
+class NoPLayerException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "[ERROR]: No Player Assigned yet";
+    }
+};
+class NoPetaniException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "[ERROR]: No Petani Assigned yet";
+    }
+};
+class NoPeternakException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "[ERROR]: No Peternak Assigned yet";
+    }
+};
+
 class RecipeNotFoundException : public Exception{
     public:
     const char* what() const throw(){

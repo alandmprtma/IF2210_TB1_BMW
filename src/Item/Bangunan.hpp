@@ -6,6 +6,8 @@
 #include <string>
 #include <map>
 #include <vector>
+#define TIPE_BANGUNAN "Bangunan"
+#define DEFAULT_HARGA_BANGUNAN -1
 
 using namespace std;
 
@@ -19,6 +21,8 @@ class Bangunan : public Item {
             Membuat objek Bangunan 
         */
         Bangunan(string kodeHuruf, string namaBangunan, int Price);
+
+        Bangunan();
         /*
             Input map Material
         */        
@@ -42,13 +46,13 @@ class Bangunan : public Item {
         /*
         Mendapatkan Jumlah Material
         */
-        int getMaterialQuantity(string material);  
-        /*
-        Mendapatkan jumlah material
-        */
+        int getMaterialQuantity(string material);   
+  
+
+        bool operator==(const Bangunan&);
+
         map<string,int> getMaterial() const;     
-
-
+        
     private:
         int idBangunan;
         string kodeHuruf;

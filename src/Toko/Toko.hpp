@@ -20,7 +20,7 @@ T ambilBarang(T barang, vector<T> etalaseBarang){
 
 class Toko {
   protected:
-    vector<Bangunan> stok;
+    map<string,int> stok;
 
   public:
     /*
@@ -43,6 +43,8 @@ class Toko {
     void beli();
     // Virtual Function jual
     void jual();
+    // Get Stok
+    map<string,int> getStok();
 };
 
 #endif

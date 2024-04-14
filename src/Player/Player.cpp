@@ -28,6 +28,12 @@ void Player::setUsername(string username) {
 void Player::setBeratBadan(int berat_badan) {
   this->berat_badan = berat_badan;
 }
+string Player::getUsername(){
+  return this->username;
+}
+PetiRahasia Player::getData(){
+  return this->data;
+}
 
 string Player::getPeran() {
   return this->peran;
@@ -37,6 +43,9 @@ int Player::getBeratBadan() {
   return this->berat_badan;
 }
 
+int Player::getId(){
+  return IdPlayer;
+}
 PetiRahasia Player::getPetiRahasia() {
   return this->data;
 }

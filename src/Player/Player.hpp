@@ -28,6 +28,10 @@ class Player {
     
     /* Setter Username */
     void setUsername(string);
+    string getUsername();
+    PetiRahasia getData();
+
+    int getId();
 
     /* Setter Berat Badan */
     void setBeratBadan(int);

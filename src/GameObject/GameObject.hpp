@@ -49,7 +49,7 @@ public:
     Plant findPlant(string name);
     Animal findAnimal(string name);
     Produk findProduk(string name);
-
+    Bangunan findBangunan(string nama);
 };
 
 
