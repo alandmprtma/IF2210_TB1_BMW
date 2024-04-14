@@ -56,7 +56,7 @@ void GameStatus::Inisiasi(GameObject objek){
             0
         );
         Walikota wal = Walikota("Walikota",50,40,
-            PetiRahasia(objek.getSizeInventory()[0],objek.getSizeInventory()[1])
+            PetiRahasia(8,8)
         );
 
         // store player
@@ -108,6 +108,9 @@ Walikota& GameStatus::getWalikota(){
     return this->walikota;
 }
 
+Toko GameStatus::getToko(){
+    return this->toko;
+}
 
 Player* GameStatus::getPlayer(int num){
     return playerTurnList[num];

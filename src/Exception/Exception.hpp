@@ -59,4 +59,11 @@ class RecipeNotFoundException : public Exception{
     }
 };
 
+class PenyimpananKosong : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda kosong!";
+    }
+};
+
 #endif

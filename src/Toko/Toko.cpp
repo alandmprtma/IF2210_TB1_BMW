@@ -36,15 +36,15 @@ void Toko::welcome(){
 
 // }
 
-void Toko::titipJual(Bangunan el){
+// void Toko::titipJual(Bangunan el){
 
-}
-/*
-Method untuk melakukan pembelian dengan objek yang memiliki tipe Bangunan
-*/
-void Toko::mauBeli(Bangunan el){
+// }
+// /*
+// Method untuk melakukan pembelian dengan objek yang memiliki tipe Bangunan
+// */
+// void Toko::mauBeli(Bangunan el){
 
-}
+// }
 
 void Toko::beli(){
 
