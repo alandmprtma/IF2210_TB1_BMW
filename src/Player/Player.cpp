@@ -31,7 +31,7 @@ void Player::setBeratBadan(int berat_badan) {
 string Player::getUsername(){
   return this->username;
 }
-PetiRahasia Player::getData(){
+PetiRahasia &Player::getData(){
   return this->data;
 }
 

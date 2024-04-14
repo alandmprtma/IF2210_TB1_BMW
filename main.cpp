@@ -35,7 +35,6 @@ int main (){
     GameStatus game_status = GameStatus();
 
     game_status.Inisiasi(game_object);
-    cout<<game_status.getCurrentPlayer()->getPeran()<<endl;
     
     // game_status.muat("Config/state.txt",game_object);
     // cout<<game_status.getWalikota().getUsername()<<endl;
