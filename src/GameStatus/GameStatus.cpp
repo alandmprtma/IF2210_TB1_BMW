@@ -90,6 +90,10 @@ int GameStatus::charToInt(char char1){
     return (int) char1 - 'A';
 }
 
+int GameStatus::getNumPlayers(){
+    return playerTurnList.size();
+}
+
 void GameStatus::muat(string path, GameObject objek){
 
     std::ifstream inputFile(path);

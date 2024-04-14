@@ -24,27 +24,80 @@ Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data)
   this->IronWood = DEFAULT_IRONWOOD;
 }
 
-void Walikota::pungutPajak(GameStatus &game_status)
+void Walikota::pungutPajak(GameObject &objek, vector<Player *> &players)
 {
-  int numPlayers = game_status.getNumPlayers();
-  for (int i = 0; i < numPlayers; i++)
+  // iterasi per player
+  for (int h = 0; h < players.size(); h++)
   {
+    int totalKekayaan = 0;
+    int pajak = 0;
 
-    Player *player = game_status.getPlayer(i);
-    if (player->getPeran() == "Petani")
+    // iterasi inventory player
+    for (int i = 0; i < players[h]->getData().getM(); i++)
     {
-      int pajak = 0;
-      for (int i = 0; i < game_status.getPetani(player->username))
+      for (int j = 0; j < players[h]->getData().getN(); j++)
       {
-
+        if (players[h]->getData().getElement(i, j) != nullptr)
+        {
+          // cek tipe inventory
+          if (players[h]->getData().getElement(i, j)->getTipe() == "Bangunan")
+          {
+            totalKekayaan += objek.findBangunan(players[h]->getData().getElement(i, j)->getNama()).getPrice();
+          }
+          else if (players[h]->getData().getElement(i, j)->getTipe() == "Animal")
+          {
+            totalKekayaan += objek.findAnimal(players[h]->getData().getElement(i, j)->getNama()).getHarga();
+          }
+          else if (players[h]->getData().getElement(i, j)->getTipe() == "Plant")
+          {
+            totalKekayaan += objek.findPlant(players[h]->getData().getElement(i, j)->getNama()).getHarga();
+          }
+        }
       }
     }
-    else if (player->getPeran() == "Peternak")
+    // pengurangan dengan KTKP
+    if (players[h]->getPeran() == "Petani")
     {
+      totalKekayaan -= 13;
     }
-    else
+    else if (players[h]->getPeran() == "Peternak")
     {
-      // Walikota do nothing
+      totalKekayaan -= 11;
+    }
+    // hitung pajak
+    if (totalKekayaan > 0)
+    {
+      if (totalKekayaan <= 6)
+      {
+        pajak = std::roundf(totalKekayaan * 0.05);
+      }
+      else if (totalKekayaan > 6 && totalKekayaan <= 25)
+      {
+        pajak = std::roundf(totalKekayaan * 0.15);
+      }
+      else if (totalKekayaan > 25 && totalKekayaan <= 50)
+      {
+        pajak = std::roundf(totalKekayaan * 0.25);
+      }
+      else if (totalKekayaan > 50 && totalKekayaan <= 500)
+      {
+        pajak = std::roundf(totalKekayaan * 0.30);
+      }
+      else if (totalKekayaan > 500)
+      {
+        pajak = std::roundf(totalKekayaan * 0.35);
+      }
+
+      if (pajak < players[h]->getUang())
+      {
+        players[h]->setUang(players[h]->getUang() - pajak);
+        Walikota::setUang(Walikota::getUang() + pajak);
+      }
+      else
+      {
+        players[h]->setUang(0);
+        Walikota::setUang(Walikota::getUang() + players[h]->getUang());
+      }
     }
   }
 }

@@ -35,6 +35,14 @@ PetiRahasia Player::getData(){
   return this->data;
 }
 
+int Player::getUang() {
+  return this->uang;
+}
+
+void Player::setUang(int uang) {
+  this->uang = uang;
+}
+
 string Player::getPeran() {
   return this->peran;
 }
