@@ -40,7 +40,7 @@ public:
     Player* getPlayer(int);
     Petani getPetani(string username);
     Peternak getPeternak(string username);
-    Walikota getWalikota();
+    Walikota& getWalikota();
 
 
     bool isEndGame();

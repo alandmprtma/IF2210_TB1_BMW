@@ -104,7 +104,7 @@ Peternak GameStatus::getPeternak(string username){
     }
     return Peternak();
 }
-Walikota GameStatus::getWalikota(){
+Walikota& GameStatus::getWalikota(){
     return this->walikota;
 }
 

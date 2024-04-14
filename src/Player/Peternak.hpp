@@ -30,7 +30,7 @@ class Peternak : public Player, public Toko {
     Ternak getPeternakan();
 
     /* Getter Ternak */
-    Ternak getTernak();
+    Ternak& getTernak();
 
     /* Getter Pajak */
     float getPajak();
