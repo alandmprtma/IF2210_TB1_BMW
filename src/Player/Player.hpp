@@ -1,3 +1,4 @@
+
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
@@ -33,6 +34,8 @@ class Player {
     void setUsername(string);
     string getUsername();
     PetiRahasia& getData();
+    int getUang();
+    void setUang(int);
 
     int getId();
 

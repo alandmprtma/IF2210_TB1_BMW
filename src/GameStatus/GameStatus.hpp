@@ -35,6 +35,7 @@ public:
     int stringToInt(string num);
     int charToInt(string char1);
     int charToInt(char char1);
+    int getNumPlayers();
 
     Player* getCurrentPlayer() const;
     Player* getPlayer(int);
