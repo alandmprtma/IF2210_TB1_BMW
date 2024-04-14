@@ -2,15 +2,20 @@
 #define TOKO_HPP
 
 #include <iostream>
+
+#include <map>
 using namespace std;
 
-template <class T>
+
 class Toko {
+  private:
+    map<string,int> stok;
   public:
     Toko();
-
-    virtual void beli() = 0; // Pure Virtual Function
-    virtual void jual() = 0; // Pure Virtual Function
+    // key: nama bahan, value: jumlah stok
+    map<string,int> getStok();
+    void beli();
+    void jual();
 };
 
 #endif

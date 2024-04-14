@@ -3,10 +3,23 @@
 int Player::jumlahPlayer = 0;
 
 Player::Player() {
+  jumlahPlayer += 1;
   this->IdPlayer = this->jumlahPlayer;
   this->uang = 50;
   this->berat_badan = 40;
-  jumlahPlayer += 1;
+  this->peran = "";
+  this->data = PetiRahasia(8, 8); /* Untuk Sementara. Default 8 x 8 */
+}
+
+Player::Player(string username,int uang, int berat_badan, PetiRahasia data){
+  jumlahPlayer ++;
+  this->IdPlayer = this->jumlahPlayer;
+  this->username = username;
+  this->uang = uang;
+  this->berat_badan = berat_badan;
+  this->data = data;
+  this->peran = "";
+  this->data = PetiRahasia(8, 8); /* Untuk Sementara. Default 8 x 8 */
 }
 
 void Player::setUsername(string username) {
@@ -17,8 +30,16 @@ void Player::setBeratBadan(int berat_badan) {
   this->berat_badan = berat_badan;
 }
 
+string Player::getPeran() {
+  return this->peran;
+}
+
 int Player::getBeratBadan() {
   return this->berat_badan;
+}
+
+PetiRahasia Player::getPetiRahasia() {
+  return this->data;
 }
 
 void Player::makan() {

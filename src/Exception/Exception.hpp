@@ -9,7 +9,7 @@ public:
     }
 };
 
-class FileNotFoundError{
+class FileNotFoundError : public Exception{
 
 public:
     const char* what() const throw(){
@@ -18,11 +18,18 @@ public:
 
 };
 
-class UndefinedSymbolError{
+class UndefinedSymbolError : public Exception{
 
 public:
     const char* what() const throw(){
         return "[ERROR]: Undefined Symbol Detected";
+    }
+};
+
+class MaterialTidakCukupException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Kamu tidak punya sumber daya yang cukup!";
     }
 };
 
