@@ -34,13 +34,17 @@ int main (){
 
     GameStatus game_status = GameStatus();
 
+
     game_status.Inisiasi(game_object);
     
     // game_status.muat("Config/state.txt",game_object);
     // cout<<game_status.getWalikota().getUsername()<<endl;
     // cout<<game_status.getWalikota().getId()<<endl;
-    
+    Bangunan *b = new Bangunan("XYZ", "ShinKanSen", 50);
+    game_status.getWalikota().getData().setElement(b,0,0);
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
+    // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
+    // game_status.getToko().welcome();
     // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
     while (! game_status.isEndGame())
@@ -149,8 +153,26 @@ int main (){
             // validasi
             game_status.membeli();
         }else if (opsi==12){
+            try{
+                if(game_status.getWalikota().isKosong()){
+                    throw PenyimpananKosong();
+                }
+                game_status.getToko().welcome();
+                cout << "Berikut merupakan penyimpanan Anda" << endl;
+                cout << game_status.getWalikota().data.getN();
+                // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+                    game_status.getWalikota().data.cetakPeti("Penyimpanan");
+                    cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
+                    string petak;
+                    cout << "Petak : ";
+                    cin >> petak;
+                // }
+            }catch(const PenyimpananKosong& e){
+                cout << e.what();
+                cout << " Anda tidak dapat melakukan penjualan!" << endl;
+            }
             // validasi
-            game_status.menjual();
+            // game_status.menjual();
         }else if (opsi==13){
             // validasi
             if (game_status.getCurrentPlayer()->getPeran()=="Walikota"){
