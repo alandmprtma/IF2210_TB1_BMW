@@ -32,7 +32,6 @@ int main (){
         cout << e.what() << endl;
     }
 
-    //inisiasi gameStatus
     GameStatus game_status = GameStatus();
     cout << game_status.getCurrentPlayer()->getPeran();
     game_status.getToko().welcome();
@@ -41,6 +40,12 @@ int main (){
     cout<<game_status.getWalikota().data.getElement(1,1)->getKodeHuruf();
     cout << game_status.getWalikota().isKosong();
 
+    // game_status.muat("Config/state.txt",game_object);
+    cout<<game_status.getWalikota().getUsername()<<endl;
+    cout<<game_status.getWalikota().getId()<<endl;
+    
+    cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
+    cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
     while (! game_status.isEndGame())
     {
@@ -97,7 +102,7 @@ int main (){
             }
 
         }else if (opsi==8){
-            // validasi
+             // validasi
             // cout<<"11";
             // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
                 try{
@@ -133,6 +138,7 @@ int main (){
             // }
 
             // game_status.bangunBangunan();
+
         }else if (opsi==9){
             // validasi
 

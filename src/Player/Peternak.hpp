@@ -27,6 +27,7 @@ class Peternak : public Player, public Toko {
 
     /* Fungsi Panen Ternak */
     void panenTernak();
+    Ternak getPeternakan();
 
     /* Getter Ternak */
     Ternak getTernak();

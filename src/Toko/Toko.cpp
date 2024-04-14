@@ -1,6 +1,8 @@
 #include "Toko.hpp"
 
-Toko::Toko() {}
+Toko::Toko() {
+    this->stok = map<string,int>();
+}
 
 void Toko::welcome(){
     cout << "Selamat datang di Toko Cina!!" << endl;
@@ -49,4 +51,8 @@ void Toko::beli(){
 }
 void Toko::jual(){
 
+}
+
+map<string,int> Toko::getStok(){
+    return this->stok;
 }

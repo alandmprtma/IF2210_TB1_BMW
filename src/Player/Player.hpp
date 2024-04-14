@@ -28,9 +28,10 @@ class Player {
     
     /* Setter Username */
     void setUsername(string);
+    string getUsername();
+    PetiRahasia getData();
 
-    /* Validasi Peti Rahasia */
-    bool isKosong();
+    int getId();
 
     /* Setter Berat Badan */
     void setBeratBadan(int);
