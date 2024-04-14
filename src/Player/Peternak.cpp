@@ -9,7 +9,6 @@ Peternak::Peternak(string username,int uang, int berat_badan, PetiRahasia data,T
     this->peran = "Peternak";
     this->dataTernak = dataTernak;
     this->jumlahBangunan = jumlahBangunan;
-    this->dataTernak = Ternak(8, 8); /* Untuk Sementara. Default 8 x 8*/
 }
 
 void Peternak::simpanTernak() {

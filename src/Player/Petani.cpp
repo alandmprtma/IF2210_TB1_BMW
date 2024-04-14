@@ -9,7 +9,6 @@ Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Lada
   this->peran = "Petani";
   this->dataLadang = dataLadang;
   this->jumlahBangunan = jumlahBangunan;
-  this->dataLadang = Ladang(8, 8); /* Untuk Sementara. Default 8 x 8*/
 }
 
 void Petani::tanamTanaman() {
