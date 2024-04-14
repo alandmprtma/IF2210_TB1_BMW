@@ -11,7 +11,7 @@ class Ternak : public Penyimpanan<Animal> {
     Ternak(int m, int n) : Penyimpanan<Animal>(m, n) {}
 
     /* Cetak Ternak */
-    void cetakPenyimpanan(string);
+    void cetakTernak(string);
 };
 
 #endif

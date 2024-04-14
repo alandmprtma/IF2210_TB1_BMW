@@ -1,41 +1,40 @@
 #include "Ladang.hpp"
 
 void Ladang::cetakLadang(string label) {
-  cout << "    ";
-  /* Garis Judul Belum Dinamis*/
-  cout << "================[ " << label << " ]=================" << endl << endl; 
+    cout << "    ";
+    cout << "================[ " << label << " ]=================" << endl << endl; 
 
-  cout << "    ";
-  for (int i = 0; i < n; i++) {
-      cout << "   " << (char) ('A' + i) << "  ";
-  }
-  cout << " " << endl;
+    cout << "    ";
+    for (int i = 0; i < n; i++) {
+        cout << "   " << (char) ('A' + i) << "  ";
+    }
+    cout << " " << endl;
 
-  cout << "    ";
-  for (int i = 0; i < n; i++) {
-      cout << "+-----";
-  }
-  cout << "+" << endl;
+    cout << "    ";
+    for (int i = 0; i < n; i++) {
+        cout << "+-----";
+    }
+    cout << "+" << endl;
 
-  for (int i = 0; i < m; i++) {
-      cout << " " << setw(2) << setfill('0') << i + 1 << " ";
+    for (int i = 0; i < m; i++) {
+        cout << " " << setw(2) << setfill('0') << i + 1 << " ";
 
-      for (int j = 0; j < n; j++) {
-          cout << "| ";
-          if (data[i][j].getKodeHuruf().empty()) {
-              cout << setw(3) << "   "; // Jika elemen kosong, cetak spasi
-          } else {
-              cout << setw(3) << data[i][j].getKodeHuruf(); // Cetak nama tanaman
-          }
-          cout << " ";
-      }
+        for (int j = 0; j < n; j++) {
+            cout << "| ";
+            if (data[i][j].getIdTanaman() == DEFAULT_ID_TANAMAN || data[i][j].getKodeHuruf() == DEFAULT_KODE_HURUF_ITEM) {
+                cout << setw(3) << "   "; 
+            } else {
+                cout << setw(3) << data[i][j].getKodeHuruf();
+            }
+            cout << " ";
+        }
 
-      cout << "|" << endl;
+        cout << "|" << endl;
 
-      cout << "    ";
-      for (int i = 0; i < n; i++) {
-          cout << "+-----";
-      }
-      cout << "+" << endl;
-  }
+        cout << "    ";
+        for (int i = 0; i < n; i++) {
+            cout << "+-----";
+        }
+        cout << "+" << endl;
+    }
 }
