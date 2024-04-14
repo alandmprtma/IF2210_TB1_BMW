@@ -7,6 +7,7 @@
 #include "../Penyimpanan/Ternak.hpp"
 #include "../Item/Produk.hpp"
 #include "../GameObject/GameObject.hpp"
+using namespace std;
 
 class Peternak : public Player, public Toko {
   protected:
@@ -26,7 +27,7 @@ class Peternak : public Player, public Toko {
     void beriMakanHewanTernak(GameObject);
 
     /* Fungsi Panen Ternak */
-    void panenTernak();
+    void panenTernak(GameObject);
 
     /* Getter Ternak */
     Ternak getTernak();

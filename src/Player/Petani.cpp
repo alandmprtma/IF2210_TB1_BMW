@@ -13,7 +13,7 @@ Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Lada
 
 void Petani::tanamTanaman() {
   cout << "Pilih tanaman dari penyimpanan" << endl << endl;
-  this->data.cetakPeti("Peti Rahasia");
+  this->data.cetakPeti("Penyimpanan");
 
   /* Memilih tanaman dari peti rahasia */
   string slot;
