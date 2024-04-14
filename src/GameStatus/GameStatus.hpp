@@ -9,6 +9,7 @@
 #include "../Toko/Toko.hpp"
 #include "../GameObject/GameObject.hpp"
 #include "../Exception/Exception.hpp"
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -44,7 +45,7 @@ public:
 
     bool isEndGame();
     void nextTurn(GameObject objek);
-    void Inisiasi();
+    void Inisiasi(GameObject);
     void cetakPenyimpanan();
     void pungutPajak();
     void cetakLadang();

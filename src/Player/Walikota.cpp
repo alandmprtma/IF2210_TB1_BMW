@@ -24,30 +24,30 @@ Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data)
   this->IronWood = DEFAULT_IRONWOOD;
 }
 
-void Walikota::pungutPajak(GameStatus &game_status)
-{
-  int numPlayers = game_status.getNumPlayers();
-  for (int i = 0; i < numPlayers; i++)
-  {
+// void Walikota::pungutPajak(GameStatus &game_status)
+// {
+//   int numPlayers = game_status.getNumPlayers();
+//   for (int i = 0; i < numPlayers; i++)
+//   {
 
-    Player *player = game_status.getPlayer(i);
-    if (player->getPeran() == "Petani")
-    {
-      int pajak = 0;
-      for (int i = 0; i < game_status.getPetani(player->username))
-      {
-
-      }
-    }
-    else if (player->getPeran() == "Peternak")
-    {
-    }
-    else
-    {
-      // Walikota do nothing
-    }
-  }
-}
+//     Player *player = game_status.getPlayer(i);
+//     if (player->getPeran() == "Petani")
+//     {
+//       int pajak = 0;
+//       for (int i = 0; i < game_status.getPetani(player->username))
+//       {
+        
+//       }
+//     }
+//     else if (player->getPeran() == "Peternak")
+//     {
+//     }
+//     else
+//     {
+//       // Walikota do nothing
+//     }
+//   }
+// }
 
 void Walikota::bangunBangunan(string kodeHuruf, string namaBangunan, int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree)
 {
