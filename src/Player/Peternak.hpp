@@ -18,6 +18,7 @@ class Peternak : public Player, public Toko {
     void simpanHewanTernak();
     void kasihMakanHewanTernak();
     void panenTernak();
+    Ternak getPeternakan();
 
     void printPlayer();
 

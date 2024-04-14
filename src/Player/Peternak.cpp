@@ -13,6 +13,10 @@ Peternak::Peternak(string username,int uang, int berat_badan, PetiRahasia data,T
 float Peternak::getPajak(){
     return 1.00;
 }
+Ternak Peternak::getPeternakan(){
+    return dataTernak;
+}
+
 
 void Peternak::simpanHewanTernak(){}
 void Peternak::kasihMakanHewanTernak(){}

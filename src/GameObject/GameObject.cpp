@@ -71,12 +71,21 @@ Animal GameObject::findAnimal(string name){
 }
 Produk GameObject::findProduk(string name){
     for (size_t i=0;i<produkList.size();i++){
-        if (animalList[i].getNama() == name){
+        if (produkList[i].getNama() == name){
             return produkList[i];
         }
     }
     return Produk();
 }
+Bangunan GameObject::findBangunan(string nama){
+    for (size_t i=0;i<bangunanList.size();i++){
+        if (bangunanList[i].getNama() == nama){
+            return bangunanList[i];
+        }
+    }
+    return Bangunan();
+}
+
 
 void GameObject::muatTanaman(string pathTanaman){
 

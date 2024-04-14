@@ -6,6 +6,9 @@
 #include <string>
 #include <map>
 
+#define TIPE_BANGUNAN "Bangunan"
+#define DEFAULT_HARGA_BANGUNAN -1
+
 using namespace std;
 
 class Bangunan : public Item {
@@ -18,6 +21,8 @@ class Bangunan : public Item {
             Membuat objek Bangunan 
         */
         Bangunan(string kodeHuruf, string namaBangunan, int Price);
+
+        Bangunan();
         /*
             Input map Material
         */        
@@ -43,14 +48,14 @@ class Bangunan : public Item {
         */
         int getMaterialQuantity(string material);       
 
-
+        bool operator==(const Bangunan&);
+        
     private:
         int idBangunan;
         string kodeHuruf;
         string namaBangunan;
         int price;
         map<string,int> material;
-        bool operator==(const Bangunan&);
 };
 
 #endif

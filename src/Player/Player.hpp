@@ -27,6 +27,7 @@ class Player {
     PetiRahasia getData();
     void setBeratBadan(int);
     int getBeratBadan();
+    int getId();
     string getPeran();
     void makan();
     

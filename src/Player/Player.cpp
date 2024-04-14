@@ -41,6 +41,9 @@ int Player::getBeratBadan() {
   return this->berat_badan;
 }
 
+int Player::getId(){
+  return IdPlayer;
+}
 void Player::makan() {
   // cout << "Pilih makanan dari penyimpanan" << endl;
 
