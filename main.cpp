@@ -19,6 +19,33 @@
 
 #include <iostream>
 using namespace std;
+
+// ANSI color codes
+#define RESET   "\033[0m"      // Reset color
+#define RED     "\033[31m"     // Red color
+#define GREEN   "\033[32m"     // Green color
+#define YELLOW  "\033[33m"     // Yellow color
+#define BLUE    "\033[34m"     // Blue color
+#define MAGENTA "\033[35m"     // Magenta color
+#define CYAN    "\033[36m"     // Cyan color
+#define WHITE   "\033[37m"     // White color
+#define ORANGE "\033[38;5;208m" // Orange color
+
+void printASCII(string filename) {
+    string line = " ";
+    ifstream inFile;
+    inFile.open(filename);
+
+    if (inFile.is_open()) {
+        while (getline(inFile, line)) {
+            cout << line << endl;
+        }
+    } else {
+        cout << "File not found" << endl;
+    }
+    inFile.close();
+}
+
 int main (){
     GameObject game_object = GameObject();
     try{
@@ -34,6 +61,11 @@ int main (){
 
     GameStatus game_status = GameStatus();
 
+    cout << endl;
+    cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl;
+    string filename = "ascii.txt";
+    printASCII(filename);
+    cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl  << endl;
 
     game_status.Inisiasi(game_object);
     
