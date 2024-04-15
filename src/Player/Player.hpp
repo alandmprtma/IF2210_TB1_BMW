@@ -56,7 +56,7 @@ class Player {
     Player dapat memakan dari inventorynya.
     Jumlah berat badan yang ditambahkan bergantung pada makanan yang dimakan.
     */
-    void makan();
+    void makan(GameObject);
     
     /* Mencetak Data Player */
     virtual void printPlayer();
