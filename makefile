@@ -32,9 +32,9 @@ $(EXECUTABLE): $(OBJECTS)
 
 $(OBJECTS): $(OUTPUT_FOLDER)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OUTPUT_FOLDER)
+	@rm -rf $(OUTPUT_FOLDER)
 
 .PHONY: all clean build
