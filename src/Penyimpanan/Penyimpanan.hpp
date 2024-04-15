@@ -14,15 +14,16 @@ protected:
   int m; /* Baris */
   int n; /* Kolom */
 
-  int NEff = 0 /* Elemen Efektif, Tidak Kosong */
+  int NEff; /* Elemen Efektif, Tidak Kosong */
 public:
   /* Default Constructor */
   Penyimpanan() {
     m = 0;
     n = 0;
+    NEff = 0;
   }
   
-  Penyimpanan(int m, int n) : m(m), n(n) {
+  Penyimpanan(int m, int n) : m(m), n(n),NEff(0) {
     data.resize(m, vector<T>(n));
   }
 
@@ -40,7 +41,10 @@ public:
   int getN() {
     return n;
   }
-
+  /*Mendapatkan Neff*/
+  int getNEff(){
+    return NEff;
+  }
   /* Mendapatkan Elemen Efektif */
   int getEfektif() {
     int efektif = 0;
