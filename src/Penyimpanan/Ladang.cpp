@@ -1,8 +1,8 @@
 #include "Ladang.hpp"
 
-void Ladang::cetakLadang(string label) {
+void Ladang::cetakPenyimpanan() {
     cout << "    ";
-    cout << "================[ " << label << " ]=================" << endl << endl; 
+    cout << "================[ Ladang ]=================" << endl << endl; 
 
     cout << "    ";
     for (int i = 0; i < n; i++) {

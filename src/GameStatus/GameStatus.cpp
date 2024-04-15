@@ -97,25 +97,30 @@ void GameStatus::Inisiasi(GameObject objek){
         // sort player turn order
         sort(this->playerTurnList.begin(),this->playerTurnList.end());
 
-        for (size_t i = 0;i < peternakList.size();i++){
-            cout<<peternakList[i].getUsername()<<endl;
-            cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
-            cout<<peternakList[i].getTernak().getElement(0,0)->getNama()<<endl;
-            cout<<peternakList[i].getTernak().getElement(0,0)->getBerat()<<endl;
-        }
-        for (size_t i = 0;i<this->petaniList.size();i++){
-            cout<<petaniList[i].getUsername()<<endl;
-            cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
-            cout<<petaniList[i].getLadang().getElement(0,1)->getNama()<<endl;
-            cout<<petaniList[i].getLadang().getElement(0,1)->getUmur()<<endl;
+        // for (size_t i = 0;i < peternakList.size();i++){
+        //     cout<<peternakList[i].getUsername()<<endl;
+        //     if (peternakList[i].getData().getElement(0,0)!=nullptr){
+        //         cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
+        //     }
+        //     if (peternakList[i].getTernak().getElement(0,0)!=nullptr){
+        //         cout<<peternakList[i].getTernak().getElement(0,0)->getNama()<<endl;
+        //         cout<<peternakList[i].getTernak().getElement(0,0)->getBerat()<<endl;
+        //     }
+            
+        // }
+        // for (size_t i = 0;i<this->petaniList.size();i++){
+        //     cout<<petaniList[i].getUsername()<<endl;
+        //     cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
+        //     cout<<petaniList[i].getLadang().getElement(0,1)->getNama()<<endl;
+        //     cout<<petaniList[i].getLadang().getElement(0,1)->getUmur()<<endl;
 
-        }
-        cout<<walikota.getUsername()<<endl;
-        cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
+        // }
+        // cout<<walikota.getUsername()<<endl;
+        // cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
 
-        for (const auto& pair : toko.getStok()){
-            cout<<pair.first<<" "<<pair.second<<endl;
-        }
+        // for (const auto& pair : toko.getStok()){
+        //     cout<<pair.first<<" "<<pair.second<<endl;
+        // }
     }
 }
 
@@ -262,7 +267,7 @@ void GameStatus::muat(string path, GameObject objek){
                     std::getline(iss,token,' ');
                     int umur = stringToInt(token);
 
-                    lad.setElement(new Plant(objek.findPlant(token)),row,col);
+                    lad.setElement(new Plant(objek.findPlant(name)),row,col);
                     lad.getElement(row,col)->setUmur(umur);
 
                     max--;

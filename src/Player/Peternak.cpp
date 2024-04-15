@@ -13,7 +13,7 @@ Peternak::Peternak(string username,int uang, int berat_badan, PetiRahasia data,T
 
 void Peternak::simpanTernak() {
     cout << "Pilih hewan dari penyimpanan" << endl << endl;
-    this->data.cetakPeti("Penyimpanan");
+    this->data.cetakPenyimpanan();
 
     /* Memilih hewan dari peti rahasia */
     string slot;
@@ -30,7 +30,7 @@ void Peternak::simpanTernak() {
     Animal newAnimal(selectedAnimal->getKodeHuruf(), selectedAnimal->getNama(), selectedAnimal->getTipe(), 0, 0);
 
     cout << endl << "Pilih petak tanah yang akan ditinggali" << endl << endl;
-    dataTernak.cetakTernak("Peternakan");
+    dataTernak.cetakPenyimpanan();
 
     /* Memilih area untuk ditinggali hewan */
     string petakTanah;
@@ -47,7 +47,7 @@ void Peternak::simpanTernak() {
 
 void Peternak::beriMakanHewanTernak(GameObject objek) {
     cout << "Pilih petak kandang yang akan diberi makan" << endl << endl;
-    dataTernak.cetakTernak("Peternakan");
+    dataTernak.cetakPenyimpanan();
 
     /* Memilih hewan dari ternak*/
     string slot;
@@ -61,7 +61,7 @@ void Peternak::beriMakanHewanTernak(GameObject objek) {
 
     /* Memilih pangan */
     cout << "Pilih pangan yang akan diberikan: " << endl << endl;
-    data.cetakPeti("Penyimpanan");
+    data.cetakPenyimpanan();
 
     string petakTanah;
     cout << endl << "Slot: ";
@@ -98,7 +98,7 @@ void Peternak::panenTernak(GameObject objek) {
     vector<Animal*> hewanDapatDipanen;
     std::map<std::string, std::pair<int, int>> hewanSiapPanen; 
 
-    dataTernak.cetakTernak("Peternakan");
+    dataTernak.cetakPenyimpanan();
 
     /* Menampilkan hewan ternak yang tersedia */
     char columnChar = 'A';
