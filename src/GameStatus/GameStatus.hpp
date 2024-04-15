@@ -54,7 +54,7 @@ public:
     void cetakPeternakan();
     void tanam();
     void ternak();
-     void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
+    void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
     void makan();
     void memberiPangan();
     void membeli();
