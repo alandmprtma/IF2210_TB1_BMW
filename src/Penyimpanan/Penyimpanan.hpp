@@ -73,7 +73,6 @@ public:
   T getElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
       if (data[i][j]==nullptr or data[i][j]==T()){
-          cout << "Petak Kosong!" << endl;
           return nullptr;
       }
       return data[i][j];
@@ -99,7 +98,7 @@ public:
   void removeElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
       if (data[i][j]==nullptr){
-          cout<<"Petak Kosong!";
+        // do nothing
       }else{
         data[i][j] = nullptr;
         NEff--;
