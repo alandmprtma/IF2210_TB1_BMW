@@ -83,7 +83,7 @@ void GameStatus::Inisiasi(GameObject objek){
 
     }else if (opsi==2){
         // TODO command muat
-        this->muat("./Config/coba.txt",objek);
+        this->muat("./Config/state1.txt",objek);
 
         // store player
         for (size_t i =0 ; i<peternakList.size();i++){
@@ -97,30 +97,30 @@ void GameStatus::Inisiasi(GameObject objek){
         // sort player turn order
         sort(this->playerTurnList.begin(),this->playerTurnList.end());
 
-        // for (size_t i = 0;i < peternakList.size();i++){
-        //     cout<<peternakList[i].getUsername()<<endl;
-        //     if (peternakList[i].getData().getElement(0,0)!=nullptr){
-        //         cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
-        //     }
-        //     if (peternakList[i].getTernak().getElement(0,0)!=nullptr){
-        //         cout<<peternakList[i].getTernak().getElement(0,0)->getNama()<<endl;
-        //         cout<<peternakList[i].getTernak().getElement(0,0)->getBerat()<<endl;
-        //     }
+        for (size_t i = 0;i < peternakList.size();i++){
+            cout<<peternakList[i].getUsername()<<endl;
+            if (peternakList[i].getData().getElement(0,0)!=nullptr){
+                cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
+            }
+            if (peternakList[i].getTernak().getElement(0,0)!=nullptr){
+                cout<<peternakList[i].getTernak().getElement(0,0)->getNama()<<endl;
+                cout<<peternakList[i].getTernak().getElement(0,0)->getBerat()<<endl;
+            }
             
-        // }
-        // for (size_t i = 0;i<this->petaniList.size();i++){
-        //     cout<<petaniList[i].getUsername()<<endl;
-        //     cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
-        //     cout<<petaniList[i].getLadang().getElement(0,1)->getNama()<<endl;
-        //     cout<<petaniList[i].getLadang().getElement(0,1)->getUmur()<<endl;
+        }
+        for (size_t i = 0;i<this->petaniList.size();i++){
+            cout<<petaniList[i].getUsername()<<endl;
+            cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
+            cout<<petaniList[i].getLadang().getElement(0,1)->getNama()<<endl;
+            cout<<petaniList[i].getLadang().getElement(0,1)->getUmur()<<endl;
 
-        // }
-        // cout<<walikota.getUsername()<<endl;
-        // cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
+        }
+        cout<<walikota.getUsername()<<endl;
+        cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
 
-        // for (const auto& pair : toko.getStok()){
-        //     cout<<pair.first<<" "<<pair.second<<endl;
-        // }
+        for (const auto& pair : toko.getStok()){
+            cout<<pair.first<<" "<<pair.second<<endl;
+        }
     }
 }
 
@@ -500,10 +500,18 @@ void GameStatus::simpan(string path, GameObject objek){
             }
         }
     }
-    
-    outFile<<toko.getStok().size()<<endl;
+    outFile<<toko.getStok().size();
+    if (toko.getStok().size() > 0){
+        outFile<<endl;
+    }
+    size_t n = 0;
     for (const auto& pair : toko.getStok()) {
-    outFile <<pair.first << " " << pair.second << endl;
+    n++;
+
+    outFile <<pair.first << " " << pair.second;
+    if (n!=toko.getStok().size()){
+        outFile<<endl;
+    }
 }
 
     // Close the file
