@@ -444,7 +444,30 @@ void GameStatus::memanen(){
 }
 
 void GameStatus::simpan(string path, GameObject objek){
+    // ofstream outFile("output.txt");
     
+    // // Write data to the file
+    // outFile << playerTurnList.size() << endl;
+    // for (size_t i = 0; i < playerTurnList.size(); i++){
+    //    outFile<<playerTurnList[i]->getUsername()<<" "<<playerTurnList[i]->getPeran()<<" "<<playerTurnList[i]->getBeratBadan()<<" "<<playerTurnList[i]->getUang()<<endl;
+    //    outFile<<playerTurnList[i]->getData().getNEff()<<endl;
+    //      for (int j = 0; j < playerTurnList[i]->getData().getM(); j++){
+    //           for (int k = 0; k < playerTurnList[i]->getData().getN(); k++){
+    //             if (playerTurnList[i]->getData().getElement(j,k)!=nullptr){
+    //                  outFile<<playerTurnList[i]->getData().getElement(j,k)->getNama()<<endl;
+    //             }
+    //           }
+    //      }
+    //     if playerTurnList[i]->getPeran() {
+
+    //     }
+    // }
+    // outFile << 42 << endl;
+
+    // // Close the file
+    // outFile.close();
+    // cout << "Data written to output.txt successfully." << endl;
+
 }
 void GameStatus::tambahPemain(GameObject objek){
     string jenis;
