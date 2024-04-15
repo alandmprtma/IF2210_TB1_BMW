@@ -79,7 +79,8 @@ PetiRahasia Player::getPetiRahasia() {
   return this->data;
 }
 
-void Player::makan() {
+void Player::makan(GameObject objek)
+{
   cout << "Pilih makanan dari penyimpanan" << endl;
 
   getPetiRahasia().cetakPeti("Penyimpanan");
@@ -95,21 +96,21 @@ void Player::makan() {
     int kolom = ((int)Slot[0] - 'A') + 1;
     int baris = (int)stoi(Slot.substr(1, 2));
 
-    if (getPetiRahasia().getElement(baris - 1, kolom - 1) == nullptr)
+    Item* item = getPetiRahasia().getElement(baris - 1, kolom - 1);
+    if (item == nullptr)
     {
       std::cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl
                 << "Silahkan masukan slot yang berisi makanan." << endl;
     }
-    else if (getPetiRahasia().getElement(baris - 1, kolom - 1)->getTipe() == "Bangunan")
+    else if (item->getTipe() == "PRODUCT_FRUIT_PLANT" || item->getTipe() == "PRODUCT_ANIMAL")
     {
-      std::cout << "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!" << endl << "Silahkan masukan slot yang berisi makanan." << endl;
+      validInput = true;
     }
     else
     {
-      break;
+      std::cout << "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!" << endl << "Silahkan masukan slot yang berisi makanan." << endl;
     }
-    Animal *animal = dynamic_cast<Animal *>(getPetiRahasia().getElement(baris - 1, kolom - 1));
-    berat_badan += animal->getBerat();
+    berat_badan += objek.findProduk(item->getNama()).getBeratTambahan();
   }
 }
 
