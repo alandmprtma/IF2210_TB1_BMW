@@ -40,21 +40,20 @@ std::vector<Bangunan> GameObject::getBangunanList(){
     return this->bangunanList;
 }
 
-int GameObject::stringToInt(string num) {
+int GameObject::stringToInt(string num){
     int n = 0;
-    bool foundDigit = false; // Menandakan apakah angka telah ditemukan dalam string
-    for (size_t i = 0; i < num.size(); i++) {
-        if (num[i] != ' ' && num[i] != '\n') {
-            if (isdigit(num[i])) {
-                n *= 10;
-                n += num[i] - '0';
-                foundDigit = true;
-            } else if (foundDigit) {
-                // Jika sudah menemukan angka dan karakter setelahnya bukan angka, berhenti loop
-                break;
-            }
-        }
+    size_t i = 0;
+
+    // skip spasi
+    while (i < num.size() && std::isspace(num[i])) {
+        i++;
     }
+
+    for (; i < num.size(); i++){
+            n *= 10;
+            n += num[i] - '0';
+    }
+
     return n;
 }
 
@@ -82,6 +81,15 @@ Produk GameObject::findProduk(string name){
     }
     return Produk();
 }
+Bangunan GameObject::findBangunan(string nama){
+    for (size_t i=0;i<bangunanList.size();i++){
+        if (bangunanList[i].getNama() == nama){
+            return bangunanList[i];
+        }
+    }
+    return Bangunan();
+}
+
 
 void GameObject::muatTanaman(string pathTanaman){
 

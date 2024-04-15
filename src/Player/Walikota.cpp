@@ -1,6 +1,7 @@
 #include "Walikota.hpp"
 
-Walikota::Walikota():Player() {
+Walikota::Walikota() : Player()
+{
   this->username = "Walikota";
   this->peran = "Walikota";
   this->berat_badan = DEFAULT_BERAT_BADAN;
@@ -11,8 +12,8 @@ Walikota::Walikota():Player() {
   this->IronWood = DEFAULT_IRONWOOD;
 }
 
-Walikota::Walikota(string username,int uang, int berat_badan, PetiRahasia data):
-Player(username,uang,berat_badan,data){
+Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data) : Player(username, uang, berat_badan, data)
+{
   bangunan = vector<Bangunan>();
   this->peran = "Walikota";
   this->berat_badan = DEFAULT_BERAT_BADAN;
@@ -23,39 +24,125 @@ Player(username,uang,berat_badan,data){
   this->IronWood = DEFAULT_IRONWOOD;
 }
 
-void Walikota::pungutPajak() {}
+void Walikota::pungutPajak(GameObject &objek, vector<Player *> &players)
+{
+  // iterasi per player
+  for (size_t h = 0; h < players.size(); h++)
+  {
+    int totalKekayaan = 0;
+    int pajak = 0;
 
-void Walikota::bangunBangunan(string kodeHuruf, string namaBangunan, int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree) {
-  try{
-    pakaiMaterial(price,TeakTree, SandalwoodTree, AloeTree, IronwoodTree);
-    Bangunan b(kodeHuruf,namaBangunan,price);
+    // iterasi inventory player
+    for (int i = 0; i < players[h]->getData().getM(); i++)
+    {
+      for (int j = 0; j < players[h]->getData().getN(); j++)
+      {
+        if (players[h]->getData().getElement(i, j) != nullptr)
+        {
+          // cek tipe inventory
+          if (players[h]->getData().getElement(i, j)->getTipe() == "Bangunan")
+          {
+            totalKekayaan += objek.findBangunan(players[h]->getData().getElement(i, j)->getNama()).getPrice();
+          }
+          else if (players[h]->getData().getElement(i, j)->getTipe() == "Animal")
+          {
+            totalKekayaan += objek.findAnimal(players[h]->getData().getElement(i, j)->getNama()).getHarga();
+          }
+          else if (players[h]->getData().getElement(i, j)->getTipe() == "Plant")
+          {
+            totalKekayaan += objek.findPlant(players[h]->getData().getElement(i, j)->getNama()).getHarga();
+          }
+        }
+      }
+    }
+    // pengurangan dengan KTKP
+    if (players[h]->getPeran() == "Petani")
+    {
+      totalKekayaan -= 13;
+    }
+    else if (players[h]->getPeran() == "Peternak")
+    {
+      totalKekayaan -= 11;
+    }
+    // hitung pajak
+    if (totalKekayaan > 0)
+    {
+      if (totalKekayaan <= 6)
+      {
+        pajak = std::roundf(totalKekayaan * 0.05);
+      }
+      else if (totalKekayaan > 6 && totalKekayaan <= 25)
+      {
+        pajak = std::roundf(totalKekayaan * 0.15);
+      }
+      else if (totalKekayaan > 25 && totalKekayaan <= 50)
+      {
+        pajak = std::roundf(totalKekayaan * 0.25);
+      }
+      else if (totalKekayaan > 50 && totalKekayaan <= 500)
+      {
+        pajak = std::roundf(totalKekayaan * 0.30);
+      }
+      else if (totalKekayaan > 500)
+      {
+        pajak = std::roundf(totalKekayaan * 0.35);
+      }
+
+      if (pajak < players[h]->getUang())
+      {
+        players[h]->setUang(players[h]->getUang() - pajak);
+        Walikota::setUang(Walikota::getUang() + pajak);
+      }
+      else
+      {
+        players[h]->setUang(0);
+        Walikota::setUang(Walikota::getUang() + players[h]->getUang());
+      }
+    }
+  }
+}
+
+void Walikota::bangunBangunan(string kodeHuruf, string namaBangunan, int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree)
+{
+  try
+  {
+    pakaiMaterial(price, TeakTree, SandalwoodTree, AloeTree, IronwoodTree);
+    Bangunan b(kodeHuruf, namaBangunan, price);
     this->bangunan.push_back(b);
     cout << namaBangunan << " berhasil dibangun dan telah menjadi hak milik walikota!" << endl;
-  }catch(const MaterialTidakCukupException& e){
+  }
+  catch (const MaterialTidakCukupException &e)
+  {
     cout << e.what();
     cout << " Masih memerlukan ";
-    if (this->uang < price){
+    if (this->uang < price)
+    {
       cout << price - this->uang << " gulden";
     }
-    if (this->TeakWood < TeakTree){
-      cout <<", "<< TeakTree - this->TeakWood << " teak wood";
+    if (this->TeakWood < TeakTree)
+    {
+      cout << ", " << TeakTree - this->TeakWood << " teak wood";
     }
-    if (this->AloeWood < AloeTree){
-      cout <<", "<< AloeTree - this->AloeWood << " aloe wood";
+    if (this->AloeWood < AloeTree)
+    {
+      cout << ", " << AloeTree - this->AloeWood << " aloe wood";
     }
-    if (this->IronWood < IronwoodTree){
-      cout <<", "<< IronwoodTree - this->IronWood << " ironwood wood";
+    if (this->IronWood < IronwoodTree)
+    {
+      cout << ", " << IronwoodTree - this->IronWood << " ironwood wood";
     }
-    if (this->SandalWood < SandalwoodTree){
-      cout <<", "<< SandalwoodTree - this->SandalWood << " sandal wood";
+    if (this->SandalWood < SandalwoodTree)
+    {
+      cout << ", " << SandalwoodTree - this->SandalWood << " sandal wood";
     }
     cout << "!" << endl;
   }
-  
 }
 
-void Walikota::pakaiMaterial (int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree){
-  if(this->uang < price || this->TeakWood < TeakTree || this->SandalWood < SandalwoodTree || this->IronWood < IronwoodTree){
+void Walikota::pakaiMaterial(int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree)
+{
+  if (this->uang < price || this->TeakWood < TeakTree || this->SandalWood < SandalwoodTree || this->IronWood < IronwoodTree)
+  {
     throw MaterialTidakCukupException();
   }
   this->uang -= price;
@@ -65,43 +152,52 @@ void Walikota::pakaiMaterial (int price, int TeakTree, int SandalwoodTree, int A
   this->IronWood -= IronwoodTree;
 }
 
-void Walikota::tambahGulden(int num){
+void Walikota::tambahGulden(int num)
+{
   this->uang += num;
 }
 
-void Walikota::tambahTeakWood(int num){
+void Walikota::tambahTeakWood(int num)
+{
   this->TeakWood += num;
 }
 
-void Walikota::tambahSandalWood(int num){
+void Walikota::tambahSandalWood(int num)
+{
   this->SandalWood += num;
 }
 
-void Walikota::tambahAloeWood(int num){
+void Walikota::tambahAloeWood(int num)
+{
   this->AloeWood += num;
 }
 
-void Walikota::tambahIronWood(int num){
+void Walikota::tambahIronWood(int num)
+{
   this->IronWood += num;
 }
 
-void Walikota::setTeakWood(int num){
+void Walikota::setTeakWood(int num)
+{
   this->TeakWood = num;
 }
 
-void Walikota::setSandalWood(int num){
+void Walikota::setSandalWood(int num)
+{
   this->SandalWood = num;
 }
 
-void Walikota::setAloeWood(int num){
-  this->AloeWood  = num;
+void Walikota::setAloeWood(int num)
+{
+  this->AloeWood = num;
 }
 
-void Walikota::setIronWood(int num){
+void Walikota::setIronWood(int num)
+{
   this->IronWood = num;
 }
 
-void Walikota::addPetani(){}
+void Walikota::addPetani() {}
 
 void Walikota::addPeternak() {}
 

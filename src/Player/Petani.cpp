@@ -172,7 +172,7 @@ void Petani::tambahUmurTanaman(int umurTambahan, int row, int col) {
   tanaman->setUmur(tanaman->getUmur() + umurTambahan);
 }
 
-Ladang Petani::getLadang() {
+Ladang& Petani::getLadang() {
   return this->dataLadang;
 }
 

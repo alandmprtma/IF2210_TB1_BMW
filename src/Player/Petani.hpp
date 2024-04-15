@@ -29,7 +29,7 @@ class Petani : public Player, public Toko {
     void tambahUmurTanaman(int, int, int);
 
     /* Getter Ladang */
-    Ladang getLadang();
+    Ladang &getLadang();
 
     /* Getter Pajak */
     float getPajak();

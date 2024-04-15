@@ -216,7 +216,7 @@ void Peternak::panenTernak(GameObject objek) {
     }
 }
 
-Ternak Peternak::getTernak() {
+Ternak& Peternak::getTernak() {
     return this->dataTernak;
 }
 
