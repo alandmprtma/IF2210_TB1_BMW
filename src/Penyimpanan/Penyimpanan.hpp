@@ -43,7 +43,13 @@ public:
   /* Get Element */
   T getElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
-      return data[i][j];
+      if (data[i][j]==nullptr or data[i][j]==T()){
+          cout << "Petak Kosong!" << endl;
+          return T();
+      }else{
+        return data[i][j];
+      }
+      
     } else {
       cout << "Indeks di luar batas!" << endl;
       return T();
@@ -62,6 +68,9 @@ public:
   /* Mereturn & Menghapus Element Dari Data */
   void removeElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
+      if (data[i][j]==T() or data[i][j]==nullptr){
+          cout<<"Petak Kosong!";
+      }
       data[i][j] = T();
     } else {
       cout << "Indeks di luar batas!" << endl;
