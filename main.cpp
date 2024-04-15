@@ -43,7 +43,7 @@ int main (){
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
     // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
-    while (! game_status.isEndGame())
+    while (! game_status.isEndGame(game_object))
     {
         // TODO: List fungsi apa aja
         int opsi;

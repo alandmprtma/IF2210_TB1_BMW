@@ -44,7 +44,7 @@ public:
     Walikota& getWalikota();
 
 
-    bool isEndGame();
+    bool isEndGame(GameObject objek);
     void nextTurn(GameObject objek);
     void Inisiasi(GameObject);
     void cetakPenyimpanan();

@@ -11,7 +11,13 @@ GameStatus::GameStatus(){
 
 }
 
-bool GameStatus::isEndGame(){
+bool GameStatus::isEndGame(GameObject objek){
+    for (size_t i =0 ; i<playerTurnList.size() && !isEndGame;i++){
+        if (playerTurnList[i]->getUang() >= objek.getWinGulden()){
+            endGame = true;
+            cout<<playerTurnList[i]->getUsername()<<" berhasil memenangkan permainan !"<<endl;
+        }
+    }
     return endGame;
 }
 
@@ -418,7 +424,7 @@ void GameStatus::memanen(){
 }
 
 void GameStatus::simpan(string path, GameObject objek){
-
+    
 }
 void GameStatus::tambahPemain(GameObject objek){
     string jenis;
