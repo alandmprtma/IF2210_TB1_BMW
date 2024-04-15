@@ -47,11 +47,13 @@ public:
   {
     return n;
   }
+
   /*Mendapatkan Neff*/
   int getNEff()
   {
     return NEff;
   }
+
   /* Mendapatkan Elemen Efektif */
   int getEfektif()
   {
@@ -71,41 +73,55 @@ public:
 
   /* Get Element */
   T getElement(int i, int j) {
-    if (i >= 0 && i < m && j >= 0 && j < n) {
-      if (data[i][j]==nullptr or data[i][j]==T()){
-          return nullptr;
+    try 
+    {
+      if (i >= 0 && i < m && j >= 0 && j < n) {
+        if (data[i][j]==nullptr or data[i][j]==T()){
+            return nullptr;
+        }
+        return data[i][j];
+      } else {
+        throw "Indeks di luar batas!";
       }
-      return data[i][j];
-      
-    } else {
-      cout << "Indeks di luar batas!" << endl;
-      return T();
-    }
+    } 
+    catch (PenyimpananKosong() e) 
+    {
+      cout << e.what() << endl;
+    } 
   }
 
   /* Set Element */
-  // Asumsi input sudah benar
   void setElement(T newElement, int i, int j) {
-    if (i >= 0 && i < m && j >= 0 && j < n) {
-      data[i][j] = newElement;
-      NEff++;
-    } else {
-      cout << "Indeks di luar batas!" << endl;
-    }
+    try 
+    {
+      if (i >= 0 && i < m && j >= 0 && j < n) {
+        data[i][j] = newElement;
+        NEff++;
+      } else {
+        throw "Indeks di luar batas!";
+      }
+    } 
+    catch (PenyimpananKosong() e) 
+    {
+      cout << e.what() << endl;
+    } 
   }
 
   /* Mereturn & Menghapus Element Dari Data */
   void removeElement(int i, int j) {
-    if (i >= 0 && i < m && j >= 0 && j < n) {
-      if (data[i][j]==nullptr){
-        // do nothing
-      }else{
+    try
+    {
+      if (i >= 0 && i < m && j >= 0 && j < n) {
         data[i][j] = nullptr;
         NEff--;
-      }
-    } else {
-      cout << "Indeks di luar batas!" << endl;
+      } else {
+        throw "Indeks di luar batas!";
+      }  
     }
+    catch (PenyimpananKosong() e) 
+    {
+      cout << e.what() << endl;
+    } 
   }
 
   /* Mencetak Data */
