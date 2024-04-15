@@ -1,3 +1,4 @@
+
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
@@ -26,6 +27,9 @@ class Player {
     Player();
     Player(string username,int uang, int berat_badan, PetiRahasia data);
     
+    /* Validator */
+    bool isKosong();
+
     /* Setter Username */
     void setUsername(string);
     string getUsername();

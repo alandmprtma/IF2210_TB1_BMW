@@ -42,6 +42,7 @@ public:
     Petani getPetani(string username);
     Peternak getPeternak(string username);
     Walikota& getWalikota();
+    Toko getToko();
 
 
     bool isEndGame(GameObject objek);
