@@ -62,8 +62,8 @@ void Petani::panenTanaman(GameObject objek) {
         }
 
         for (int j = 0; j < dataLadang.getN(); ++j) {
-            if (dataLadang.getElement(i, j) != nullptr) {
-                std::cout << "- " << columnChar << rowNumber << ": " << dataLadang.getElement(i, j)->getKodeHuruf() << std::endl;
+            if (dataLadang.getElementNoException(i, j) != nullptr) {
+                std::cout << "- " << columnChar << rowNumber << ": " << dataLadang.getElementNoException(i, j)->getKodeHuruf() << std::endl;
             }
             ++columnChar;
         }
@@ -80,12 +80,12 @@ void Petani::panenTanaman(GameObject objek) {
         }
 
         for (int j = 0; j < dataLadang.getN(); ++j) {
-            if (dataLadang.getElement(i, j) != nullptr) {
+            if (dataLadang.getElementNoException(i, j) != nullptr) {
                 // Memasukkan tanaman ke vector hewan yang dapat dipanen
-                if (dataLadang.getElement(i, j)->getUmur() >= dataLadang.getElement(i, j)->getDurasiPanen()) {
-                    tanamanDapatDipanen.push_back(dataLadang.getElement(i, j));
+                if (dataLadang.getElementNoException(i, j)->getUmur() >= dataLadang.getElementNoException(i, j)->getDurasiPanen()) {
+                    tanamanDapatDipanen.push_back(dataLadang.getElementNoException(i, j));
                     // Menambahkan jumlah petak siap panen berdasarkan kode tanaman
-                    std::string kodeTanaman = dataLadang.getElement(i, j)->getKodeHuruf();
+                    std::string kodeTanaman = dataLadang.getElementNoException(i, j)->getKodeHuruf();
                     if (tanamanSiapPanen.find(kodeTanaman) == tanamanSiapPanen.end()) {
                         // Jika kode tanaman belum ada dalam map, tambahkan entri baru
                         tanamanSiapPanen[kodeTanaman] = std::make_pair(index++, 1);

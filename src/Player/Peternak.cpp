@@ -111,8 +111,8 @@ void Peternak::panenTernak(GameObject objek) {
         }
 
         for (int j = 0; j < dataTernak.getN(); ++j) {
-            if (dataTernak.getElement(i, j) != nullptr) {
-                std::cout << "- " << columnChar << rowNumber << ": " << dataTernak.getElement(i, j)->getKodeHuruf() << std::endl;
+            if (dataTernak.getElementNoException(i, j) != nullptr) {
+                std::cout << "- " << columnChar << rowNumber << ": " << dataTernak.getElementNoException(i, j)->getKodeHuruf() << std::endl;
             }
             ++columnChar;
         }
@@ -129,12 +129,12 @@ void Peternak::panenTernak(GameObject objek) {
         }
 
         for (int j = 0; j < dataTernak.getN(); ++j) {
-            if (dataTernak.getElement(i, j) != nullptr) {
+            if (dataTernak.getElementNoException(i, j) != nullptr) {
                 // Memasukkan hewan ke vector hewan yang dapat dipanen
-                if (dataTernak.getElement(i, j)->getBerat() >= dataTernak.getElement(i, j)->getBeratPanen()) {
-                    hewanDapatDipanen.push_back(dataTernak.getElement(i, j));
+                if (dataTernak.getElementNoException(i, j)->getBerat() >= dataTernak.getElementNoException(i, j)->getBeratPanen()) {
+                    hewanDapatDipanen.push_back(dataTernak.getElementNoException(i, j));
                     // Menambahkan jumlah petak siap panen berdasarkan kode hewan
-                    std::string kodeHewan = dataTernak.getElement(i, j)->getKodeHuruf();
+                    std::string kodeHewan = dataTernak.getElementNoException(i, j)->getKodeHuruf();
                     if (hewanSiapPanen.find(kodeHewan) == hewanSiapPanen.end()) {
                         // Jika kode hewan belum ada dalam map, tambahkan entri baru
                         hewanSiapPanen[kodeHewan] = std::make_pair(index++, 1);
