@@ -72,13 +72,15 @@ int main (){
     // game_status.muat("Config/state.txt",game_object);
     // cout<<game_status.getWalikota().getUsername()<<endl;
     // cout<<game_status.getWalikota().getId()<<endl;
-    Bangunan *b = new Bangunan("XYZ", "ShinKanSen", 50);
-    game_status.getWalikota().getData().setElement(b,0,0);
+    // Bangunan *b = new Bangunan("XYZ", "ShinKanSen", 50);
+    // game_status.getWalikota().getData().setElement(b,0,0);
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
-    // game_status.getToko().welcome();
+    // game_status.getToko().welcome(); 
     // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
+    cout<<"Sekarang Giliran "<<game_status.getCurrentPlayer()->getUsername()<<" untuk Jalan!"<<endl;
+
     while (! game_status.isEndGame(game_object))
     {
         // TODO: List fungsi apa aja

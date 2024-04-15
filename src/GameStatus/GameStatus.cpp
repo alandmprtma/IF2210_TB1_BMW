@@ -13,7 +13,9 @@ GameStatus::GameStatus(){
 
 bool GameStatus::isEndGame(GameObject objek){
     for (size_t i =0 ; i<playerTurnList.size() && !endGame;i++){
-        if (playerTurnList[i]->getUang() >= objek.getWinGulden()){
+        if (playerTurnList[i]->getUang() >= objek.getWinGulden() &&
+            playerTurnList[i]->getBeratBadan() >= objek.getWinWeight()
+        ){
             endGame = true;
             cout<<playerTurnList[i]->getUsername()<<" berhasil memenangkan permainan !"<<endl;
         }
@@ -28,14 +30,19 @@ void GameStatus::nextTurn(GameObject objek){
         for (int j=0;j<objek.getSizeCrops()[0];j++){
             for (int k=0;k<objek.getSizeCrops()[1];k++){
                 // set umur tiap tanaman = umur + 1, ntar ae dah
-                if (!(*this->petaniList[i].getLadang().getElement(j,k)==Plant())){
-                        this->petaniList[i].getLadang().getElement(j,k)->setUmur(
-                        this->petaniList[i].getLadang().getElement(j,k)->getUmur() + 1
-                    );
+                if (this->petaniList[i].getLadang().getElement(j,k)!=nullptr){
+                    if (!(*this->petaniList[i].getLadang().getElement(j,k)==Plant())){
+                            this->petaniList[i].getLadang().getElement(j,k)->setUmur(
+                            this->petaniList[i].getLadang().getElement(j,k)->getUmur() + 1
+                        );
+                    }
                 }
+                
             }
         }
     }
+    cout<<"Sekarang Giliran "<<getCurrentPlayer()->getUsername()<<" untuk Jalan!"<<endl;
+
 }
 
 void GameStatus::Inisiasi(GameObject objek){
@@ -97,23 +104,25 @@ void GameStatus::Inisiasi(GameObject objek){
         // sort player turn order
         sort(this->playerTurnList.begin(),this->playerTurnList.end());
 
-        for (size_t i = 0;i < peternakList.size();i++){
-            cout<<peternakList[i].getUsername()<<endl;
-            peternakList[i].getData().cetakPenyimpanan();
-            peternakList[i].getTernak().cetakPenyimpanan();
-        }
-        for (size_t i = 0;i<this->petaniList.size();i++){
-            cout<<petaniList[i].getUsername()<<endl;
-            petaniList[i].getData().cetakPenyimpanan();
-            petaniList[i].getLadang().cetakPenyimpanan();
-        }
-        cout<<walikota.getUsername()<<endl;
-        walikota.getData().cetakPenyimpanan();
+        // for (size_t i = 0;i < peternakList.size();i++){
+        //     cout<<peternakList[i].getUsername()<<endl;
+        //     peternakList[i].getData().cetakPenyimpanan();
+        //     peternakList[i].getTernak().cetakPenyimpanan();
+        // }
+        // for (size_t i = 0;i<this->petaniList.size();i++){
+        //     cout<<petaniList[i].getUsername()<<endl;
+        //     petaniList[i].getData().cetakPenyimpanan();
+        //     petaniList[i].getLadang().cetakPenyimpanan();
+        // }
+        // cout<<walikota.getUsername()<<endl;
+        // walikota.getData().cetakPenyimpanan();
 
-        cout<<"TOKO CHINA"<<endl;
-        for (const auto& pair : toko.getStok()){
-            cout<<pair.first<<" "<<pair.second<<endl;
-        }
+        // cout<<"TOKO CHINA"<<endl;
+        // for (const auto& pair : toko.getStok()){
+        //     cout<<pair.first<<" "<<pair.second<<endl;
+        // }
+
+        // cout<<walikota.getUang()<<" "<<walikota.getBeratBadan()<<endl;
     }
 }
 
@@ -352,6 +361,8 @@ void GameStatus::muat(string path, GameObject objek){
                     max--;
                 }
                 this->walikota = Walikota(userName,uang,beratBadan,data);
+                this->walikota.setUang(uang);
+                this->walikota.setBeratBadan(beratBadan);
             
             }
         

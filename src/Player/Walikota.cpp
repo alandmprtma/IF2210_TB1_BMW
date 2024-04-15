@@ -12,7 +12,9 @@ Walikota::Walikota() : Player()
   this->IronWood = DEFAULT_IRONWOOD;
 }
 
-Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data) : Player(username, uang, berat_badan, data)
+Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data) : 
+
+Player(username, uang, berat_badan, data)
 {
   bangunan = vector<Bangunan>();
   this->peran = "Walikota";

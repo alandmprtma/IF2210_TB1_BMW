@@ -296,13 +296,10 @@ void GameObject::muatMisc(string pathMisc){
                         break;
                     case 4:
                         this->sizeCrops.push_back(stringToInt(token));
-                        cout<<"INI"<<endl;
-                        cout<<token<<endl;
                         std::getline(iss,token,' ');
                         if (token.empty()){
                             throw UndefinedSymbolError();
                         }
-                        cout<<token<<endl;
                         this->sizeCrops.push_back(stringToInt(token));
                         // Perform action for line 4
                         break;
