@@ -12,7 +12,7 @@ GameStatus::GameStatus(){
 }
 
 bool GameStatus::isEndGame(GameObject objek){
-    for (size_t i =0 ; i<playerTurnList.size() && !isEndGame;i++){
+    for (size_t i =0 ; i<playerTurnList.size() && !endGame;i++){
         if (playerTurnList[i]->getUang() >= objek.getWinGulden()){
             endGame = true;
             cout<<playerTurnList[i]->getUsername()<<" berhasil memenangkan permainan !"<<endl;
@@ -97,23 +97,23 @@ void GameStatus::Inisiasi(GameObject objek){
         // sort player turn order
         sort(this->playerTurnList.begin(),this->playerTurnList.end());
 
-        for (size_t i = 0;i < peternakList.size();i++){
-            cout<<peternakList[i].getUsername()<<endl;
-            cout<<peternakList[i].getTernak().getElement(0,0).getNama()<<endl;
-            cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
-        }
-        for (size_t i = 0;i<this->petaniList.size();i++){
-            cout<<petaniList[i].getUsername()<<endl;
-            cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
-            cout<<petaniList[i].getLadang().getElement(0,1).getNama()<<endl;
+        // for (size_t i = 0;i < peternakList.size();i++){
+        //     cout<<peternakList[i].getUsername()<<endl;
+        //     cout<<peternakList[i].getTernak().getElement(0,0).getNama()<<endl;
+        //     cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
+        // }
+        // for (size_t i = 0;i<this->petaniList.size();i++){
+        //     cout<<petaniList[i].getUsername()<<endl;
+        //     cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
+        //     cout<<petaniList[i].getLadang().getElement(0,1).getNama()<<endl;
 
-        }
-        cout<<walikota.getUsername()<<endl;
-        cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
+        // }
+        // cout<<walikota.getUsername()<<endl;
+        // cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
 
-        for (const auto& pair : toko.getStok()){
-            cout<<pair.first<<" "<<pair.second<<endl;
-        }
+        // for (const auto& pair : toko.getStok()){
+        //     cout<<pair.first<<" "<<pair.second<<endl;
+        // }
     }
 }
 
@@ -365,7 +365,9 @@ void GameStatus::muat(string path, GameObject objek){
     }
 }
 void GameStatus::cetakPenyimpanan(){
+    
 
+    
 }
 void GameStatus::pungutPajak(){
 
