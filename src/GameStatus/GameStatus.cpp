@@ -449,28 +449,67 @@ void GameStatus::memanen(){
 }
 
 void GameStatus::simpan(string path, GameObject objek){
-    // ofstream outFile("output.txt");
+    ofstream outFile(path);
     
-    // // Write data to the file
-    // outFile << playerTurnList.size() << endl;
-    // for (size_t i = 0; i < playerTurnList.size(); i++){
-    //    outFile<<playerTurnList[i]->getUsername()<<" "<<playerTurnList[i]->getPeran()<<" "<<playerTurnList[i]->getBeratBadan()<<" "<<playerTurnList[i]->getUang()<<endl;
-    //    outFile<<playerTurnList[i]->getData().getNEff()<<endl;
-    //      for (int j = 0; j < playerTurnList[i]->getData().getM(); j++){
-    //           for (int k = 0; k < playerTurnList[i]->getData().getN(); k++){
-    //             if (playerTurnList[i]->getData().getElement(j,k)!=nullptr){
-    //                  outFile<<playerTurnList[i]->getData().getElement(j,k)->getNama()<<endl;
-    //             }
-    //           }
-    //      }
-    //     if playerTurnList[i]->getPeran() {
+    // Write data to the file
+    outFile << playerTurnList.size() << endl;
+    
+    for (size_t i = 0; i < peternakList.size(); i++){
+       outFile<<peternakList[i].getUsername()<<" "<<peternakList[i].getPeran()<<" "<<peternakList[i].getBeratBadan()<<" "<<peternakList[i].getUang()<<endl;
+       outFile<<peternakList[i].getData().getEfektif()<<endl;
+         for (int j = 0; j < peternakList[i].getData().getM(); j++){
+              for (int k = 0; k < peternakList[i].getData().getN(); k++){
+                if (peternakList[i].getData().getElement(j,k)!=nullptr){
+                     outFile<<peternakList[i].getData().getElement(j,k)->getNama()<<endl;
+                }
+              }
+         }
+       outFile<<peternakList[i].getTernak().getNEff()<<endl;
+            for (int j = 0; j < peternakList[i].getTernak().getM(); j++){
+                for (int k = 0; k < peternakList[i].getTernak().getN(); k++){
+                    if (peternakList[i].getTernak().getElement(j,k)!=nullptr){
+                        outFile<<peternakList[i].getTernak().getElement(j,k)->getKodeHuruf()<<" "<<peternakList[i].getTernak().getElement(j,k)->getNama()<<" "<<peternakList[i].getTernak().getElement(j,k)->getBerat()<<endl;
+                    }
+                }
+            }
+    }
+    for (size_t i = 0; i < petaniList.size(); i++){
+       outFile<<petaniList[i].getUsername()<<" "<<petaniList[i].getPeran()<<" "<<petaniList[i].getBeratBadan()<<" "<<petaniList[i].getUang()<<endl;
+       outFile<<petaniList[i].getData().getEfektif()<<endl;
+         for (int j = 0; j < petaniList[i].getData().getM(); j++){
+              for (int k = 0; k < petaniList[i].getData().getN(); k++){
+                if (petaniList[i].getData().getElement(j,k)!=nullptr){
+                     outFile<<petaniList[i].getData().getElement(j,k)->getNama()<<endl;
+                }
+              }
+         }
+       outFile<<petaniList[i].getLadang().getNEff()<<endl;
+            for (int j = 0; j < petaniList[i].getLadang().getM(); j++){
+                for (int k = 0; k < petaniList[i].getLadang().getN(); k++){
+                    if (petaniList[i].getLadang().getElement(j,k)!=nullptr){
+                        outFile<<petaniList[i].getLadang().getElement(j,k)->getKodeHuruf()<<" "<<petaniList[i].getLadang().getElement(j,k)->getNama()<<" "<<petaniList[i].getLadang().getElement(j,k)->getUmur()<<endl;
+                    }
+                }
+            }
+    }
 
-    //     }
-    // }
-    // outFile << 42 << endl;
+    outFile<<walikota.getUsername()<<" "<<walikota.getPeran()<<" "<<walikota.getBeratBadan()<<" "<<walikota.getUang()<<endl;
+    outFile<<walikota.getData().getEfektif()<<endl;
+    for (int j = 0; j < walikota.getData().getM(); j++){
+        for (int k = 0; k < walikota.getData().getN(); k++){
+            if (walikota.getData().getElement(j,k)!=nullptr){
+                outFile<<walikota.getData().getElement(j,k)->getNama()<<endl;
+            }
+        }
+    }
+    
+    outFile<<toko.getStok().size()<<endl;
+    for (const auto& pair : toko.getStok()) {
+    outFile <<pair.first << " " << pair.second << endl;
+}
 
-    // // Close the file
-    // outFile.close();
+    // Close the file
+    outFile.close();
     // cout << "Data written to output.txt successfully." << endl;
 
 }
