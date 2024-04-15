@@ -41,13 +41,17 @@ std::vector<Bangunan> GameObject::getBangunanList(){
 }
 
 int GameObject::stringToInt(string num){
-
     int n = 0;
-    for (size_t i=0;i<num.size();i++){
+    size_t i = 0;
 
-        n *= 10;
-        n += num[i] - '0';
+    // skip spasi
+    while (i < num.size() && std::isspace(num[i])) {
+        i++;
+    }
 
+    for (; i < num.size(); i++){
+            n *= 10;
+            n += num[i] - '0';
     }
 
     return n;
