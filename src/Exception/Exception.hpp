@@ -65,6 +65,12 @@ class PenyimpananKosong : public Exception{
         return "Penyimpanan Anda kosong!";
     }
 };
+class PenyimpananSudahTerisi : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda Sudah Terisi!";
+    }
+};
 
 class IndexOutOfBound : public Exception {
     public:

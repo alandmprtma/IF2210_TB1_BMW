@@ -41,17 +41,12 @@ std::vector<Bangunan> GameObject::getBangunanList(){
 }
 
 int GameObject::stringToInt(string num){
+
     int n = 0;
-    size_t i = 0;
+    for (size_t i=0;num[i]>='0' && num[i]<='9';i++){
+        n *= 10;
+        n += num[i] - '0';
 
-    // skip spasi
-    while (i < num.size() && std::isspace(num[i])) {
-        i++;
-    }
-
-    for (; i < num.size(); i++){
-            n *= 10;
-            n += num[i] - '0';
     }
 
     return n;
@@ -301,10 +296,13 @@ void GameObject::muatMisc(string pathMisc){
                         break;
                     case 4:
                         this->sizeCrops.push_back(stringToInt(token));
+                        cout<<"INI"<<endl;
+                        cout<<token<<endl;
                         std::getline(iss,token,' ');
                         if (token.empty()){
                             throw UndefinedSymbolError();
                         }
+                        cout<<token<<endl;
                         this->sizeCrops.push_back(stringToInt(token));
                         // Perform action for line 4
                         break;

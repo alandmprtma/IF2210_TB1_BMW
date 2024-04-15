@@ -84,6 +84,11 @@ public:
       throw PenyimpananKosong();
     }
   }
+  void isElementNotEmpty(int i, int j){
+    if (data[i][j] != nullptr){
+      throw PenyimpananSudahTerisi();
+    }
+  }
 
   /* Get Element */
   T getElement(int i, int j) {
@@ -92,14 +97,10 @@ public:
       isElementEmpty(i, j);
       return data[i][j];
     } 
-    catch (const IndexOutOfBound& e) 
+    catch (const Exception& e) 
     {
       cout << e.what() << endl;
     } 
-    catch (const PenyimpananKosong& e) 
-    {
-      cout << e.what() << endl;
-    }
     return nullptr;
   }
 
@@ -108,18 +109,13 @@ public:
     try 
     {
       isIndexValid(i, j);
-      isElementEmpty(i, j);
+      isElementNotEmpty(i,j);
       data[i][j] = newElement;
       NEff++;
   
     } 
-    catch (const IndexOutOfBound& e) 
-    {
-      cout << e.what() << endl;
-    } 
-    catch (const PenyimpananKosong& e) 
-    {
-      cout << e.what() << endl;
+    catch(const Exception& e){
+        cout<<e.what()<<endl;
     }
   }
 
@@ -133,14 +129,11 @@ public:
       NEff--;
       
     }
-    catch (const IndexOutOfBound& e) 
+    catch (const Exception& e) 
     {
       cout << e.what() << endl;
     } 
-    catch (const PenyimpananKosong& e) 
-    {
-      cout << e.what() << endl;
-    }
+    
   }
 
   /* Mencetak Data */

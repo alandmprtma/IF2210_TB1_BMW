@@ -83,7 +83,7 @@ void GameStatus::Inisiasi(GameObject objek){
 
     }else if (opsi==2){
         // TODO command muat
-        this->muat("./Config/state1.txt",objek);
+        this->muat("./Config/coba.txt",objek);
 
         // store player
         for (size_t i =0 ; i<peternakList.size();i++){
@@ -99,25 +99,18 @@ void GameStatus::Inisiasi(GameObject objek){
 
         for (size_t i = 0;i < peternakList.size();i++){
             cout<<peternakList[i].getUsername()<<endl;
-            if (peternakList[i].getData().getElement(0,0)!=nullptr){
-                cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
-            }
-            if (peternakList[i].getTernak().getElement(0,0)!=nullptr){
-                cout<<peternakList[i].getTernak().getElement(0,0)->getNama()<<endl;
-                cout<<peternakList[i].getTernak().getElement(0,0)->getBerat()<<endl;
-            }
-            
+            peternakList[i].getData().cetakPenyimpanan();
+            peternakList[i].getTernak().cetakPenyimpanan();
         }
         for (size_t i = 0;i<this->petaniList.size();i++){
             cout<<petaniList[i].getUsername()<<endl;
-            cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
-            cout<<petaniList[i].getLadang().getElement(0,1)->getNama()<<endl;
-            cout<<petaniList[i].getLadang().getElement(0,1)->getUmur()<<endl;
-
+            petaniList[i].getData().cetakPenyimpanan();
+            petaniList[i].getLadang().cetakPenyimpanan();
         }
         cout<<walikota.getUsername()<<endl;
-        cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
+        walikota.getData().cetakPenyimpanan();
 
+        cout<<"TOKO CHINA"<<endl;
         for (const auto& pair : toko.getStok()){
             cout<<pair.first<<" "<<pair.second<<endl;
         }
