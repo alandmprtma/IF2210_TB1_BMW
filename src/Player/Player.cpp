@@ -103,8 +103,7 @@ void Player::makan()
     }
     else if (getPetiRahasia().getElement(baris - 1, kolom - 1)->getTipe() == "Bangunan")
     {
-      std::cout << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl
-                << "Silahkan masukan slot yang berisi makanan." << endl;
+      std::cout << "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!" << endl << "Silahkan masukan slot yang berisi makanan." << endl;
     }
     else
     {

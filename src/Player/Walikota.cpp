@@ -27,7 +27,7 @@ Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data)
 void Walikota::pungutPajak(GameObject &objek, vector<Player *> &players)
 {
   // iterasi per player
-  for (int h = 0; h < players.size(); h++)
+  for (size_t h = 0; h < players.size(); h++)
   {
     int totalKekayaan = 0;
     int pajak = 0;
