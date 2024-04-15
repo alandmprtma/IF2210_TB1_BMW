@@ -97,23 +97,25 @@ void GameStatus::Inisiasi(GameObject objek){
         // sort player turn order
         sort(this->playerTurnList.begin(),this->playerTurnList.end());
 
-        // for (size_t i = 0;i < peternakList.size();i++){
-        //     cout<<peternakList[i].getUsername()<<endl;
-        //     cout<<peternakList[i].getTernak().getElement(0,0).getNama()<<endl;
-        //     cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
-        // }
-        // for (size_t i = 0;i<this->petaniList.size();i++){
-        //     cout<<petaniList[i].getUsername()<<endl;
-        //     cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
-        //     cout<<petaniList[i].getLadang().getElement(0,1).getNama()<<endl;
+        for (size_t i = 0;i < peternakList.size();i++){
+            cout<<peternakList[i].getUsername()<<endl;
+            cout<<peternakList[i].getData().getElement(0,0)->getNama()<<endl;
+            cout<<peternakList[i].getTernak().getElement(0,0)->getNama()<<endl;
+            cout<<peternakList[i].getTernak().getElement(0,0)->getBerat()<<endl;
+        }
+        for (size_t i = 0;i<this->petaniList.size();i++){
+            cout<<petaniList[i].getUsername()<<endl;
+            cout<<petaniList[i].getData().getElement(0,0)->getNama()<<endl;
+            cout<<petaniList[i].getLadang().getElement(0,1)->getNama()<<endl;
+            cout<<petaniList[i].getLadang().getElement(0,1)->getUmur()<<endl;
 
-        // }
-        // cout<<walikota.getUsername()<<endl;
-        // cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
+        }
+        cout<<walikota.getUsername()<<endl;
+        cout<<walikota.getData().getElement(0,0)->getNama()<<endl;
 
-        // for (const auto& pair : toko.getStok()){
-        //     cout<<pair.first<<" "<<pair.second<<endl;
-        // }
+        for (const auto& pair : toko.getStok()){
+            cout<<pair.first<<" "<<pair.second<<endl;
+        }
     }
 }
 
@@ -255,7 +257,14 @@ void GameStatus::muat(string path, GameObject objek){
                     int row = this->stringToInt(token.substr(1,token.size())) - 1;
 
                     std::getline(iss,token,' ');
+                    string name = token;
+
+                    std::getline(iss,token,' ');
+                    int umur = stringToInt(token);
+
                     lad.setElement(new Plant(objek.findPlant(token)),row,col);
+                    lad.getElement(row,col)->setUmur(umur);
+
                     max--;
                 }
                 Petani pet = Petani(userName,uang,beratBadan,data,lad,jumlahBangunan);
@@ -302,7 +311,14 @@ void GameStatus::muat(string path, GameObject objek){
                     int row = this->stringToInt(token.substr(1,token.size())) - 1;
 
                     std::getline(iss,token,' ');
-                    peternakan.setElement(new Animal(objek.findAnimal(token)),row,col);
+                    string name = token;
+
+                    std::getline(iss,token,' ');
+                    int berat = stringToInt(token);
+
+                    peternakan.setElement(new Animal(objek.findAnimal(name)),row,col);
+                    peternakan.getElement(row,col)->setBerat(berat);
+
                     max--;
                 }
                 Peternak pet = Peternak(userName,uang,beratBadan,data,peternakan,jumlahBangunan);

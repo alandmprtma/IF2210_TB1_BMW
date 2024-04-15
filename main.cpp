@@ -159,9 +159,9 @@ int main (){
                 }
                 game_status.getToko().welcome();
                 cout << "Berikut merupakan penyimpanan Anda" << endl;
-                cout << game_status.getWalikota().data.getN();
+                cout << game_status.getWalikota().getData().getN();
                 // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
-                    game_status.getWalikota().data.cetakPeti("Penyimpanan");
+                    game_status.getWalikota().getData().cetakPeti("Penyimpanan");
                     cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
                     string petak;
                     cout << "Petak : ";
