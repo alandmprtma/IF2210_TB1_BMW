@@ -45,11 +45,9 @@ public:
     if (i >= 0 && i < m && j >= 0 && j < n) {
       if (data[i][j]==nullptr or data[i][j]==T()){
           cout << "Petak Kosong!" << endl;
-          return T();
-      }else{
-        return data[i][j];
+          data[i][j] = T();
       }
-      
+      return data[i][j];
     } else {
       cout << "Indeks di luar batas!" << endl;
       return T();
