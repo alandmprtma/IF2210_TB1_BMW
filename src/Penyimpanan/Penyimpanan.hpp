@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include "../Exception/Exception.hpp"
 
 using namespace std;
 
@@ -71,57 +72,75 @@ public:
     return efektif;
   }
 
+  /* Exception Get Element */
+  void isIndexValid(int i, int j) {
+    if ((i < 0 || i > m) && (j < 0 || j > n)) {
+      throw IndexOutOfBound();
+    }
+  }
+
+  void isElementEmpty(int i, int j) {
+    if (data[i][j] == nullptr) {
+      throw PenyimpananKosong();
+    }
+  }
+
   /* Get Element */
   T getElement(int i, int j) {
-    try 
-    {
-      if (i >= 0 && i < m && j >= 0 && j < n) {
-        if (data[i][j]==nullptr or data[i][j]==T()){
-            return nullptr;
-        }
-        return data[i][j];
-      } else {
-        throw "Indeks di luar batas!";
-      }
+    try {
+      isIndexValid(i, j);
+      isElementEmpty(i, j);
+      return data[i][j];
     } 
-    catch (PenyimpananKosong() e) 
+    catch (const IndexOutOfBound& e) 
     {
       cout << e.what() << endl;
     } 
+    catch (const PenyimpananKosong& e) 
+    {
+      cout << e.what() << endl;
+    }
+    return nullptr;
   }
 
   /* Set Element */
   void setElement(T newElement, int i, int j) {
     try 
     {
-      if (i >= 0 && i < m && j >= 0 && j < n) {
-        data[i][j] = newElement;
-        NEff++;
-      } else {
-        throw "Indeks di luar batas!";
-      }
+      isIndexValid(i, j);
+      isElementEmpty(i, j);
+      data[i][j] = newElement;
+      NEff++;
+  
     } 
-    catch (PenyimpananKosong() e) 
+    catch (const IndexOutOfBound& e) 
     {
       cout << e.what() << endl;
     } 
+    catch (const PenyimpananKosong& e) 
+    {
+      cout << e.what() << endl;
+    }
   }
 
   /* Mereturn & Menghapus Element Dari Data */
   void removeElement(int i, int j) {
     try
     {
-      if (i >= 0 && i < m && j >= 0 && j < n) {
-        data[i][j] = nullptr;
-        NEff--;
-      } else {
-        throw "Indeks di luar batas!";
-      }  
+      isIndexValid(i, j);
+      isElementEmpty(i, j);
+      data[i][j] = nullptr;
+      NEff--;
+      
     }
-    catch (PenyimpananKosong() e) 
+    catch (const IndexOutOfBound& e) 
     {
       cout << e.what() << endl;
     } 
+    catch (const PenyimpananKosong& e) 
+    {
+      cout << e.what() << endl;
+    }
   }
 
   /* Mencetak Data */

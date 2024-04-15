@@ -66,4 +66,11 @@ class PenyimpananKosong : public Exception{
     }
 };
 
+class IndexOutOfBound : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Index yang dimasukkan melebihi batas penyimpanan!";
+    }
+};
+
 #endif
