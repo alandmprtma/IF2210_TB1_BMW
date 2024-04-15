@@ -30,10 +30,10 @@ void GameStatus::nextTurn(GameObject objek){
         for (int j=0;j<objek.getSizeCrops()[0];j++){
             for (int k=0;k<objek.getSizeCrops()[1];k++){
                 // set umur tiap tanaman = umur + 1, ntar ae dah
-                if (this->petaniList[i].getLadang().getElement(j,k)!=nullptr){
-                    if (!(*this->petaniList[i].getLadang().getElement(j,k)==Plant())){
-                            this->petaniList[i].getLadang().getElement(j,k)->setUmur(
-                            this->petaniList[i].getLadang().getElement(j,k)->getUmur() + 1
+                if (this->petaniList[i].getLadang().getElementNoException(j,k)!=nullptr){
+                    if (!(*this->petaniList[i].getLadang().getElementNoException(j,k)==Plant())){
+                            this->petaniList[i].getLadang().getElementNoException(j,k)->setUmur(
+                            this->petaniList[i].getLadang().getElementNoException(j,k)->getUmur() + 1
                         );
                     }
                 }

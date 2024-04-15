@@ -104,7 +104,9 @@ public:
     return nullptr;
   }
 
-
+T getElementNoException(int i, int j){
+    return data[i][j];
+}
   /* Set Element */
   void setElement(T newElement, int i, int j) {
     try 
