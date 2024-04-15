@@ -4,6 +4,8 @@
 #include "Penyimpanan.hpp"
 #include "../Item/Item.hpp"
 
+using namespace std;
+
 class PetiRahasia : public Penyimpanan<Item*> {
   public:
     /* Default Constructor */

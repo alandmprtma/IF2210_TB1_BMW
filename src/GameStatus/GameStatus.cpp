@@ -385,9 +385,7 @@ void GameStatus::muat(string path, GameObject objek){
     }
 }
 void GameStatus::cetakPenyimpanan(){
-    
-
-    
+    getCurrentPlayer()->getData().cetakPenyimpanan();    
 }
 void GameStatus::pungutPajak(){
 
