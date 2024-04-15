@@ -63,7 +63,6 @@ public:
     if (i >= 0 && i < m && j >= 0 && j < n) {
       if (data[i][j]==nullptr or data[i][j]==T()){
           cout << "Petak Kosong!" << endl;
-          data[i][j] = T();
       }
       return data[i][j];
     } else {
@@ -73,26 +72,28 @@ public:
   }
 
   /* Set Element */
+  // Asumsi input sudah benar
   void setElement(T newElement, int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
       data[i][j] = newElement;
+      NEff++;
     } else {
       cout << "Indeks di luar batas!" << endl;
     }
-    NEff++;
   }
 
   /* Mereturn & Menghapus Element Dari Data */
   void removeElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
-      if (data[i][j]==T() or data[i][j]==nullptr){
+      if (data[i][j]==nullptr){
           cout<<"Petak Kosong!";
+      }else{
+        data[i][j] = nullptr;
+        NEff--;
       }
-      data[i][j] = T();
     } else {
       cout << "Indeks di luar batas!" << endl;
     }
-    NEff--;
   }
 
   /* Mencetak Data */
