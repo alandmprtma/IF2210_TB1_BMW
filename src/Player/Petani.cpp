@@ -106,7 +106,6 @@ void Petani::panenTanaman(GameObject objek) {
     }
 
     /* Memilih tanaman dan jumlah petak yang akan dipanen */
-    int indexPlant;
     cout << endl << "Pilih nomor hewan yang akan dipanen: ";
     cin >> index;
 
@@ -135,7 +134,7 @@ void Petani::panenTanaman(GameObject objek) {
 
     // TODO : Ganti index tanamanDipanen menjadi benar
     cout << endl << numPetak << " petak tanaman " << tanamanDipanen[0]->getKodeHuruf() << " pada petak ";
-    for (int i = 0; i < petakDipanen.size(); i++) {
+    for (size_t i = 0; i < petakDipanen.size(); i++) {
         cout << petakDipanen[i];
         if (i != petakDipanen.size() - 1) {
             cout << ", ";
@@ -147,8 +146,8 @@ void Petani::panenTanaman(GameObject objek) {
     int row = 0;
     int col = 0;
 
-    for (int i = 0; i < tanamanDipanen.size(); i++) {
-        for (int j = 0; j < objek.getProdukList().size(); j++) {
+    for (size_t i = 0; i < tanamanDipanen.size(); i++) {
+        for (size_t j = 0; j < objek.getProdukList().size(); j++) {
             if (objek.getProdukList()[j].getOrisinil() == tanamanDipanen[i]->getNama()) {
                 Produk newProduk = objek.getProdukList()[j];
 

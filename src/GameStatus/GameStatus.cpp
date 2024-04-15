@@ -28,9 +28,9 @@ void GameStatus::nextTurn(GameObject objek){
         for (int j=0;j<objek.getSizeCrops()[0];j++){
             for (int k=0;k<objek.getSizeCrops()[1];k++){
                 // set umur tiap tanaman = umur + 1, ntar ae dah
-                if (!(this->petaniList[i].getLadang().getElement(j,k)==Plant())){
-                    this->petaniList[i].getLadang().getElement(j,k).setUmur(
-                        this->petaniList[i].getLadang().getElement(j,k).getUmur() + 1
+                if (!(*this->petaniList[i].getLadang().getElement(j,k)==Plant())){
+                        this->petaniList[i].getLadang().getElement(j,k)->setUmur(
+                        this->petaniList[i].getLadang().getElement(j,k)->getUmur() + 1
                     );
                 }
             }
@@ -229,7 +229,6 @@ void GameStatus::muat(string path, GameObject objek){
                         i++;
                     }
                     std::getline(inputFile,line);
-                    cout<<line<<endl;
                     if (!(objek.findPlant(line)==Plant())){
                         data.setElement(new Plant(objek.findPlant(line)),i,j);
                     }else if (!(objek.findAnimal(line)==Animal())){
@@ -256,7 +255,7 @@ void GameStatus::muat(string path, GameObject objek){
                     int row = this->stringToInt(token.substr(1,token.size())) - 1;
 
                     std::getline(iss,token,' ');
-                    lad.setElement(Plant(objek.findPlant(token)),row,col);
+                    lad.setElement(new Plant(objek.findPlant(token)),row,col);
                     max--;
                 }
                 Petani pet = Petani(userName,uang,beratBadan,data,lad,jumlahBangunan);
@@ -303,7 +302,7 @@ void GameStatus::muat(string path, GameObject objek){
                     int row = this->stringToInt(token.substr(1,token.size())) - 1;
 
                     std::getline(iss,token,' ');
-                    peternakan.setElement(Animal(objek.findAnimal(token)),row,col);
+                    peternakan.setElement(new Animal(objek.findAnimal(token)),row,col);
                     max--;
                 }
                 Peternak pet = Peternak(userName,uang,beratBadan,data,peternakan,jumlahBangunan);
