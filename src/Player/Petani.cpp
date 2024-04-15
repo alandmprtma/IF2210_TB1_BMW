@@ -13,7 +13,7 @@ Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Lada
 
 void Petani::tanamTanaman() {
   cout << "Pilih tanaman dari penyimpanan" << endl << endl;
-  this->data.cetakPeti("Peti Rahasia");
+  this->data.cetakPeti("Penyimpanan");
 
   /* Memilih tanaman dari peti rahasia */
   string slot;
@@ -41,47 +41,135 @@ void Petani::tanamTanaman() {
 
   /* Menanam Tanaman */
   cout << endl << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
-  dataLadang.setElement(newPlant, rowPetak, colPetak);
+  dataLadang.setElement(&newPlant, rowPetak, colPetak);
   cout << newPlant.getNama() << " berhasil ditanam!" << endl;
 }
 
-void Petani::panenTanaman() {
-  // ladang.cetakPenyimpanan();
+void Petani::panenTanaman(GameObject objek) {
+  vector<Plant*> tanamanDapatDipanen;
+  std::map<std::string, std::pair<int, int>> tanamanSiapPanen;
 
-  // TODO : Menyimpan petak yang memiliki isi; tipe dan jumlahnya
+  dataLadang.cetakLadang("Ladang");
 
-  // cout << "Pilig tanaman siap panen yang kamu miliki" << endl;
+  /* Menampilkan tanaman yang tersedia */
+  char columnChar = 'A';
 
+  cout << endl;
+    for (int i = 0; i < dataLadang.getM(); ++i) {
+        std::string rowNumber = std::to_string(i + 1);
+        if (rowNumber.size() == 1) {
+            rowNumber = "0" + rowNumber;
+        }
 
-  // int NoTanaman;
-  // cout << "Nomor tanaman yang ingin dipanen: ";
-  // cin >> NoTanaman;
+        for (int j = 0; j < dataLadang.getN(); ++j) {
+            if (dataLadang.getElement(i, j) != nullptr) {
+                std::cout << "- " << columnChar << rowNumber << ": " << dataLadang.getElement(i, j)->getKodeHuruf() << std::endl;
+            }
+            ++columnChar;
+        }
+        columnChar = 'A'; // Reset columnChar for the next row
+    }
 
-  // int NPetak;
-  // cout << "Berapa petak yang ingin dipanen";
-  // cin >> NPetak;
+  cout << endl << "Pilih tanaman siap panen yang kamu miliki" << endl;
 
-  // cout << "Pilih petak yang ingin dipanen:" << endl;
-  // vector<Plant> tanamanSiapPanen(NPetak);
-  // for (int i = 0; i < NPetak; i++) {
-  //   cout << "Petak ke-" << i+1 << ": ";
-  //   string pilihanTanaman;
-  //   cin >> pilihanTanaman;
+  int index = 1;
+    for (int i = 0; i < dataLadang.getM(); ++i) {
+        std::string rowNumber = std::to_string(i + 1);
+        if (rowNumber.size() == 1) {
+            rowNumber = "0" + rowNumber;
+        }
 
-  //   int kolom = ((int) pilihanTanaman[0] - 'A') + 1;
-  //   int baris = (int) stoi(pilihanTanaman.substr(1, 2));
+        for (int j = 0; j < dataLadang.getN(); ++j) {
+            if (dataLadang.getElement(i, j) != nullptr) {
+                // Memasukkan tanaman ke vector hewan yang dapat dipanen
+                if (dataLadang.getElement(i, j)->getUmur() >= dataLadang.getElement(i, j)->getDurasiPanen()) {
+                    tanamanDapatDipanen.push_back(dataLadang.getElement(i, j));
+                    // Menambahkan jumlah petak siap panen berdasarkan kode tanaman
+                    std::string kodeTanaman = dataLadang.getElement(i, j)->getKodeHuruf();
+                    if (tanamanSiapPanen.find(kodeTanaman) == tanamanSiapPanen.end()) {
+                        // Jika kode tanaman belum ada dalam map, tambahkan entri baru
+                        tanamanSiapPanen[kodeTanaman] = std::make_pair(index++, 1);
+                    } else {
+                        // Jika kode tanaman sudah ada dalam map, tambahkan jumlah petak siap panen
+                        tanamanSiapPanen[kodeTanaman].second++;
+                    }
+                }
+            }
+            ++columnChar;
+        }
+        columnChar = 'A';
+    }
 
-  //   Plant tanamanPilihan = ladang.getElement(baris, kolom);
-  //   tanamanSiapPanen.push_back(tanamanPilihan);
-  // }
+    /* Menampilkan tanaman yang dapat dipanen dengan jumlah petak siap panen */
+    for (const auto& pair : tanamanSiapPanen) {
+        cout << pair.second.first << ". " << pair.first << " (" << pair.second.second << " petak siap panen)" << endl;
+    }
 
-  // TODO : Cout tanaman yang berhasil dipanen
+    /* Memilih tanaman dan jumlah petak yang akan dipanen */
+    cout << endl << "Pilih nomor hewan yang akan dipanen: ";
+    cin >> index;
 
-  // TODO : Masukkan hasil panen ke inventory penyimpanan (petiRahasia)
+    // Belum Validasi Input Index 
 
+    int numPetak;
+    cout << endl << "Berapa petak yang ingin dipanen: ";
+    cin >> numPetak;
+
+    /* Memilih petak yang ingin dipanen */
+    cout << endl << "Pilih petak yang ingin dipanen" << endl;
+    vector<Plant*> tanamanDipanen;
+    vector<string> petakDipanen;
+    for (int i = 0; i < numPetak; i++) {
+        string petakTanah;
+        cout << "Petak ke-" << i + 1 << " : ";
+        cin >> petakTanah;
+
+        int rowPetak = (int) stoi(petakTanah.substr(1, 2)) - 1;
+        int colPetak = ((int) petakTanah[0] - 'A');
+
+        tanamanDipanen.push_back(dataLadang.getElement(rowPetak, colPetak));
+        dataLadang.removeElement(rowPetak, colPetak);
+        petakDipanen.push_back(petakTanah);
+    }
+
+    // TODO : Ganti index tanamanDipanen menjadi benar
+    cout << endl << numPetak << " petak tanaman " << tanamanDipanen[0]->getKodeHuruf() << " pada petak ";
+    for (size_t i = 0; i < petakDipanen.size(); i++) {
+        cout << petakDipanen[i];
+        if (i != petakDipanen.size() - 1) {
+            cout << ", ";
+        }
+    }
+    cout << " telah dipanen!" << endl;
+
+    /* Memasukkan ke inventory sebagai produk */
+    int row = 0;
+    int col = 0;
+
+    for (size_t i = 0; i < tanamanDipanen.size(); i++) {
+        for (size_t j = 0; j < objek.getProdukList().size(); j++) {
+            if (objek.getProdukList()[j].getOrisinil() == tanamanDipanen[i]->getNama()) {
+                Produk newProduk = objek.getProdukList()[j];
+
+                /* Mencari petak kosong pada penyimpanan */
+                while (data.getElement(row, col) != nullptr) {
+                    col++;
+                    if (col == data.getN()) {
+                        col = 0;
+                        row++;
+                    }
+                }
+
+                data.setElement(new Produk(newProduk), row, col);
+            }
+        }
+    }
 }
 
-void Petani::setUmurTanaman(int row, int col) {}
+void Petani::tambahUmurTanaman(int umurTambahan, int row, int col) {
+  Plant* tanaman = dataLadang.getElement(row, col);
+  tanaman->setUmur(tanaman->getUmur() + umurTambahan);
+}
 
 Ladang& Petani::getLadang() {
   return this->dataLadang;

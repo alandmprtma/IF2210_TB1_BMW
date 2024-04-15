@@ -47,7 +47,7 @@ int main (){
     // game_status.getToko().welcome();
     // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
     // Game 
-    while (! game_status.isEndGame())
+    while (! game_status.isEndGame(game_object))
     {
         // TODO: List fungsi apa aja
         int opsi;
@@ -194,8 +194,8 @@ int main (){
             game_status.simpan(pathSimpan,game_object);
         }else if (opsi==16){
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Walikota"){
-                game_status.tambahPemain();
+            if (game_status.getCurrentPlayer()->getPeran()=="Walikota" && game_status.getCurrentPlayer()->getUang()>=50){
+                game_status.tambahPemain(game_object);
             }else{
                 cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
             }

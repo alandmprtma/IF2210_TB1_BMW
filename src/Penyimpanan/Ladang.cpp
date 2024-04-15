@@ -21,10 +21,15 @@ void Ladang::cetakLadang(string label) {
 
         for (int j = 0; j < n; j++) {
             cout << "| ";
-            if (data[i][j].getIdTanaman() == DEFAULT_ID_TANAMAN || data[i][j].getKodeHuruf() == DEFAULT_KODE_HURUF_ITEM) {
+            if (data[i][j] == nullptr) {
                 cout << setw(3) << "   "; 
             } else {
-                cout << setw(3) << data[i][j].getKodeHuruf();
+                cout << setw(3);
+                if (data[i][j]->getUmur() >= data[i][j]->getDurasiPanen()) {
+                    cout << "\033[32m" << data[i][j]->getKodeHuruf() << "\033[0m";
+                } else {
+                    cout << "\033[31m" << data[i][j]->getKodeHuruf() << "\033[0m";
+                }
             }
             cout << " ";
         }

@@ -12,7 +12,7 @@ Player::Player() {
   this->data = PetiRahasia(8, 8); /* Untuk Sementara. Default 8 x 8 */
 }
 
-Player::Player(string username,int uang, int berat_badan, PetiRahasia data){
+Player::Player(string username,int uang, int berat_badan, PetiRahasia data) {
   jumlahPlayer ++;
   this->IdPlayer = this->jumlahPlayer;
   this->username = username;
@@ -22,7 +22,7 @@ Player::Player(string username,int uang, int berat_badan, PetiRahasia data){
   this->peran = "";
 }
 
-bool Player::isKosong(){
+bool Player::isKosong() {
   bool empty = true;
   int i = 0;
 
@@ -46,23 +46,22 @@ void Player::setUsername(string username) {
 void Player::setBeratBadan(int berat_badan) {
   this->berat_badan = berat_badan;
 }
-string Player::getUsername(){
+
+string Player::getUsername() {
   return this->username;
 }
-PetiRahasia &Player::getData(){
+
+PetiRahasia &Player::getData() {
   return this->data;
 }
 
-int Player::getUang()
-{
+int Player::getUang() {
   return this->uang;
 }
 
-void Player::setUang(int uang)
-{
+void Player::setUang(int uang) {
   this->uang = uang;
 }
-
 
 string Player::getPeran() {
   return this->peran;
@@ -72,9 +71,10 @@ int Player::getBeratBadan() {
   return this->berat_badan;
 }
 
-int Player::getId(){
+int Player::getId() {
   return IdPlayer;
 }
+
 PetiRahasia Player::getPetiRahasia() {
   return this->data;
 }
