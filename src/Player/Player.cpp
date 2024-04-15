@@ -83,7 +83,7 @@ void Player::makan(GameObject objek)
 {
   cout << "Pilih makanan dari penyimpanan" << endl;
 
-  getPetiRahasia().cetakPeti("Penyimpanan");
+  getPetiRahasia().cetakPenyimpanan();
 
   bool validInput = false;
 

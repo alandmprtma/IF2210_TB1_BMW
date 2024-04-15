@@ -1,8 +1,8 @@
 #include "Ternak.hpp"
 
-void Ternak::cetakTernak(string label) {
+void Ternak::cetakPenyimpanan() {
   cout << "    ";
-  cout << "================[ " << label << " ]=================" << endl << endl; 
+  cout << "================[ Ternak ]=================" << endl << endl; 
 
   cout << "    ";
   for (int i = 0; i < n; i++) {

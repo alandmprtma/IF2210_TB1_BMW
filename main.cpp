@@ -161,7 +161,7 @@ int main (){
                 cout << "Berikut merupakan penyimpanan Anda" << endl;
                 cout << game_status.getWalikota().getData().getN();
                 // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
-                    game_status.getWalikota().getData().cetakPeti("Penyimpanan");
+                    game_status.getWalikota().getData().cetakPenyimpanan();
                     cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
                     string petak;
                     cout << "Petak : ";

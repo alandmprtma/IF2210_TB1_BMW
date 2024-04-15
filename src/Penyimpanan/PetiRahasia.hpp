@@ -11,7 +11,7 @@ class PetiRahasia : public Penyimpanan<Item*> {
     PetiRahasia(int m, int n) : Penyimpanan<Item*>(m, n) {}
 
     /* Cetak PetiRahasia */
-    void cetakPeti(string label);
+    void cetakPenyimpanan();
 };
 
 #endif

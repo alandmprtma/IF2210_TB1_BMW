@@ -13,7 +13,7 @@ Petani::Petani(string username,int uang, int berat_badan, PetiRahasia data, Lada
 
 void Petani::tanamTanaman() {
   cout << "Pilih tanaman dari penyimpanan" << endl << endl;
-  this->data.cetakPeti("Penyimpanan");
+  this->data.cetakPenyimpanan();
 
   /* Memilih tanaman dari peti rahasia */
   string slot;
@@ -30,7 +30,7 @@ void Petani::tanamTanaman() {
   Plant newPlant(selectedPlant->getKodeHuruf(), selectedPlant->getNama(), selectedPlant->getTipe(), 0, 0);
 
   cout << endl << "Pilih petak tanah yang akan ditanami" << endl << endl;
-  dataLadang.cetakLadang("Ladang");
+  dataLadang.cetakPenyimpanan();
 
   /* Memilih area untuk ditanami tanaman */
   string petakTanah;
@@ -49,7 +49,7 @@ void Petani::panenTanaman(GameObject objek) {
   vector<Plant*> tanamanDapatDipanen;
   std::map<std::string, std::pair<int, int>> tanamanSiapPanen;
 
-  dataLadang.cetakLadang("Ladang");
+  dataLadang.cetakPenyimpanan();
 
   /* Menampilkan tanaman yang tersedia */
   char columnChar = 'A';
