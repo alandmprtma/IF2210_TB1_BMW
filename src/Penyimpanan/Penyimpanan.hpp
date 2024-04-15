@@ -14,6 +14,7 @@ protected:
   int m; /* Baris */
   int n; /* Kolom */
 
+  int NEff = 0 /* Elemen Efektif, Tidak Kosong */
 public:
   /* Default Constructor */
   Penyimpanan() {
@@ -40,6 +41,19 @@ public:
     return n;
   }
 
+  /* Mendapatkan Elemen Efektif */
+  int getEfektif() {
+    int efektif = 0;
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        if (data[i][j] != nullptr) {
+          efektif++;
+        }
+      }
+    }
+    return efektif;
+  }
+
   /* Get Element */
   T getElement(int i, int j) {
     if (i >= 0 && i < m && j >= 0 && j < n) {
@@ -63,6 +77,7 @@ public:
     } else {
       cout << "Indeks di luar batas!" << endl;
     }
+    NEff++;
   }
 
   /* Mereturn & Menghapus Element Dari Data */
@@ -75,6 +90,7 @@ public:
     } else {
       cout << "Indeks di luar batas!" << endl;
     }
+    NEff--;
   }
 
   /* Mencetak Data */
