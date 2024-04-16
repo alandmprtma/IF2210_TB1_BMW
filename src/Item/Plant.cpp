@@ -49,14 +49,4 @@ bool Plant::operator==(const Plant& other){
                 this->tipe == other.tipe;
 }
 
-Plant& Plant::operator=(const Plant& other){
-        this->kodeHuruf = other.kodeHuruf;
-        this->harga = other.harga;
-        this->durasiPanen = other.durasiPanen;
-        this->nama = other.nama;
-        this->kodeHuruf = other.kodeHuruf;
-        this->tipe = other.tipe;
-
-        return *this;
-}
 

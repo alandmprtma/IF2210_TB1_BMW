@@ -508,6 +508,12 @@ void GameStatus::CurrentPlayerValidation(Player& player){
         throw InvalidPlayer();
     }
 }
+void GameStatus::cetakLadang(){
+    this->getPetani(getCurrentPlayer()->getUsername()).getLadang().cetakPenyimpanan();
+}
+void GameStatus::cetakPeternakan(){
+    this->getPeternak(getCurrentPlayer()->getUsername()).getTernak().cetakPenyimpanan();
+}
 
 void GameStatus::cetakPenyimpanan()
 {
@@ -611,7 +617,7 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
 }
 
 void GameStatus::memanen(){
-
+    
 }
 
 void GameStatus::simpan(string path, GameObject objek)

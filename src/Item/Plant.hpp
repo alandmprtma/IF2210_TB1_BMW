@@ -24,9 +24,8 @@ public:
     int getHarga() const;
     int getUmur() const;
     void setUmur(int x);
-    string getTanamanNameByID(int);
     bool operator==(const Plant& other);
-    Plant& operator=(const Plant& other);
+
 };
 
 #endif

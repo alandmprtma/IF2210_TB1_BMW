@@ -12,6 +12,10 @@ class Ladang : public Penyimpanan<Plant*> {
 
     /* Cetak Ladang */
     void cetakPenyimpanan();
+
+    Penyimpanan<Plant*>& operator+(Plant*);
+    void operator=(Penyimpanan<Plant*>& other);
+    
 };
 
 #endif
