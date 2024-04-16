@@ -299,6 +299,9 @@ int main()
                 cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
             }
         }
+        else{
+            cout<<"Opsi tidak valid!"<<endl;
+        }
     }
 
     // cout<<muat->getWinGulden()<<endl;

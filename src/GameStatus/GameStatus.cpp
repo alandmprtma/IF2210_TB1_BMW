@@ -60,7 +60,8 @@ void GameStatus::Inisiasi(GameObject objek)
         cout << "Pilihlah cara memuat state permainan ! " << endl;
         cout << "1. Default" << endl;
         cout << "2. Membaca berkas" << endl;
-        cout << endl << "Masukkan opsi memulai game yang diinginkan ! " << endl;
+        cout << endl
+             << "Masukkan opsi memulai game yang diinginkan ! " << endl;
         cout << "Opsi: ";
         cin >> opsi;
         cout << endl;
@@ -451,12 +452,12 @@ void GameStatus::cetakPenyimpanan()
     getCurrentPlayer()->getData().cetakPenyimpanan();
 }
 
-void GameStatus::pungutPajak(GameObject& objek)
-{   
+void GameStatus::pungutPajak(GameObject &objek)
+{
     cout << "Cring cring cring..." << endl;
     cout << "Pajak sudah dipungut!" << endl;
     cout << endl;
-    
+
     this->walikota.pungutPajak(objek, playerTurnList);
 }
 
