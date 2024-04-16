@@ -36,6 +36,9 @@ class Petani : public Player, public Toko {
 
     /* Mencetak Data Player */
     void printPlayer();
+    void isInventoryFull();
+    void isInventoryHavePlant();
+    void isElementTanaman(int, int);
 
     /* Virtual Function Toko. Fungsi Jual Beli*/
     void beli();

@@ -531,6 +531,17 @@ void GameStatus::pungutPajak(GameObject &objek)
 
 void GameStatus::tanam()
 {
+    try{
+        this->CurrentPlayerValidation(petaniList[turn]);
+        cout << "Tanam tanam tanam..." << endl;
+        cout << "Tanaman sudah ditanam!" << endl;
+        cout << endl;
+
+        this->petaniList[turn].tanamTanaman();
+    }
+    catch(InvalidPlayer& e){
+        cout << e.what() << endl;
+    }
 }
 
 void GameStatus::ternak()

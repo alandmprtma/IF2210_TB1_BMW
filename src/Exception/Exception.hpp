@@ -154,4 +154,18 @@ class PenyimpananDontHaveProduct : public Exception {
     }
 };
 
+class PenyimpananDontHavePlant : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda tidak memiliki plant! Anda tidak bisa tanam!";
+    }
+};
+
+class ElementNotPlant : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Itu bukan tanaman! ambil yang lain!";
+    }
+};
+
 #endif
