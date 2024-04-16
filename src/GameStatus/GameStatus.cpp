@@ -613,8 +613,12 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
     
 }
 
-void GameStatus::memanen(){
-    
+void GameStatus::memanen(GameObject objek) {
+    if (getCurrentPlayer()->getPeran() == "Petani") {
+        getPetani(getCurrentPlayer()->getUsername()).panenTanaman(objek);
+    } else if (getCurrentPlayer()->getPeran() == "Peternak") {
+        getPeternak(getCurrentPlayer()->getUsername()).panenTernak(objek);
+    }       
 }
 
 void GameStatus::simpan(string path, GameObject objek)

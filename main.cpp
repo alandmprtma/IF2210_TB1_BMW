@@ -120,7 +120,7 @@ int main()
     while (!game_status.isEndGame(game_object))
     {
         // TODO: List fungsi apa aja
-        cout << "0. Cetak Status Pemain" << endl;
+        cout << endl << "0. Cetak Status Pemain" << endl;
         cout << "1. Next Turn" << endl;
         cout << "2. Cetak Penyimpanan" << endl;
         cout << "3. Pungut Pajak" << endl;
@@ -359,7 +359,7 @@ int main()
             }
             else
             {
-                game_status.memanen();
+                game_status.memanen(game_object);
             }
         }
         else if (opsi == 14)
