@@ -4,110 +4,157 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include "../Exception/Exception.hpp"
 
 using namespace std;
 
 template <class T>
-class Penyimpanan {
+class Penyimpanan
+{
 protected:
   vector<vector<T>> data;
   int m; /* Baris */
   int n; /* Kolom */
 
+  int NEff; /* Elemen Efektif, Tidak Kosong */
 public:
   /* Default Constructor */
-  Penyimpanan() {
+  Penyimpanan()
+  {
     m = 0;
     n = 0;
+    NEff = 0;
   }
-  
-  Penyimpanan(int m, int n) : m(m), n(n) {
+
+  Penyimpanan(int m, int n) : m(m), n(n), NEff(0)
+  {
     data.resize(m, vector<T>(n));
   }
 
   /* Mendapatkan Size Data */
-  int getSize() {
+  int getSize()
+  {
     return m * n;
   }
 
   /* Mendapatkan Size Baris */
-  int getM() {
+  int getM()
+  {
     return m;
   }
 
   /* Mendapatkan Size Kolom */
-  int getN() {
+  int getN()
+  {
     return n;
+  }
+
+  /*Mendapatkan Neff*/
+  int getNEff()
+  {
+    return NEff;
+  }
+
+  /* Mendapatkan Elemen Efektif */
+  int getEfektif()
+  {
+    int efektif = 0;
+    for (int i = 0; i < m; i++)
+    {
+      for (int j = 0; j < n; j++)
+      {
+        if (data[i][j] != nullptr)
+        {
+          efektif++;
+        }
+      }
+    }
+    return efektif;
+  }
+
+  /* Exception Get Element */
+  void isIndexValid(int i, int j) {
+    if ((i < 0 || i > m) && (j < 0 || j > n)) {
+      throw IndexOutOfBound();
+    }
+  }
+
+  void isElementEmpty(int i, int j) {
+    if (data[i][j] == nullptr) {
+      throw PenyimpananKosong();
+    }
+  }
+  void isElementNotEmpty(int i, int j){
+    if (data[i][j] != nullptr){
+      throw PenyimpananSudahTerisi();
+    }
   }
 
   /* Get Element */
   T getElement(int i, int j) {
-    if (i >= 0 && i < m && j >= 0 && j < n) {
+    try {
+      isIndexValid(i, j);
+      isElementEmpty(i, j);
       return data[i][j];
-    } else {
-      cout << "Indeks di luar batas!" << endl;
-      return T();
+    } 
+    catch (const IndexOutOfBound& e) 
+    {
+      cout << e.what() << endl;
+    } 
+    catch (const PenyimpananKosong& e) 
+    {
+      cout << e.what() << endl;
     }
+    return nullptr;
   }
 
+  T getElementNoException(int i, int j){
+      return data[i][j];
+  }
   /* Set Element */
   void setElement(T newElement, int i, int j) {
-    if (i >= 0 && i < m && j >= 0 && j < n) {
+    try 
+    {
+      isIndexValid(i, j);
+      isElementNotEmpty(i,j);
       data[i][j] = newElement;
-    } else {
-      cout << "Indeks di luar batas!" << endl;
+      NEff++;
+  
+    } 
+    catch (const IndexOutOfBound& e) 
+    {
+      cout << e.what() << endl;
+    } 
+    catch (const PenyimpananSudahTerisi& e) 
+    {
+      cout << e.what() << endl;
     }
   }
 
   /* Mereturn & Menghapus Element Dari Data */
   void removeElement(int i, int j) {
-    if (i >= 0 && i < m && j >= 0 && j < n) {
-      data[i][j] = T();
-    } else {
-      cout << "Indeks di luar batas!" << endl;
+    try
+    {
+      isIndexValid(i, j);
+      isElementEmpty(i, j);
+      data[i][j] = nullptr;
+      NEff--;
+      
     }
+    catch (const IndexOutOfBound& e)
+    {
+      cout << e.what() << endl;
+    }
+    catch (const PenyimpananKosong& e)
+    {
+      cout << e.what() << endl;
+    } 
+    
   }
 
   /* Mencetak Data */
-  void cetakPenyimpanan() {
-    cout << "    ";
-    /* Garis Judul Belum Dinamis*/
-    cout << "================[ Penyimpanan ]=================" << endl
-         << endl;
-
-    cout << "    ";
-    for (int i = 0; i < n; i++) {
-      cout << "   " << (char)('A' + i) << "  ";
-    }
-    cout << " " << endl;
-
-    cout << "    ";
-    for (int i = 0; i < n; i++) {
-      cout << "+-----";
-    }
-    cout << "+" << endl;
-
-    for (int i = 0; i < m; i++) {
-      cout << " " << setw(2) << setfill('0') << i + 1 << " ";
-
-      for (int j = 0; j < n; j++) {
-        cout << "| ";
-        if (data[i][j] == nullptr || data[i][j] == 0) {
-          cout << "   "; // Jika elemen kosong, cetak spasi
-        } else {
-          cout << setw(3) << data[i][j]; // Cetak nilai elemen vektor
-        }
-        cout << " ";
-      }
-
-      cout << "|" << endl;
-
-      cout << "    ";
-      for (int i = 0; i < n; i++) {
-        cout << "+-----";
-      }
-      cout << "+" << endl;
-    }
+  virtual void cetakPenyimpanan()
+  {
   }
 };
 

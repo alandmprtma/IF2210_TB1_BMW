@@ -36,19 +36,19 @@ class MaterialTidakCukupException : public Exception{
 class NoPLayerException : public Exception{
     public:
     const char* what() const throw(){
-        return "[ERROR]: No Player Assigned yet";
+        return "Belum ada player yang terdaftar! ";
     }
 };
 class NoPetaniException : public Exception{
     public:
     const char* what() const throw(){
-        return "[ERROR]: No Petani Assigned yet";
+        return "Belum ada petani yang terdaftar!";
     }
 };
 class NoPeternakException : public Exception{
     public:
     const char* what() const throw(){
-        return "[ERROR]: No Peternak Assigned yet";
+        return "Belum ada petani yang terdaftar!";
     }
 };
 
@@ -65,7 +65,55 @@ class PenyimpananKosong : public Exception{
         return "Penyimpanan Anda kosong!";
     }
 };
+class PenyimpananSudahTerisi : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda Sudah Terisi!";
+    }
+};
 
+class IndexOutOfBound : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Index yang dimasukkan melebihi batas penyimpanan!";
+    }
+};
+class PlayerAlreadyExist : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Username Pemain sudah Terdaftar!";
+    }
+};
+class PeranTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Peran Tidak Valid!";
+    }
+};
+class PeranTidakSesuai : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Perintah tidak dapat diakses karena peran tidak sesuai!";
+    }
+};
+class UangTidakCukup : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Uang Pemain Tidak Cukup!";
+    }
+};
+class WalikotaSurrend : public Exception {
+    public:
+    const char* what() const throw(){
+        return "YTH Walikota, jangan surrend ! (T_T) ";
+    }
+};
+class OpsiTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Opsi tidak valid! ";
+    }
+};
 class HarapanKosong : public Exception{
     public:
     const char* what() const throw(){

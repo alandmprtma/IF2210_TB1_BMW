@@ -12,7 +12,9 @@ Walikota::Walikota() : Player()
   this->IronWood = DEFAULT_IRONWOOD;
 }
 
-Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data) : Player(username, uang, berat_badan, data)
+Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data) :
+
+                                                                                   Player(username, uang, berat_badan, data)
 {
   bangunan = vector<Bangunan>();
   this->peran = "Walikota";
@@ -26,31 +28,43 @@ Walikota::Walikota(string username, int uang, int berat_badan, PetiRahasia data)
 
 void Walikota::pungutPajak(GameObject &objek, vector<Player *> &players)
 {
+  int indeks = 1;
+  int pemasukan = 0;
+  cout << "Berikut adalah detil dari pemungutan pajak: " << endl;
   // iterasi per player
-  for (int h = 0; h < players.size(); h++)
+  for (size_t h = 0; h < players.size(); h++)
   {
     int totalKekayaan = 0;
     int pajak = 0;
-
+    int pajakAkhir = 0;
+    if (players[h]->getPeran() == "Walikota")
+    {
+      continue;
+    }
     // iterasi inventory player
     for (int i = 0; i < players[h]->getData().getM(); i++)
     {
       for (int j = 0; j < players[h]->getData().getN(); j++)
       {
-        if (players[h]->getData().getElement(i, j) != nullptr)
+        if (players[h]->getData().getElementNoException(i, j) != nullptr)
         {
           // cek tipe inventory
-          if (players[h]->getData().getElement(i, j)->getTipe() == "Bangunan")
+          Item* item = players[h]->getData().getElementNoException(i, j);
+          if (item->getTipe() == "Bangunan")
           {
-            totalKekayaan += objek.findBangunan(players[h]->getData().getElement(i, j)->getNama()).getPrice();
+            totalKekayaan += objek.findBangunan(item->getNama()).getPrice();
           }
-          else if (players[h]->getData().getElement(i, j)->getTipe() == "Animal")
+          else if (item->getTipe() == "HERBIVORE" || item->getTipe() == "OMNIVORE" || item->getTipe() == "CARNIVORE")
           {
-            totalKekayaan += objek.findAnimal(players[h]->getData().getElement(i, j)->getNama()).getHarga();
+            totalKekayaan += objek.findAnimal(item->getNama()).getHarga();
           }
-          else if (players[h]->getData().getElement(i, j)->getTipe() == "Plant")
+          else if (item->getTipe() == "FRUIT_PLANT" || item->getTipe() == "MATERIAL_PLANT")
           {
-            totalKekayaan += objek.findPlant(players[h]->getData().getElement(i, j)->getNama()).getHarga();
+            totalKekayaan += objek.findPlant(item->getNama()).getHarga();
+          }
+          else if (item->getTipe() == "PRODUCT_MATERIAL_PLANT" || item->getTipe() == "PRODUCT_FRUIT_PLANT" || item->getTipe() == "PRODUCT_ANIMAL")
+          {
+            totalKekayaan += objek.findProduk(item->getNama()).getHarga();
           }
         }
       }
@@ -65,6 +79,9 @@ void Walikota::pungutPajak(GameObject &objek, vector<Player *> &players)
       totalKekayaan -= 11;
     }
     // hitung pajak
+    totalKekayaan += players[h]->getUang();
+    
+
     if (totalKekayaan > 0)
     {
       if (totalKekayaan <= 6)
@@ -92,14 +109,22 @@ void Walikota::pungutPajak(GameObject &objek, vector<Player *> &players)
       {
         players[h]->setUang(players[h]->getUang() - pajak);
         Walikota::setUang(Walikota::getUang() + pajak);
+        pajakAkhir = pajak;
       }
       else
       {
         players[h]->setUang(0);
         Walikota::setUang(Walikota::getUang() + players[h]->getUang());
+        pajakAkhir = players[h]->getUang();
       }
+      pemasukan += pajakAkhir;
     }
+    cout << "  " << indeks << ". " << players[h]->getUsername() << " - " << players[h]->getPeran() << ": " << pajakAkhir << endl;
+    indeks++;
   }
+  cout << endl
+       << "Negara mendapatkan pemasukan sebesar " << pemasukan << " gulden." << endl;
+  cout << "Gunakan dengan baik dan jangan dikorupsi ya!" << endl;
 }
 
 void Walikota::bangunBangunan(string kodeHuruf, string namaBangunan, int price, int TeakTree, int SandalwoodTree, int AloeTree, int IronwoodTree)

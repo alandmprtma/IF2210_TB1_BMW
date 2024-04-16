@@ -4,6 +4,8 @@
 #include "Penyimpanan.hpp"
 #include "../Item/Item.hpp"
 
+using namespace std;
+
 class PetiRahasia : public Penyimpanan<Item*> {
   public:
     /* Default Constructor */
@@ -11,7 +13,7 @@ class PetiRahasia : public Penyimpanan<Item*> {
     PetiRahasia(int m, int n) : Penyimpanan<Item*>(m, n) {}
 
     /* Cetak PetiRahasia */
-    void cetakPeti(string label);
+    void cetakPenyimpanan();
 };
 
 #endif

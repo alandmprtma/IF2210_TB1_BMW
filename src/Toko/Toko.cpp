@@ -53,7 +53,7 @@ void Toko::jual(){
 
 }
 
-map<string,int> Toko::getStok(){
+map<string,int> &Toko::getStok(){
     return this->stok;
 }
 

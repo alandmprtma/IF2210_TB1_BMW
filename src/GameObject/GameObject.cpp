@@ -43,8 +43,7 @@ std::vector<Bangunan> GameObject::getBangunanList(){
 int GameObject::stringToInt(string num){
 
     int n = 0;
-    for (size_t i=0;i<num.size();i++){
-
+    for (size_t i=0;num[i]>='0' && num[i]<='9';i++){
         n *= 10;
         n += num[i] - '0';
 
