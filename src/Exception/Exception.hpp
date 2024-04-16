@@ -71,7 +71,7 @@ class PenyimpananSudahTerisi : public Exception{
         return "Penyimpanan Anda Sudah Terisi!";
     }
 };
-class PenympananSudahPenuh : public Exception {
+class PenyimpananSudahPenuh : public Exception {
     public:
     const char* what() const throw() {
         return "Penyimpanan Anda sudah penuh, tidak ada petak kosong yang tersisa!";

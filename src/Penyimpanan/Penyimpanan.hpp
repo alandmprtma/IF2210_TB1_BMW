@@ -144,7 +144,7 @@ public:
       NEff++;
   
     } 
-    catch (const PenyimpananSudahTerisi& e) {
+    catch (const PenyimpananSudahPenuh& e) {
       cout << e.what() << endl;
     }
     catch (const IndexOutOfBound& e) 
