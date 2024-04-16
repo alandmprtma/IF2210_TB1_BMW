@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../GameObject/GameObject.hpp"
 #include "../Penyimpanan/PetiRahasia.hpp"
+#include "../Exception/Exception.hpp"
 using namespace std;
 
 #define DEFAULT_GULDEN 50
@@ -48,8 +49,6 @@ class Player {
     /* Getter Berat Badan */
     int getBeratBadan();
 
-    /* Getter Peti Rahasia */
-    PetiRahasia getPetiRahasia();
 
     /* 
     Fungsi Makan. 
@@ -57,6 +56,10 @@ class Player {
     Jumlah berat badan yang ditambahkan bergantung pada makanan yang dimakan.
     */
     void makan(GameObject);
+    void isElementNull(int i, int j);
+    void isElementNotProduct(int i, int j);
+    void isPenyimpananHaveProduct();
+    void isIndexValid(int i, int j, int baris, int kolom);
     
     /* Mencetak Data Player */
     virtual void printPlayer();

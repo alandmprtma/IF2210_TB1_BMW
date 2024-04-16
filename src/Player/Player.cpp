@@ -3,7 +3,8 @@
 
 int Player::jumlahPlayer = 0;
 
-Player::Player() {
+Player::Player()
+{
   jumlahPlayer += 1;
   this->IdPlayer = this->jumlahPlayer;
   this->uang = 50;
@@ -12,8 +13,9 @@ Player::Player() {
   this->data = PetiRahasia(8, 8); /* Untuk Sementara. Default 8 x 8 */
 }
 
-Player::Player(string username,int uang, int berat_badan, PetiRahasia data) {
-  jumlahPlayer ++;
+Player::Player(string username, int uang, int berat_badan, PetiRahasia data)
+{
+  jumlahPlayer++;
   this->IdPlayer = this->jumlahPlayer;
   this->username = username;
   this->uang = uang;
@@ -22,102 +24,183 @@ Player::Player(string username,int uang, int berat_badan, PetiRahasia data) {
   this->peran = "";
 }
 
-bool Player::isKosong() {
+bool Player::isKosong()
+{
   bool empty = true;
   int i = 0;
 
-  while (i < data.getM() && empty) {
-      int j = 0;
-      while (j < data.getN() && empty) {
-          if (data.getElement(i, j) != 0) {
-              empty = false;
-          }
-          j++;
+  while (i < data.getM() && empty)
+  {
+    int j = 0;
+    while (j < data.getN() && empty)
+    {
+      if (data.getElement(i, j) != 0)
+      {
+        empty = false;
       }
-      i++;
+      j++;
+    }
+    i++;
   }
   return empty;
 }
 
-void Player::setUsername(string username) {
+void Player::setUsername(string username)
+{
   this->username = username;
 }
 
-void Player::setBeratBadan(int berat_badan) {
+void Player::setBeratBadan(int berat_badan)
+{
   this->berat_badan = berat_badan;
 }
 
-string Player::getUsername() {
+string Player::getUsername()
+{
   return this->username;
 }
 
-PetiRahasia &Player::getData() {
+PetiRahasia &Player::getData()
+{
   return this->data;
 }
 
-int Player::getUang() {
+int Player::getUang()
+{
   return this->uang;
 }
 
-void Player::setUang(int uang) {
+void Player::setUang(int uang)
+{
   this->uang = uang;
 }
 
-string Player::getPeran() {
+string Player::getPeran()
+{
   return this->peran;
 }
 
-int Player::getBeratBadan() {
+int Player::getBeratBadan()
+{
   return this->berat_badan;
 }
 
-int Player::getId() {
+int Player::getId()
+{
   return IdPlayer;
 }
 
-PetiRahasia Player::getPetiRahasia() {
-  return this->data;
+void Player::isElementNull(int i, int j)
+{
+  if (getData().getElementNoException(i, j) == nullptr)
+  {
+    throw ElementNotFound();
+  }
+}
+
+void Player::isElementNotProduct(int i, int j)
+{
+  if (getData().getElementNoException(i, j)->getTipe() != "PRODUCT_FRUIT_PLANT" && getData().getElementNoException(i, j)->getTipe() != "PRODUCT_ANIMAL")
+  {
+    throw ElementNotConsumable();
+  }
+}
+
+void Player::isIndexValid(int i, int j, int baris, int kolom) {
+    if (i < 0 || i > baris || j < 0 || j > kolom) {
+      throw IndexOutOfBound();
+    }
+  }
+
+void Player::isPenyimpananHaveProduct()
+{
+  bool valid = false;
+  int i = 0;
+  while (i < getData().getM() && !valid)
+  {
+    int j = 0;
+    while (j < getData().getN() && !valid)
+    {
+      if (getData().getElementNoException(i, j) != nullptr)
+      {
+        if (getData().getElementNoException(i, j)->getTipe() == "PRODUCT_FRUIT_PLANT" || getData().getElementNoException(i, j)->getTipe() == "PRODUCT_ANIMAL")
+        {
+          valid = true;
+        }
+      }
+      j++;
+    }
+    i++;
+  }
+  if (!valid)
+  {
+    throw PenyimpananDontHaveProduct();
+  }
 }
 
 void Player::makan(GameObject objek)
 {
-  cout << "Pilih makanan dari penyimpanan" << endl;
-
-  getPetiRahasia().cetakPenyimpanan();
-
-  bool validInput = false;
-
-  while (!validInput)
+  try
   {
-    string Slot;
-    cout << "Slot:" << endl;
-    cin >> Slot;
+    isPenyimpananHaveProduct();
+    cout << "Pilih makanan dari penyimpanan" << endl
+         << endl;
 
-    int kolom = ((int)Slot[0] - 'A') + 1;
-    int baris = (int)stoi(Slot.substr(1, 2));
+    data.cetakPenyimpanan();
 
-    Item* item = getPetiRahasia().getElement(baris - 1, kolom - 1);
-    if (item == nullptr)
+    while (true)
     {
-      std::cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl
-                << "Silahkan masukan slot yang berisi makanan." << endl;
+      try
+      {
+        string Slot;
+        cout << "Slot: ";
+        cin >> Slot;
+        cout << endl;
+
+        int kolom = ((int)Slot[0] - 'A') + 1;
+        int baris = (int)stoi(Slot.substr(1, 2));
+
+        isIndexValid(baris - 1, kolom - 1, data.getM(), data.getN());
+
+        isElementNull(baris - 1, kolom - 1);
+        isElementNotProduct(baris - 1, kolom - 1);
+
+        Item *item = data.getElementNoException(baris - 1, kolom - 1);
+
+        berat_badan += objek.findProduk(item->getNama()).getBeratTambahan();
+        cout << "Dengan lahapnya, kamu memakanan hidangan itu" << endl;
+        cout << "Berat badanmu bertambah menjadi " << berat_badan << endl;
+        data.removeElement(baris - 1, kolom - 1);
+        data.cetakPenyimpanan();
+        break;
+      }
+      catch (IndexOutOfBound &e)
+      {
+        cout << e.what() << endl
+             << endl;
+      }
+      catch (ElementNotFound &e)
+      {
+        cout << e.what() << endl
+             << endl;
+      }
+      catch (ElementNotConsumable &e)
+      {
+        cout << e.what() << endl
+             << endl;
+      }
     }
-    else if (item->getTipe() == "PRODUCT_FRUIT_PLANT" || item->getTipe() == "PRODUCT_ANIMAL")
-    {
-      validInput = true;
-    }
-    else
-    {
-      std::cout << "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!" << endl << "Silahkan masukan slot yang berisi makanan." << endl;
-    }
-    berat_badan += objek.findProduk(item->getNama()).getBeratTambahan();
+  }
+  catch (const PenyimpananDontHaveProduct &e)
+  {
+    cout << e.what() << endl;
   }
 }
 
-void Player::printPlayer() {
-  cout << "ID Player: " << this->IdPlayer << endl; 
+void Player::printPlayer()
+{
+  cout << "ID Player: " << this->IdPlayer << endl;
   cout << "Username: " << this->username << endl;
   cout << "Uang: " << this->uang << endl;
   cout << "Berat Badan: " << getBeratBadan() << endl;
-
 }

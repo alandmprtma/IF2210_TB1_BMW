@@ -44,7 +44,7 @@ public:
     Walikota& getWalikota();
     Toko getToko();
 
-
+    void CurrentPlayerValidation(Player&);
     bool isEndGame(GameObject objek);
     void nextTurn(GameObject objek);
     void Inisiasi(GameObject);
@@ -55,7 +55,7 @@ public:
     void tanam();
     void ternak();
     void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
-    void makan();
+    void makan(GameObject&);
     void memberiPangan();
     void membeli();
     void menjual();

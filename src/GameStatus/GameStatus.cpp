@@ -447,6 +447,13 @@ void GameStatus::muat(string path, GameObject objek)
     }
 }
 
+void GameStatus::CurrentPlayerValidation(Player& player){
+    if (player.getPeran() != getCurrentPlayer()->getPeran())
+    {
+        throw InvalidPlayer();
+    }
+}
+
 void GameStatus::cetakPenyimpanan()
 {
     getCurrentPlayer()->getData().cetakPenyimpanan();
@@ -454,11 +461,17 @@ void GameStatus::cetakPenyimpanan()
 
 void GameStatus::pungutPajak(GameObject &objek)
 {
-    cout << "Cring cring cring..." << endl;
-    cout << "Pajak sudah dipungut!" << endl;
-    cout << endl;
+    try{
+        this->CurrentPlayerValidation(walikota);
+        cout << "Cring cring cring..." << endl;
+        cout << "Pajak sudah dipungut!" << endl;
+        cout << endl;
 
-    this->walikota.pungutPajak(objek, playerTurnList);
+        this->walikota.pungutPajak(objek, playerTurnList);
+    }
+    catch(InvalidPlayer& e){
+        cout << e.what() << endl;
+    }
 }
 
 void GameStatus::tanam()
@@ -504,8 +517,11 @@ void GameStatus::bangunBangunan(string kodeHuruf, string namaBangunan, int price
     this->getWalikota().bangunBangunan(kodeHuruf, namaBangunan, price, teak, sandalwood, aloe, ironwood);
 }
 
-void GameStatus::makan()
+void GameStatus::makan(GameObject& objek)
 {
+
+    Player* currentPlayer = getCurrentPlayer();
+    currentPlayer->makan(objek);
 }
 
 void GameStatus::memberiPangan()

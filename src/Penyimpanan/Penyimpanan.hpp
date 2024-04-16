@@ -139,7 +139,6 @@ public:
       isElementEmpty(i, j);
       data[i][j] = nullptr;
       NEff--;
-      
     }
     catch (const IndexOutOfBound& e)
     {

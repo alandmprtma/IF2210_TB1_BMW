@@ -79,4 +79,32 @@ class IndexOutOfBound : public Exception {
     }
 };
 
+class InvalidPlayer : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Anda tidak memiliki akses untuk melakukan aksi ini!";
+    }
+};
+
+class ElementNotFound : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Kamu mengambil harapan kosong dari penyimpanan.\nSilahkan masukan slot yang berisi makanan.";
+    }
+};
+
+class ElementNotConsumable : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!\nSilahkan masukan slot yang berisi makanan.";
+    }
+};
+
+class PenyimpananDontHaveProduct : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda tidak memiliki produk! Anda tidak bisa makan!";
+    }
+};
+
 #endif

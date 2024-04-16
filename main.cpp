@@ -110,13 +110,8 @@ int main()
         }
         else if (opsi == 3)
         {
-            if (game_status.getCurrentPlayer()->getPeran() == "Walikota")
-            {
-                game_status.pungutPajak(game_object);
-            }
-            else{
-                cout << "Perintah ini hanya bisa dilakukan oleh walikota! " << endl;
-            }
+            game_status.pungutPajak(game_object);
+            
         }
         else if (opsi == 4)
         {
@@ -217,7 +212,7 @@ int main()
         {
             // validasi
 
-            game_status.makan();
+            game_status.makan(game_object);
         }
         else if (opsi == 10)
         {
