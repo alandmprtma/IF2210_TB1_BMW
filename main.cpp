@@ -120,6 +120,25 @@ int main()
     while (!game_status.isEndGame(game_object))
     {
         // TODO: List fungsi apa aja
+        cout << "0. Cetak Status Pemain" << endl;
+        cout << "1. Next Turn" << endl;
+        cout << "2. Cetak Penyimpanan" << endl;
+        cout << "3. Pungut Pajak" << endl;
+        cout << "4. Cetak Ladang" << endl;
+        cout << "5. Cetak Peternakan" << endl;
+        cout << "6. Tanam Tanaman" << endl;
+        cout << "7. Simpan Hewan Ternak" << endl;
+        cout << "8. Bangun Bangunan" << endl;
+        cout << "9. Makan" << endl;
+        cout << "10. Beri Makan Hewan Ternak" << endl;
+        cout << "11. Beli" << endl;
+        cout << "12. Jual" << endl;
+        cout << "13. Panen Tanaman / Panen Ternak" << endl;
+        cout << "14. Simpan" << endl;
+        cout << "15. Tambah Player" << endl;
+        cout << "16. Menyerah" << endl;
+
+
         int opsi;
         cout << endl
              << "Pilih Opsi yang ingin digunakan: ";
