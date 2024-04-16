@@ -109,7 +109,7 @@ public:
         throw PenyimpananSudahPenuh();
   }
 
-
+  
   /* Get Element */
   T getElement(int i, int j) {
     try {
@@ -177,10 +177,12 @@ public:
     
   }
 
+  
   /* Mencetak Data */
   virtual void cetakPenyimpanan()
   {
   }
+  
 };
 
 #endif

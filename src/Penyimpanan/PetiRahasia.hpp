@@ -14,6 +14,8 @@ class PetiRahasia : public Penyimpanan<Item*> {
 
     /* Cetak PetiRahasia */
     void cetakPenyimpanan();
+    Penyimpanan<Item*>& operator+(Item*);
+    void operator=(Penyimpanan<Item*>& other);
 };
 
 #endif

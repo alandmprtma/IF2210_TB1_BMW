@@ -143,24 +143,26 @@ void Petani::panenTanaman(GameObject objek) {
     cout << " telah dipanen!" << endl;
 
     /* Memasukkan ke inventory sebagai produk */
-    int row = 0;
-    int col = 0;
+    
+    // int row = 0;
+    // int col = 0;
 
     for (size_t i = 0; i < tanamanDipanen.size(); i++) {
         for (size_t j = 0; j < objek.getProdukList().size(); j++) {
             if (objek.getProdukList()[j].getOrisinil() == tanamanDipanen[i]->getNama()) {
                 Produk newProduk = objek.getProdukList()[j];
 
+                data = data + new Produk(newProduk);
                 /* Mencari petak kosong pada penyimpanan */
-                while (data.getElementNoException(row, col) != nullptr) {
-                    col++;
-                    if (col == data.getN()) {
-                        col = 0;
-                        row++;
-                    }
-                }
+                // while (data.getElementNoException(row, col) != nullptr) {
+                //     col++;
+                //     if (col == data.getN()) {
+                //         col = 0;
+                //         row++;
+                //     }
+                // }
 
-                data.setElement(new Produk(newProduk), row, col);
+                // data.setElement(new Produk(newProduk), row, col);
             }
         }
     }

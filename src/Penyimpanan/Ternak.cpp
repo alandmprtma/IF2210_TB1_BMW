@@ -43,3 +43,25 @@ void Ternak::cetakPenyimpanan() {
       cout << "+" << endl;
   }
 }
+Penyimpanan<Animal*>& Ternak::operator+(Animal* other){
+    for (int i=0;i<m;i++){
+        for (int j=0;j<n;j++){
+            if (this->data[i][j]==nullptr){
+                this->data[i][j] = other;
+                return *this;
+            }
+        }
+    }
+    return *this;
+}
+void Ternak::operator=(Penyimpanan<Animal*>& other){
+    
+    this->m = other.getM();
+    this->n = other.getN();
+        for (int i=0;i<m;i++){
+        for (int j=0;j<n;j++){
+            this->data[i][j] = other.getElementNoException(i,j);
+        }
+        }
+    
+}

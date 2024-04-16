@@ -12,6 +12,8 @@ class Ternak : public Penyimpanan<Animal*> {
 
     /* Cetak Ternak */
     void cetakPenyimpanan();
+    Penyimpanan<Animal*>& operator+(Animal*);
+    void operator=(Penyimpanan<Animal*>& other);
 };
 
 #endif
