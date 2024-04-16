@@ -304,6 +304,9 @@ int main()
                 cout<<"Kembali ke program utama"<<endl;
             }
         }
+        else{
+            cout<<"Opsi tidak valid!"<<endl;
+        }
     }
 
     // cout<<muat->getWinGulden()<<endl;
