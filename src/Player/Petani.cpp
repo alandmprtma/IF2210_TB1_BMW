@@ -241,16 +241,9 @@ void Petani::panenTanaman(GameObject objek)
         columnChar = 'A';
     }
 
-    // Membuat vektor dari pasangan (nama tanaman, pasangan kedua)
-    vector<pair<string, pair<int, int>>> sortedPairs(tanamanSiapPanen.begin(), tanamanSiapPanen.end());
-
-    // Menggunakan lambda untuk mengurutkan berdasarkan nilai kedua dari pasangan
-    sort(sortedPairs.begin(), sortedPairs.end(), [](const auto& left, const auto& right) {
-        return left.second.first < right.second.first;
-    });
-
-    // Menampilkan hasil yang terurut
-    for (const auto& pair : sortedPairs) {
+    /* Menampilkan tanaman yang dapat dipanen dengan jumlah petak siap panen */
+    for (const auto &pair : tanamanSiapPanen)
+    {
         cout << pair.second.first << ". " << pair.first << " (" << pair.second.second << " petak siap panen)" << endl;
     }
 
