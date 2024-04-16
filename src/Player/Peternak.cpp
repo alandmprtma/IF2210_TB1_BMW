@@ -198,6 +198,11 @@ void Peternak::panenTernak(GameObject objek)
             columnChar = 'A';
         }
 
+        if (hewanSiapPanen.empty())
+        {
+            throw LadangDontHaveAnimal();
+        }
+
         // Membuat vektor dari pasangan (nama hewan, pasangan kedua)
         vector<pair<string, pair<int, int>>> sortedPairs(hewanSiapPanen.begin(), hewanSiapPanen.end());
 
@@ -331,6 +336,9 @@ void Peternak::panenTernak(GameObject objek)
                 }
             }
         }
+    }
+    catch (LadangDontHaveAnimal &e) {
+        cout << e.what() << endl;
     }
     catch (SlotTidakValid &e)
     {

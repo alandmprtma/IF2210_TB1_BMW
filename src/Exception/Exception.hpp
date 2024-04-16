@@ -196,4 +196,11 @@ class SlotTidakValid : public Exception {
     }
 };
 
+class LadangDontHaveAnimal : public Exception {
+    public:
+    const char* what() const throw() {
+        return "Ladang Anda tidak memiliki Animal! Anda tidak bisa panen!";
+    }
+};
+
 #endif
