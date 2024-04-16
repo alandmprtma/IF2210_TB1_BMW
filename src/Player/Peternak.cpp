@@ -198,9 +198,16 @@ void Peternak::panenTernak(GameObject objek)
             columnChar = 'A';
         }
 
-        /* Menampilkan hewan yang dapat dipanen dengan jumlah petak siap panen */
-        for (const auto &pair : hewanSiapPanen)
-        {
+        // Membuat vektor dari pasangan (nama hewan, pasangan kedua)
+        vector<pair<string, pair<int, int>>> sortedPairs(hewanSiapPanen.begin(), hewanSiapPanen.end());
+
+        // Menggunakan lambda untuk mengurutkan berdasarkan nilai kedua dari pasangan
+        sort(sortedPairs.begin(), sortedPairs.end(), [](const auto& left, const auto& right) {
+            return left.second.first < right.second.first;
+        });
+
+        // Menampilkan hasil yang terurut
+        for (const auto& pair : sortedPairs) {
             cout << pair.second.first << ". " << pair.first << " (" << pair.second.second << " petak siap panen)" << endl;
         }
 
