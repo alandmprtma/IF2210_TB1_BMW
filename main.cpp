@@ -75,9 +75,19 @@ int main()
     printASCII(filename);
     cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl
          << endl;
+    bool muatDone = false;
+    while (!muatDone)
+    {
+        try{
+            game_status.Inisiasi(game_object);
+            muatDone = true;
+        }catch(const Exception& e){
+            cout<<e.what()<<endl<<endl;
+        }
 
-    game_status.Inisiasi(game_object);
-
+    }
+    
+   
     // game_status.muat("Config/state.txt",game_object);
     // cout<<game_status.getWalikota().getUsername()<<endl;
     // cout<<game_status.getWalikota().getId()<<endl;

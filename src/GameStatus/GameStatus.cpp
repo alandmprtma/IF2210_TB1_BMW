@@ -125,7 +125,10 @@ void GameStatus::Inisiasi(GameObject objek)
 
     }else if (opsi==2){
         // TODO command muat
-        this->muat("./Config/coba.txt", objek);
+        string path;
+        cout<<"[Asumsi path relatif terhadap root directory tugas]"<<endl<<"Masukkan file state yang ingin dimuat: ";
+        cin>>path;
+        this->muat(path, objek);
 
         // store player
         for (size_t i = 0; i < peternakList.size(); i++)
