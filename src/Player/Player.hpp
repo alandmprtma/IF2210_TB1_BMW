@@ -6,6 +6,7 @@
 #include "../GameObject/GameObject.hpp"
 #include "../Penyimpanan/PetiRahasia.hpp"
 #include "../Exception/Exception.hpp"
+#include <regex>
 using namespace std;
 
 #define DEFAULT_GULDEN 50

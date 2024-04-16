@@ -154,7 +154,7 @@ int main()
             // Validasi
             if (game_status.getCurrentPlayer()->getPeran() == "Petani")
             {
-                game_status.cetakLadang();
+                game_status.cetakPenyimpanan();
             }
             else
             {
@@ -165,7 +165,7 @@ int main()
         {
             if (game_status.getCurrentPlayer()->getPeran() == "Peternak")
             {
-                game_status.cetakPeternakan();
+                game_status.cetakPenyimpanan();
             }
             else
             {
@@ -334,19 +334,14 @@ int main()
         else if (opsi == 13)
         {
             // validasi
-            try{
-                 if (game_status.getCurrentPlayer()->getPeran() == "Walikota")
-                {
-                    throw PeranTidakSesuai();
-                }
-                else
-                {
-                    game_status.memanen();
-                }
-            }catch(const Exception& e){
-                cout<<e.what()<<endl;
+            if (game_status.getCurrentPlayer()->getPeran() == "Walikota")
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
             }
-            
+            else
+            {
+                game_status.memanen();
+            }
         }
         else if (opsi == 14)
         {

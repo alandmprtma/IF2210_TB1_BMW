@@ -21,7 +21,7 @@ void Petani::isInventoryFull()
     {
         for (int j = 0; j < data.getN(); j++)
         {
-            if (data.getElement(i, j) == nullptr)
+            if (data.getElementNoException(i, j) == nullptr)
             {
                 isFilled = false;
                 break;
@@ -36,9 +36,9 @@ void Petani::isInventoryFull()
 
 void Petani::isElementTanaman(int i, int j)
 {
-    if (data.getElement(i, j) != nullptr)
+    if (data.getElementNoException(i, j) != nullptr)
     {
-        if (data.getElement(i, j)->getTipe() != "MATERIAL_PLANT" && data.getElement(i, j)->getTipe() != "FRUIT_PLANT")
+        if (data.getElementNoException(i, j)->getTipe() != "MATERIAL_PLANT" && data.getElementNoException(i, j)->getTipe() != "FRUIT_PLANT")
         {
             throw ElementNotPlant();
         }
@@ -57,11 +57,12 @@ void Petani::isInventoryHavePlant()
     {
         for (int j = 0; j < data.getN(); j++)
         {
-            if (data.getElement(i, j) != nullptr)
+            if (data.getElementNoException(i, j) != nullptr)
             {
-                if (data.getElement(i, j)->getTipe() == "MATERIAL_PLANT" || data.getElement(i, j)->getTipe() == "FRUIT_PLANT")
+                if (data.getElementNoException(i, j)->getTipe() == "MATERIAL_PLANT" || data.getElementNoException(i, j)->getTipe() == "FRUIT_PLANT"){
                     isHavePlant = true;
-                break;
+                    break;
+                }
             }
         }
         if (isHavePlant)
@@ -69,6 +70,20 @@ void Petani::isInventoryHavePlant()
     }
     if (!isHavePlant)
         throw PenyimpananDontHavePlant();
+}
+
+void Petani::isElementKosong(int i, int j){
+    if (dataLadang.getElementNoException(i, j) != nullptr){
+        throw SlotSudahTerisi();
+    }
+}
+
+void Petani::isSlotValid(string slot){
+    std::regex slotFormat("[A-Za-z][0-9]{2}");
+
+    if (!std::regex_match(slot, slotFormat)) {
+        throw SlotTidakValid();
+    }
 }
 
 void Petani::tanamTanaman()
@@ -79,19 +94,21 @@ void Petani::tanamTanaman()
         isInventoryHavePlant();
         cout << "Pilih tanaman dari penyimpanan" << endl
              << endl;
-        this->data.cetakPenyimpanan();
-        try
+        data.cetakPenyimpanan();
+
+        while (true)
         {
-            while (true)
+            try
             {
-                /* Memilih tanaman dari peti rahasia */
                 string slot;
                 cout << endl
                      << "Slot: ";
                 cin >> slot;
+                isSlotValid(slot);
                 int row = (int)stoi(slot.substr(1, 2)) - 1;
                 int col = ((int)slot[0] - 'A');
 
+                isIndexValid(row, col, data.getM(), data.getN());
                 isElementTanaman(row, col);
                 Item *selectedPlant = data.getElement(row, col);
                 data.removeElement(row, col);
@@ -111,23 +128,38 @@ void Petani::tanamTanaman()
                 cout << endl
                      << "Petak tanah: ";
                 cin >> petakTanah;
+                isSlotValid(petakTanah);
                 int rowPetak = (int)stoi(petakTanah.substr(1, 2)) - 1;
                 int colPetak = ((int)petakTanah[0] - 'A');
-
+                isElementKosong(rowPetak, colPetak);
                 /* Menanam Tanaman */
                 cout << endl
                      << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
                 dataLadang.setElement(&newPlant, rowPetak, colPetak);
                 cout << newPlant.getNama() << " berhasil ditanam!" << endl;
+                data.cetakPenyimpanan();
+                dataLadang.cetakPenyimpanan();
+                break;
             }
-        }
-        catch (const ElementNotFound &e)
-        {
-            cout << e.what() << endl;
-        }
-        catch (const ElementNotPlant &e)
-        {
-            cout << e.what() << endl;
+            catch(const SlotTidakValid &e){
+                cout << e.what() << endl;
+            }
+            
+            catch(const SlotSudahTerisi &e){
+                cout << e.what() << endl;
+            }
+            catch (const IndexOutOfBound &e)
+            {
+                cout << e.what() << endl;
+            }
+            catch (const ElementNotFound &e)
+            {
+                cout << e.what() << endl;
+            }
+            catch (const ElementNotPlant &e)
+            {
+                cout << e.what() << endl;
+            }
         }
     }
     catch (const PenyimpananSudahPenuh &e)
@@ -260,7 +292,7 @@ void Petani::panenTanaman(GameObject objek)
     cout << " telah dipanen!" << endl;
 
     /* Memasukkan ke inventory sebagai produk */
-    
+
     // int row = 0;
     // int col = 0;
 

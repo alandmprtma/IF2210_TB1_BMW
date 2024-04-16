@@ -168,4 +168,32 @@ class ElementNotPlant : public Exception {
     }
 };
 
+class PetaniNotFoundException : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Petani tidak ditemukan!";
+    }
+};
+
+class PeternakNotFoundException : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Peternak tidak ditemukan!";
+    }
+};
+
+class SlotSudahTerisi : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Slot yang dipilih sudah terisi!";
+    }
+};
+
+class SlotTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Slot tidak valid!";
+    }
+};
+
 #endif

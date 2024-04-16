@@ -174,7 +174,7 @@ Player *GameStatus::getCurrentPlayer() const
     return playerTurnList[turn];
 }
 
-Petani GameStatus::getPetani(string username)
+Petani& GameStatus::getPetani(string username)
 {
     if (this->petaniList.empty())
     {
@@ -187,8 +187,9 @@ Petani GameStatus::getPetani(string username)
             return petaniList[i];
         }
     }
-    return Petani();
+    throw PetaniNotFoundException();
 }
+
 int GameStatus::getIndeksPetani(string username){
     if (this->petaniList.empty()){
             throw NoPeternakException();
@@ -204,7 +205,7 @@ void GameStatus::setPetani(int indeks, Petani p){
     this->petaniList[indeks] = p;
 }
 
-Peternak GameStatus::getPeternak(string username){
+Peternak& GameStatus::getPeternak(string username){
     if (this->peternakList.empty()){
         throw NoPeternakException();
     }
@@ -215,7 +216,7 @@ Peternak GameStatus::getPeternak(string username){
             return peternakList[i];
         }
     }
-    return Peternak();
+    throw PeternakNotFoundException();
 }
 
 int GameStatus::getIndeksPeternak(string username){
@@ -502,8 +503,8 @@ void GameStatus::muat(string path, GameObject objek)
     }
 }
 
-void GameStatus::CurrentPlayerValidation(Player& player){
-    if (player.getPeran() != getCurrentPlayer()->getPeran())
+void GameStatus::CurrentPlayerValidation(string a){
+    if (a != getCurrentPlayer()->getPeran())
     {
         throw InvalidPlayer();
     }
@@ -523,7 +524,7 @@ void GameStatus::cetakPenyimpanan()
 void GameStatus::pungutPajak(GameObject &objek)
 {
     try{
-        this->CurrentPlayerValidation(walikota);
+        this->CurrentPlayerValidation("Walikota");
         cout << "Cring cring cring..." << endl;
         cout << "Pajak sudah dipungut!" << endl;
         cout << endl;
@@ -538,12 +539,8 @@ void GameStatus::pungutPajak(GameObject &objek)
 void GameStatus::tanam()
 {
     try{
-        this->CurrentPlayerValidation(petaniList[turn]);
-        cout << "Tanam tanam tanam..." << endl;
-        cout << "Tanaman sudah ditanam!" << endl;
-        cout << endl;
-
-        this->petaniList[turn].tanamTanaman();
+        this->CurrentPlayerValidation("Petani");
+        this->getPetani(getCurrentPlayer()->getUsername()).tanamTanaman();
     }
     catch(InvalidPlayer& e){
         cout << e.what() << endl;

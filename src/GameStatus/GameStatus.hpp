@@ -39,17 +39,17 @@ public:
 
     Player* getCurrentPlayer() const;
     Player* getPlayer(int);
-    Petani getPetani(string username);
+    Petani& getPetani(string username);
     int getIndeksPetani(string username);
     void setPetani(int indeks, Petani p);
-    Peternak getPeternak(string username);
+    Peternak& getPeternak(string username);
     int getIndeksPeternak(string username);
     void setPeternak(int indeks, Peternak p);
     Walikota& getWalikota();
     Toko& getToko();
     void lexicographicSort();
 
-    void CurrentPlayerValidation(Player&);
+    void CurrentPlayerValidation(string);
     bool isEndGame(GameObject objek);
     void nextTurn(GameObject objek);
     void Inisiasi(GameObject);

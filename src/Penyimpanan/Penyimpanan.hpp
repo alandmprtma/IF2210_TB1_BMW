@@ -74,7 +74,7 @@ public:
 
   /* Exception Get Element */
   void isIndexValid(int i, int j) {
-    if ((i < 0 || i > m) && (j < 0 || j > n)) {
+    if (i < 0 || i > m || j < 0 || j > n) {
       throw IndexOutOfBound();
     }
   }
