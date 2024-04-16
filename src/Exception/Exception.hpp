@@ -119,4 +119,11 @@ class OpsiTidakValid : public Exception {
         return "Opsi tidak valid! ";
     }
 };
+class HarapanKosong : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Anda mengambil harapan kosong dari penyimpanan.";
+    }
+};
+
 #endif

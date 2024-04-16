@@ -45,7 +45,9 @@ class Toko {
     // Virtual Function jual
     void jual();
     // Get Stok
-    map<string,int>& getStok();
+    map<string,int> getStok();
+
+    void setStok(string Barang);
 };
 
 #endif
