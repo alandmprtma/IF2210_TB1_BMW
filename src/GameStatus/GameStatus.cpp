@@ -528,18 +528,16 @@ void GameStatus::tambahPemain(GameObject objek){
     string nama;
     cout<<"Masukkan jenis pemain: ";
     cin>> jenis;
-    bool nameExists = false;
-    do{
-        nameExists = false;
-        cout<<"Masukkan nama pemain: ";
-        cin>>nama;
-        for (size_t i = 0;i<playerTurnList.size();i++){
-            if (nama==playerTurnList[i]->getUsername()){
-                nameExists = true;
-            }
+    if (jenis != "Peternak" && jenis!="Petani"){
+        throw PeranTidakValid();
+    }
+    cout<<"Masukkan nama pemain: ";
+    cin>>nama;
+    for (size_t i = 0;i<playerTurnList.size();i++){
+        if (nama==playerTurnList[i]->getUsername()){
+            throw PlayerAlreadyExist();
         }
-    }while(nameExists);
-
+    }
 
     if (jenis=="Peternak"){
         peternakList.push_back(Peternak(nama,50,40,
@@ -556,8 +554,6 @@ void GameStatus::tambahPemain(GameObject objek){
         ));
         this->playerTurnList.push_back(&petaniList[petaniList.size()-1]);
 
-    }else{
-        // TODO Error peran di luar batas
     }
     // sort player turn order
     sort(this->playerTurnList.begin(),this->playerTurnList.end());

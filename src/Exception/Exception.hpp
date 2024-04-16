@@ -78,5 +78,28 @@ class IndexOutOfBound : public Exception {
         return "Index yang dimasukkan melebihi batas penyimpanan!";
     }
 };
-
+class PlayerAlreadyExist : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Username Pemain sudah Terdaftar!";
+    }
+};
+class PeranTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Peran Tidak Valid!";
+    }
+};
+class PeranTidakSesuai : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Perintah tidak dapat diakses karena peran tidak sesuai!";
+    }
+};
+class UangTidakCukup : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Uang Pemain Tidak Cukup!";
+    }
+};
 #endif
