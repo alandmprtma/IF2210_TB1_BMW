@@ -128,7 +128,7 @@ void Petani::panenTanaman(GameObject objek) {
         int colPetak = ((int) petakTanah[0] - 'A');
 
         tanamanDipanen.push_back(dataLadang.getElement(rowPetak, colPetak));
-        dataLadang.removeElement(rowPetak, colPetak);
+        getLadang().removeElement(rowPetak, colPetak);
         petakDipanen.push_back(petakTanah);
     }
 

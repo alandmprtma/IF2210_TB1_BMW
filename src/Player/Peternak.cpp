@@ -177,7 +177,7 @@ void Peternak::panenTernak(GameObject objek) {
         int colPetak = ((int) petakTanah[0] - 'A');
 
         hewanDipanen.push_back(dataTernak.getElement(rowPetak, colPetak));
-        dataTernak.removeElement(rowPetak, colPetak);
+        getTernak().removeElement(rowPetak, colPetak);
         petakDipanen.push_back(petakTanah);
     }
 
