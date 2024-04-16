@@ -1,10 +1,9 @@
 #include "GameStatus.hpp"
+#include "../GameObject/GameObject.hpp"
+#include <new>
 
-GameStatus::GameStatus()
-{
-    playerTurnList = vector<Player *>();
-    petaniList = vector<Petani>();
-    peternakList = vector<Peternak>();
+GameStatus::GameStatus(){
+    playerTurnList = vector<Player*>();
     walikota = Walikota();
     turn = 0;
     endGame = false;
@@ -12,20 +11,48 @@ GameStatus::GameStatus()
 
 bool GameStatus::isEndGame(GameObject objek)
 {
+    
     for (size_t i = 0; i < playerTurnList.size() && !endGame; i++)
     {
         if (playerTurnList[i]->getUang() >= objek.getWinGulden() &&
             playerTurnList[i]->getBeratBadan() >= objek.getWinWeight())
         {
             endGame = true;
+            cout<<endl;
             cout << playerTurnList[i]->getUsername() << " berhasil memenangkan permainan !" << endl;
         }
     }
+    if (playerTurnList.size()==1){
+        endGame = true;   
+        cout<<endl;
+        cout << playerTurnList[0]->getUsername() << " berhasil memenangkan permainan !" << endl;
+        cout << "TITLE: THE LAST MAN STANDING"<<endl;
+    }
+
     return endGame;
 }
+void GameStatus::lexicographicSort() {
+    // Selection Sort
+    int n = this->playerTurnList.size();
+    for (int i = 0; i < n-1; ++i) {
+        int min = i;
+        int j = min;
+        while (j < n)
+        {
+            if (playerTurnList[min]->getUsername() > playerTurnList[j]->getUsername()){
+                min = j;
+            }
 
-void GameStatus::nextTurn(GameObject objek)
-{
+            j++;
+        }
+        // Swap
+        Player* temp = playerTurnList[i];
+        playerTurnList[i] = playerTurnList[min];
+        playerTurnList[min] = temp;
+
+    }
+}
+void GameStatus::nextTurn(GameObject objek){
     // TODO turn ++, umur ladang ++
     turn = (turn + 1) % this->playerTurnList.size();
     for (size_t i = 0; i < petaniList.size(); i++)
@@ -93,12 +120,14 @@ void GameStatus::Inisiasi(GameObject objek)
         this->playerTurnList.push_back(&this->walikota);
 
         // order player turn
-        sort(this->playerTurnList.begin(), this->playerTurnList.end());
-    }
-    else if (opsi == 2)
-    {
+        this->lexicographicSort();
+
+    }else if (opsi==2){
         // TODO command muat
-        this->muat("./Config/coba.txt", objek);
+        string path;
+        cout<<"[Asumsi path relatif terhadap root directory tugas]"<<endl<<"Masukkan file state yang ingin dimuat: ";
+        cin>>path;
+        this->muat(path, objek);
 
         // store player
         for (size_t i = 0; i < peternakList.size(); i++)
@@ -112,7 +141,7 @@ void GameStatus::Inisiasi(GameObject objek)
         this->playerTurnList.push_back(&this->walikota);
 
         // sort player turn order
-        sort(this->playerTurnList.begin(), this->playerTurnList.end());
+        this->lexicographicSort();
 
         // for (size_t i = 0;i < peternakList.size();i++){
         //     cout<<peternakList[i].getUsername()<<endl;
@@ -160,11 +189,23 @@ Petani GameStatus::getPetani(string username)
     }
     return Petani();
 }
+int GameStatus::getIndeksPetani(string username){
+    if (this->petaniList.empty()){
+            throw NoPeternakException();
+        }
+    for (size_t i=0;i<petaniList.size();i++){
+        if (petaniList[i].getUsername()==username){
+            return i;
+        }
+    }
+    return -1;
+}
+void GameStatus::setPetani(int indeks, Petani p){
+    this->petaniList[indeks] = p;
+}
 
-Peternak GameStatus::getPeternak(string username)
-{
-    if (this->peternakList.empty())
-    {
+Peternak GameStatus::getPeternak(string username){
+    if (this->peternakList.empty()){
         throw NoPeternakException();
     }
     for (size_t i = 0; i < peternakList.size(); i++)
@@ -177,13 +218,27 @@ Peternak GameStatus::getPeternak(string username)
     return Peternak();
 }
 
-Walikota &GameStatus::getWalikota()
-{
+int GameStatus::getIndeksPeternak(string username){
+    if (this->peternakList.empty()){
+            throw NoPeternakException();
+        }
+    for (size_t i=0;i<peternakList.size();i++){
+        if (peternakList[i].getUsername()==username){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void GameStatus::setPeternak(int indeks, Peternak p){
+    this->peternakList[indeks] = p;
+}
+
+Walikota& GameStatus::getWalikota(){
     return this->walikota;
 }
 
-Toko GameStatus::getToko()
-{
+Toko& GameStatus::getToko(){
     return this->toko;
 }
 
@@ -532,12 +587,20 @@ void GameStatus::membeli()
 {
 }
 
-void GameStatus::menjual()
-{
+void GameStatus::menjualWalikota(GameObject game_object){
+    
 }
 
-void GameStatus::memanen()
-{
+void GameStatus::menjualPeternak(string nama, GameObject game_object){
+    
+}
+
+void GameStatus::menjualPetani(string nama, GameObject game_object){
+    
+}
+
+void GameStatus::memanen(){
+
 }
 
 void GameStatus::simpan(string path, GameObject objek)
@@ -641,43 +704,87 @@ void GameStatus::tambahPemain(GameObject objek)
 {
     string jenis;
     string nama;
-    cout << "Masukkan jenis pemain: ";
-    cin >> jenis;
-    bool nameExists = false;
-    do
-    {
-        nameExists = false;
-        cout << "Masukkan nama pemain: ";
-        cin >> nama;
-        for (size_t i = 0; i < playerTurnList.size(); i++)
-        {
-            if (nama == playerTurnList[i]->getUsername())
-            {
-                nameExists = true;
+    cout<<"Masukkan jenis pemain: ";
+    cin>> jenis;
+    if (jenis != "Peternak" && jenis!="Petani"){
+        throw PeranTidakValid();
+    }
+    cout<<"Masukkan nama pemain: ";
+    cin>>nama;
+    for (size_t i = 0;i<playerTurnList.size();i++){
+        if (nama==playerTurnList[i]->getUsername()){
+            throw PlayerAlreadyExist();
+        }
+    }
+
+    if (jenis=="Peternak"){
+        peternakList.push_back(Peternak(nama,50,40,
+        PetiRahasia(objek.getSizeInventory()[0],objek.getSizeInventory()[1]),
+        Ternak(objek.getSizeFarm()[0],objek.getSizeFarm()[1]),
+        0
+        ));
+       
+    }else if (jenis=="Petani"){
+        petaniList.push_back(Petani(nama,50,40,
+        PetiRahasia(objek.getSizeInventory()[0],objek.getSizeInventory()[1]),
+        Ladang(objek.getSizeCrops()[0],objek.getSizeCrops()[1]),
+        0
+        ));
+        for (size_t i =0;i<petaniList.size();i++){
+            cout<<petaniList[i].getUsername()<<endl;
+        }
+    }
+    // clear
+    this->playerTurnList.clear();
+    // store player
+    for (size_t i =0 ; i<peternakList.size();i++){
+        this->playerTurnList.push_back(&this->peternakList[i]);
+    }
+    for (size_t i =0 ; i<petaniList.size();i++){
+        this->playerTurnList.push_back(&this->petaniList[i]);
+    }
+    this->playerTurnList.push_back(&this->walikota);
+
+    // sort player turn order
+    this->lexicographicSort();
+  
+    
+}
+void GameStatus::surrend(){
+    string nama = getCurrentPlayer()->getUsername();
+    if (getCurrentPlayer()->getPeran()=="Petani"){
+        int id = 0;
+        for (size_t i =0;i < petaniList.size();++i){
+            if (petaniList[i].getUsername()==nama){
+                id = i;
             }
         }
-    } while (nameExists);
+        petaniList.erase(petaniList.begin()+id);
+    }else if (getCurrentPlayer()->getPeran()=="Peternak"){
+        int id = 0;
+        for (size_t i =0;i < peternakList.size();++i){
+            if (peternakList[i].getUsername()==nama){
+                id = i;
+            }
+        }
+        peternakList.erase(peternakList.begin()+id);
+    }else{
+        throw WalikotaSurrend();
+    }
+    
+    playerTurnList.clear();
+    for (size_t i =0 ; i<peternakList.size();i++){
+        this->playerTurnList.push_back(&this->peternakList[i]);
+    }
+    for (size_t i =0 ; i<petaniList.size();i++){
+        this->playerTurnList.push_back(&this->petaniList[i]);
+    }
+    this->playerTurnList.push_back(&this->walikota);
+    cout<<nama<<" telah surrend (T_T)"<<endl;
+    turn = turn % playerTurnList.size();
+    lexicographicSort();
+    cout<<"Giliran "<< playerTurnList[turn]->getUsername() <<" untuk jalan!"<<endl;
 
-    if (jenis == "Peternak")
-    {
-        peternakList.push_back(Peternak(nama, 50, 40,
-                                        PetiRahasia(objek.getSizeInventory()[0], objek.getSizeInventory()[1]),
-                                        Ternak(objek.getSizeFarm()[0], objek.getSizeFarm()[1]),
-                                        0));
-        this->playerTurnList.push_back(&peternakList[petaniList.size() - 1]);
-    }
-    else if (jenis == "Petani")
-    {
-        petaniList.push_back(Petani(nama, 50, 40,
-                                    PetiRahasia(objek.getSizeInventory()[0], objek.getSizeInventory()[1]),
-                                    Ladang(objek.getSizeCrops()[0], objek.getSizeCrops()[1]),
-                                    0));
-        this->playerTurnList.push_back(&petaniList[petaniList.size() - 1]);
-    }
-    else
-    {
-        // TODO Error peran di luar batas
-    }
-    // sort player turn order
-    sort(this->playerTurnList.begin(), this->playerTurnList.end());
+
+
 }

@@ -16,8 +16,10 @@
 #include "src/GameStatus/GameStatus.hpp"
 
 // #include "src/Player/Player.cpp"
-
+#include <algorithm>
+#include <string>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 // ANSI color codes
@@ -75,14 +77,37 @@ int main()
     printASCII(filename);
     cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl
          << endl;
+    bool muatDone = false;
+    while (!muatDone)
+    {
+        try{
+            game_status.Inisiasi(game_object);
+            muatDone = true;
+        }catch(const Exception& e){
+            cout<<e.what()<<endl<<endl;
+        }
 
-    game_status.Inisiasi(game_object);
-
+    }
+    
+   
     // game_status.muat("Config/state.txt",game_object);
     // cout<<game_status.getWalikota().getUsername()<<endl;
     // cout<<game_status.getWalikota().getId()<<endl;
-    // Bangunan *b = new Bangunan("XYZ", "ShinKanSen", 50);
-    // game_status.getWalikota().getData().setElement(b,0,0);
+    //Bangunan *b = new Bangunan("XYZ", "TEAK_WOOD", 50);
+    //Bangunan *c = new Bangunan("ABC", "IRONWOOD_WOOD", 50);
+    //game_status.getWalikota().getData().setElement(b,0,0);
+    //game_status.getWalikota().getData().setElement(c,1,1);
+    //Animal *a = new Animal("COW", "COW", "HERBIVORE", 20, 6);
+    //Peternak peternak = game_status.getPeternak("Peternak1");
+    //peternak.data.setElement(a,1,1);
+    // cout << peternak.data.getElement(1,1)->getNama();
+    //game_status.setPeternak(game_status.getIndeksPeternak("Peternak1"),peternak);
+
+    //Plant *bayam = new Plant("APL", "APPLE_TREE", "FRUIT_PLANT",13,4);
+    //Petani petani = game_status.getPetani("Petani1");
+    //petani.data.setElement(bayam,1,1);
+    //game_status.setPetani(game_status.getIndeksPetani("Petani1"),petani);
+    // game_status.getWalikota().getData().removeElement(0,0);
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
     // game_status.getToko().welcome();
@@ -97,8 +122,16 @@ int main()
         cout << endl <<"Pilih Opsi yang ingin digunakan: ";
         cin >> opsi;
         cout << endl;
+        if (opsi==0){
+            // GetIdentitas
+            cout<<"   --- Status Pemain ---   "<<endl;
+            cout<<"ID: "<<game_status.getCurrentPlayer()->getId()<<endl;
+            cout<<"Username: "<<game_status.getCurrentPlayer()->getUsername()<<endl;
+            cout<<"Peran: "<<game_status.getCurrentPlayer()->getPeran()<<endl;
+            cout<<"Uang: "<<game_status.getCurrentPlayer()->getUang()<<endl;
+            cout<<"Berat Badan: "<<game_status.getCurrentPlayer()->getBeratBadan()<<endl;
 
-        if (opsi == 1)
+        }else if (opsi == 1)
         {
             // Panggil fungsi
             game_status.nextTurn(game_object);
@@ -226,30 +259,70 @@ int main()
         {
             // validasi
             game_status.membeli();
-        }
-        else if (opsi == 12)
-        {
-            try
-            {
-                if (game_status.getWalikota().isKosong())
-                {
-                    throw PenyimpananKosong();
+        }else if (opsi==12){
+            try{
+                if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+                    game_status.menjualWalikota(game_object);
                 }
-                game_status.getToko().welcome();
-                cout << "Berikut merupakan penyimpanan Anda" << endl;
-                cout << game_status.getWalikota().getData().getN();
-                // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
-                game_status.getWalikota().getData().cetakPenyimpanan();
-                cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
-                string petak;
-                cout << "Petak : ";
-                cin >> petak;
-                // }
-            }
-            catch (const PenyimpananKosong &e)
-            {
+                else if(game_status.getCurrentPlayer()->getPeran() == "Peternak"){
+                    game_status.menjualPeternak(game_status.getCurrentPlayer()->getUsername(),game_object);
+
+                }
+                else if(game_status.getCurrentPlayer()->getPeran() == "Petani"){
+                    game_status.menjualPetani(game_status.getCurrentPlayer()->getUsername(),game_object);
+                }
+            //     if(game_status.getWalikota().isKosong()){
+            //         throw PenyimpananKosong();
+            //     }
+            //     game_status.getToko().welcome();
+            //     cout << "Berikut merupakan penyimpanan Anda" << endl;
+            //     // cout << game_status.getWalikota().data.getN();
+            //     // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+            //     game_status.getWalikota().data.cetakPeti("Penyimpanan");
+            //     cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
+            //     string petak;
+            //     cout << "Petak : ";
+            //     cin.ignore();
+            //     getline(cin,petak);
+                
+            //     istringstream iss(petak);
+            //     vector<string> tokens;
+
+            //     // Memproses string menggunakan std::getline dengan pemisah koma dan spasi
+            //     string token;
+            //     while (getline(iss, token, ',')) { // Memisahkan berdasarkan koma
+            //         istringstream iss_token(token);
+            //         string subtoken;
+            //         while (std::getline(iss_token, subtoken, ' ')) {
+            //             if(subtoken != "\0"){
+            //                 tokens.push_back(subtoken);
+            //             } // Memisahkan berdasarkan spasi
+            //         }
+            //     }
+
+            //     // Menampilkan token-token yang sudah dipisahkan
+            //     int totalGulden = 0;
+            //     for (const auto& t : tokens) {
+            //         int i = stoi(t.substr(1)) - 1;
+            //         int j = t[0] - 'A';
+            //         if(game_status.getWalikota().data.getElement(i,j)==0){
+            //             throw HarapanKosong();
+            //         }
+            //         else{
+            //             string nama = game_status.getWalikota().data.getElement(i,j)->getNama();
+            //             int price = game_object.findProduk(nama).getHarga();
+            //             totalGulden += price;
+            //         }
+            //     }
+            //     cout << "Barang Anda berhasil dijual! Uang Anda bertambah " << totalGulden << " gulden!" << endl;
+            //         // cout << tokens.size();
+            //     // }
+            }catch(const PenyimpananKosong& e){
                 cout << e.what();
                 cout << " Anda tidak dapat melakukan penjualan!" << endl;
+            }catch(const HarapanKosong& e){
+                cout << e.what();
+                cout << " Silahkan masukan petak yang berisi item." <<endl;
             }
             // validasi
             // game_status.menjual();
@@ -269,33 +342,38 @@ int main()
         else if (opsi == 14)
         {
             // validasi
-            string pathMuat;
-            cout << "Masukkan path file untuk dimuat: ";
-            cin >> pathMuat;
-            game_status.muat(pathMuat, game_object);
-        }
-        else if (opsi == 15)
-        {
-            // validasi
             string pathSimpan;
             cout << "Masukkan path file untuk disimpan: ";
             cin >> pathSimpan;
             game_status.simpan(pathSimpan, game_object);
         }
-        else if (opsi == 16)
+        else if (opsi == 15)
         {
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran() == "Walikota" && game_status.getCurrentPlayer()->getUang() >= 50)
-            {
-                game_status.tambahPemain(game_object);
+            // Tambah Pemain
+            try{
+                if (game_status.getCurrentPlayer()->getPeran()!="Walikota"){
+                    throw PeranTidakSesuai();
+                }else if (game_status.getCurrentPlayer()->getUang()<50){
+                    throw UangTidakCukup();
+                }else{
+                    game_status.tambahPemain(game_object);
+                    cout<<"Pemain berhasil terdaftar!"<<endl;
+                }
+            }catch(const Exception& e){
+                cout<<e.what()<<endl;
+                cout<<"Kembali ke program utama"<<endl;
             }
-            else
-            {
-                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
+        }else if (opsi==16){
+            // Menyerah
+            try{
+                game_status.surrend();
+            }catch(const Exception& e){
+                cout<<e.what()<<endl;
             }
         }
         else{
-            cout<<"Opsi tidak valid!"<<endl;
+            cout<<OpsiTidakValid().what()<<endl;
         }
     }
 
