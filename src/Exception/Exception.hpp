@@ -66,4 +66,11 @@ class PenyimpananKosong : public Exception{
     }
 };
 
+class HarapanKosong : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Anda mengambil harapan kosong dari penyimpanan.";
+    }
+};
+
 #endif
