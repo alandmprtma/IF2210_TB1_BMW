@@ -67,7 +67,7 @@ public:
     void menjualWalikota(GameObject game_object);
     void menjualPeternak(string nama, GameObject game_object);
     void menjualPetani(string nama, GameObject game_object);
-    void memanen();
+    void memanen(GameObject objek);
     void muat(string path,GameObject objek);
     void simpan(string path, GameObject objek);
     void tambahPemain(GameObject objek);
