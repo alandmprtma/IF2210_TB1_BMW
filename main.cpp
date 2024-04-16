@@ -138,11 +138,19 @@ int main()
         cout << "15. Tambah Player" << endl;
         cout << "16. Menyerah" << endl;
 
-
         int opsi;
         cout << endl
              << "Pilih Opsi yang ingin digunakan: ";
-        cin >> opsi;
+        if (!(cin >> opsi))
+        {
+            cout << "Input tidak valid!" << endl;
+
+            cin.clear();
+
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            continue;
+        }
         cout << endl;
         if (opsi == 0)
         {

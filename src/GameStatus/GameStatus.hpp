@@ -9,6 +9,7 @@
 #include "../Toko/Toko.hpp"
 #include "../GameObject/GameObject.hpp"
 #include "../Exception/Exception.hpp"
+#include <limits>
 #include <algorithm>
 #include <iostream>
 #include <fstream>
