@@ -36,19 +36,19 @@ class MaterialTidakCukupException : public Exception{
 class NoPLayerException : public Exception{
     public:
     const char* what() const throw(){
-        return "[ERROR]: No Player Assigned yet";
+        return "Belum ada player yang terdaftar! ";
     }
 };
 class NoPetaniException : public Exception{
     public:
     const char* what() const throw(){
-        return "[ERROR]: No Petani Assigned yet";
+        return "Belum ada petani yang terdaftar!";
     }
 };
 class NoPeternakException : public Exception{
     public:
     const char* what() const throw(){
-        return "[ERROR]: No Peternak Assigned yet";
+        return "Belum ada petani yang terdaftar!";
     }
 };
 
@@ -100,6 +100,18 @@ class UangTidakCukup : public Exception {
     public:
     const char* what() const throw(){
         return "Uang Pemain Tidak Cukup!";
+    }
+};
+class WalikotaSurrend : public Exception {
+    public:
+    const char* what() const throw(){
+        return "YTH Walikota, jangan surrend ! (T_T) ";
+    }
+};
+class OpsiTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Opsi tidak valid! ";
     }
 };
 #endif

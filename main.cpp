@@ -290,6 +290,7 @@ int main()
         else if (opsi == 15)
         {
             // validasi
+            // Tambah Pemain
             try{
                 if (game_status.getCurrentPlayer()->getPeran()!="Walikota"){
                     throw PeranTidakSesuai();
@@ -303,9 +304,16 @@ int main()
                 cout<<e.what()<<endl;
                 cout<<"Kembali ke program utama"<<endl;
             }
+        }else if (opsi==16){
+            // Menyerah
+            try{
+                game_status.surrend();
+            }catch(const Exception& e){
+                cout<<e.what()<<endl;
+            }
         }
         else{
-            cout<<"Opsi tidak valid!"<<endl;
+            cout<<OpsiTidakValid().what()<<endl;
         }
     }
 

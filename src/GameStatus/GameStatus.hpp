@@ -64,7 +64,7 @@ public:
     void muat(string path,GameObject objek);
     void simpan(string path, GameObject objek);
     void tambahPemain(GameObject objek);
-    
+    void surrend();
 };
 
 #endif

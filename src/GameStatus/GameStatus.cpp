@@ -12,15 +12,24 @@ GameStatus::GameStatus()
 
 bool GameStatus::isEndGame(GameObject objek)
 {
+    
     for (size_t i = 0; i < playerTurnList.size() && !endGame; i++)
     {
         if (playerTurnList[i]->getUang() >= objek.getWinGulden() &&
             playerTurnList[i]->getBeratBadan() >= objek.getWinWeight())
         {
             endGame = true;
+            cout<<endl;
             cout << playerTurnList[i]->getUsername() << " berhasil memenangkan permainan !" << endl;
         }
     }
+    if (playerTurnList.size()==1){
+        endGame = true;   
+        cout<<endl;
+        cout << playerTurnList[0]->getUsername() << " berhasil memenangkan permainan !" << endl;
+        cout << "TITLE: THE LAST MAN STANDING"<<endl;
+    }
+
     return endGame;
 }
 void GameStatus::lexicographicSort() {
@@ -688,4 +697,42 @@ void GameStatus::tambahPemain(GameObject objek)
     this->lexicographicSort();
   
     
+}
+void GameStatus::surrend(){
+    string nama = getCurrentPlayer()->getUsername();
+    if (getCurrentPlayer()->getPeran()=="Petani"){
+        int id = 0;
+        for (size_t i =0;i < petaniList.size();++i){
+            if (petaniList[i].getUsername()==nama){
+                id = i;
+            }
+        }
+        petaniList.erase(petaniList.begin()+id);
+    }else if (getCurrentPlayer()->getPeran()=="Peternak"){
+        int id = 0;
+        for (size_t i =0;i < peternakList.size();++i){
+            if (peternakList[i].getUsername()==nama){
+                id = i;
+            }
+        }
+        peternakList.erase(peternakList.begin()+id);
+    }else{
+        throw WalikotaSurrend();
+    }
+    
+    playerTurnList.clear();
+    for (size_t i =0 ; i<peternakList.size();i++){
+        this->playerTurnList.push_back(&this->peternakList[i]);
+    }
+    for (size_t i =0 ; i<petaniList.size();i++){
+        this->playerTurnList.push_back(&this->petaniList[i]);
+    }
+    this->playerTurnList.push_back(&this->walikota);
+    cout<<nama<<" telah surrend (T_T)"<<endl;
+    turn = turn % playerTurnList.size();
+    lexicographicSort();
+    cout<<"Giliran "<< playerTurnList[turn]->getUsername() <<" untuk jalan!"<<endl;
+
+
+
 }
