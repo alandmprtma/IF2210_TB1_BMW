@@ -201,7 +201,7 @@ void Peternak::panenTernak(GameObject objek) {
                 Produk newProduk = objek.getProdukList()[j];
 
                 /* Mencari petak kosong pada penyimpanan */
-                while (data.getElement(row, col) != nullptr) {
+                while (data.getElementNoException(row, col) != nullptr) {
                     col++;
                     if (col == data.getN()) {
                         col = 0;
