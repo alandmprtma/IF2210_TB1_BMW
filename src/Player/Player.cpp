@@ -67,7 +67,7 @@ string Player::getUsername() {
   return this->username;
 }
 
-PetiRahasia &Player::getData() {
+PetiRahasia& Player::getData() {
   return this->data;
 }
 
@@ -105,10 +105,6 @@ int Player::getBeratBadan() {
 
 int Player::getId() {
   return IdPlayer;
-}
-
-PetiRahasia Player::getPetiRahasia() {
-  return this->data;
 }
 
 void Player::isElementNull(int i, int j)

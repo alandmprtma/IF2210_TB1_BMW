@@ -604,13 +604,10 @@ void GameStatus::makan(GameObject &objek)
     currentPlayer->makan(objek);
 }
 
-void GameStatus::memberiPangan(GameObject objek){
-    if (getCurrentPlayer()->getPeran() == "Petani") {
-        getPetani(getCurrentPlayer()->getUsername()).panenTanaman(objek);
-    } else if (getCurrentPlayer()->getPeran() == "Peternak") {
-        getPeternak(getCurrentPlayer()->getUsername()).panenTernak(objek);
-    }      
+void GameStatus::memberiPangan()
+{
 }
+
 void GameStatus::membeliWalikota(GameObject game_object){
     try{
         if(this->getWalikota().isPenuh()){
@@ -1169,10 +1166,13 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
     }
 }
 
-void GameStatus::memanen(){
-
+void GameStatus::memanen(GameObject objek) {
+    if (getCurrentPlayer()->getPeran() == "Petani") {
+        getPetani(getCurrentPlayer()->getUsername()).panenTanaman(objek);
+    } else if (getCurrentPlayer()->getPeran() == "Peternak") {
+        getPeternak(getCurrentPlayer()->getUsername()).panenTernak(objek);
+    }       
 }
-
 void GameStatus::simpan(string path, GameObject objek)
 {
     ofstream outFile(path);
