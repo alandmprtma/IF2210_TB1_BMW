@@ -71,6 +71,82 @@ class PenyimpananSudahTerisi : public Exception{
         return "Penyimpanan Anda Sudah Terisi!";
     }
 };
+class PenyimpananSudahPenuh : public Exception {
+    public:
+    const char* what() const throw() {
+        return "Penyimpanan Anda sudah penuh, tidak ada petak kosong yang tersisa!";
+    }
+};
+
+class InvalidPlayer : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Anda tidak memiliki akses untuk melakukan aksi ini!";
+    }
+};
+
+class ElementNotFound : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Kamu mengambil harapan kosong dari penyimpanan.\nSilahkan masukan slot yang berisi makanan.";
+    }
+};
+
+class ElementNotConsumable : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!\nSilahkan masukan slot yang berisi makanan.";
+    }
+};
+
+class PenyimpananDontHaveProduct : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda tidak memiliki produk! Anda tidak bisa makan!";
+    }
+};
+
+class PenyimpananDontHavePlant : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda tidak memiliki plant! Anda tidak bisa tanam!";
+    }
+};
+
+class ElementNotPlant : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Itu bukan tanaman! ambil yang lain!";
+    }
+};
+
+class PetaniNotFoundException : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Petani tidak ditemukan!";
+    }
+};
+
+class PeternakNotFoundException : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Peternak tidak ditemukan!";
+    }
+};
+
+class SlotSudahTerisi : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Slot yang dipilih sudah terisi!";
+    }
+};
+
+class SlotTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Slot tidak valid!";
+    }
+};
 
 class IndexOutOfBound : public Exception {
     public:
@@ -139,4 +215,5 @@ class BarangTidakCukup : public Exception{
         return "Kuantitas barang tidak cukup untuk dibeli!";
     }
 };
+
 #endif

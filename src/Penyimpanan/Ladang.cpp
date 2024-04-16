@@ -43,3 +43,23 @@ void Ladang::cetakPenyimpanan() {
         cout << "+" << endl;
     }
 }
+Penyimpanan<Plant*>& Ladang::operator+(Plant* other){
+      for (int i=0;i<m;i++){
+        for (int j=0;j<n;j++){
+          if (this->data[i][j]==nullptr){
+              this->data[i][j] = other;
+              return *this;
+          }
+        }
+      }
+      return *this;
+    }
+  void Ladang::operator=(Penyimpanan<Plant*>& other){
+    this->m = other.getM();
+    this->n = other.getN();
+      for (int i=0;i<m;i++){
+        for (int j=0;j<n;j++){
+          this->data[i][j] = other.getElementNoException(i,j);
+        }
+      }
+    }

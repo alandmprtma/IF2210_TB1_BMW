@@ -81,9 +81,6 @@ void GameStatus::nextTurn(GameObject objek){
 
 void GameStatus::Inisiasi(GameObject objek)
 {
-
-    // TODO muat state.txt atau muat default
-
     int opsi;
     do
     {
@@ -93,13 +90,24 @@ void GameStatus::Inisiasi(GameObject objek)
         cout << endl
              << "Masukkan opsi memulai game yang diinginkan ! " << endl;
         cout << "Opsi: ";
-        cin >> opsi;
+
+        if (!(cin >> opsi))
+        {
+            cout << endl << "Input tidak valid!" << endl;
+
+            cin.clear();
+
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            continue;
+        }
+
         cout << endl;
         if (opsi != 1 && opsi != 2)
         {
             cout << "Opsi di luar jangkauan !" << endl;
         }
-    } while (opsi <= 0 || opsi > 2);
+    } while (opsi != 1 && opsi != 2);
 
     if (opsi == 1)
     {
@@ -124,12 +132,14 @@ void GameStatus::Inisiasi(GameObject objek)
 
         // order player turn
         this->lexicographicSort();
-
-    }else if (opsi==2){
+    }
+    else if (opsi == 2)
+    {
         // TODO command muat
         string path;
-        cout<<"[Asumsi path relatif terhadap root directory tugas]"<<endl<<"Masukkan file state yang ingin dimuat: ";
-        cin>>path;
+        cout << "[Asumsi path relatif terhadap root directory tugas]" << endl
+             << "Masukkan file state yang ingin dimuat: ";
+        cin >> path;
         this->muat(path, objek);
 
         // store player
@@ -167,6 +177,7 @@ void GameStatus::Inisiasi(GameObject objek)
         // cout<<walikota.getUang()<<" "<<walikota.getBeratBadan()<<endl;
     }
 }
+
 
 Player *GameStatus::getCurrentPlayer() const
 {
@@ -505,24 +516,48 @@ void GameStatus::muat(string path, GameObject objek)
     }
 }
 
+void GameStatus::CurrentPlayerValidation(string a)
+{
+    if (a != getCurrentPlayer()->getPeran())
+    {
+        throw InvalidPlayer();
+    }
+}
+
 void GameStatus::cetakPenyimpanan()
 {
     getCurrentPlayer()->getData().cetakPenyimpanan();
 }
 
+
 void GameStatus::pungutPajak(GameObject &objek)
 {
-    cout << "Cring cring cring..." << endl;
-    cout << "Pajak sudah dipungut!" << endl;
-    cout << endl;
+    try
+    {
+        this->CurrentPlayerValidation("Walikota");
+        cout << "Cring cring cring..." << endl;
+        cout << "Pajak sudah dipungut!" << endl;
+        cout << endl;
 
-    this->walikota.pungutPajak(objek, playerTurnList);
+        this->walikota.pungutPajak(objek, playerTurnList);
+    }
+    catch (InvalidPlayer &e)
+    {
+        cout << e.what() << endl;
+    }
 }
-
 void GameStatus::tanam()
 {
+    try
+    {
+        this->CurrentPlayerValidation("Petani");
+        this->getPetani(getCurrentPlayer()->getUsername()).tanamTanaman();
+    }
+    catch (InvalidPlayer &e)
+    {
+        cout << e.what() << endl;
+    }
 }
-
 void GameStatus::ternak()
 {
 }
@@ -562,11 +597,19 @@ void GameStatus::bangunBangunan(string kodeHuruf, string namaBangunan, int price
     this->getWalikota().bangunBangunan(kodeHuruf, namaBangunan, price, teak, sandalwood, aloe, ironwood);
 }
 
-void GameStatus::makan(){
+void GameStatus::makan(GameObject &objek)
+{
 
+    Player *currentPlayer = getCurrentPlayer();
+    currentPlayer->makan(objek);
 }
-void GameStatus::memberiPangan(){
 
+void GameStatus::memberiPangan(GameObject objek){
+    if (getCurrentPlayer()->getPeran() == "Petani") {
+        getPetani(getCurrentPlayer()->getUsername()).panenTanaman(objek);
+    } else if (getCurrentPlayer()->getPeran() == "Peternak") {
+        getPeternak(getCurrentPlayer()->getUsername()).panenTernak(objek);
+    }      
 }
 void GameStatus::membeliWalikota(GameObject game_object){
     try{
@@ -1311,7 +1354,4 @@ void GameStatus::surrend(){
     turn = turn % playerTurnList.size();
     lexicographicSort();
     cout<<"Giliran "<< playerTurnList[turn]->getUsername() <<" untuk jalan!"<<endl;
-
-
-
 }

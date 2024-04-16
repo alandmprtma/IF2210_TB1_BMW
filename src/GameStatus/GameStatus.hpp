@@ -10,6 +10,7 @@
 #include "../GameObject/GameObject.hpp"
 #include "../Exception/Exception.hpp"
 #include <algorithm>
+#include <limits>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -41,6 +42,7 @@ public:
     Player* getPlayer(int);
     Petani getPetani(string username);
     int getIndeksPetani(string username);
+
     void setPetani(int indeks, Petani p);
     Peternak getPeternak(string username);
     int getIndeksPeternak(string username);
@@ -48,7 +50,7 @@ public:
     Walikota& getWalikota();
     Toko& getToko();
     void lexicographicSort();
-
+    void CurrentPlayerValidation(string);
 
     bool isEndGame(GameObject objek);
     void nextTurn(GameObject objek);
@@ -60,7 +62,7 @@ public:
     void tanam();
     void ternak();
     void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
-    void makan();
+    void makan(GameObject&);
     void memberiPangan();
     void membeliWalikota(GameObject game_object);
     void membeliPeternak(string nama, GameObject game_object);
@@ -68,7 +70,7 @@ public:
     void menjualWalikota(GameObject game_object);
     void menjualPeternak(string nama, GameObject game_object);
     void menjualPetani(string nama, GameObject game_object);
-    void memanen();
+    void memanen(GameObject objek);
     void muat(string path,GameObject objek);
     void simpan(string path, GameObject objek);
     void tambahPemain(GameObject objek);

@@ -1,4 +1,3 @@
-
 #include "Player.hpp"
 
 int Player::jumlahPlayer = 0;
@@ -112,45 +111,115 @@ PetiRahasia Player::getPetiRahasia() {
   return this->data;
 }
 
-void Player::makan(GameObject objek)
+void Player::isElementNull(int i, int j)
 {
-  cout << "Pilih makanan dari penyimpanan" << endl;
-
-  getPetiRahasia().cetakPenyimpanan();
-
-  bool validInput = false;
-
-  while (!validInput)
+  if (getData().getElementNoException(i, j) == nullptr)
   {
-    string Slot;
-    cout << "Slot:" << endl;
-    cin >> Slot;
-
-    int kolom = ((int)Slot[0] - 'A') + 1;
-    int baris = (int)stoi(Slot.substr(1, 2));
-
-    Item* item = getPetiRahasia().getElement(baris - 1, kolom - 1);
-    if (item == nullptr)
-    {
-      std::cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl
-                << "Silahkan masukan slot yang berisi makanan." << endl;
-    }
-    else if (item->getTipe() == "PRODUCT_FRUIT_PLANT" || item->getTipe() == "PRODUCT_ANIMAL")
-    {
-      validInput = true;
-    }
-    else
-    {
-      std::cout << "Apa yang kamu lakukan?!! Kamu mencoba untuk memakan itu?!" << endl << "Silahkan masukan slot yang berisi makanan." << endl;
-    }
-    berat_badan += objek.findProduk(item->getNama()).getBeratTambahan();
+    throw ElementNotFound();
   }
 }
 
+void Player::isElementNotProduct(int i, int j)
+{
+  if (getData().getElementNoException(i, j)->getTipe() != "PRODUCT_FRUIT_PLANT" && getData().getElementNoException(i, j)->getTipe() != "PRODUCT_ANIMAL")
+  {
+    throw ElementNotConsumable();
+  }
+}
+
+void Player::isIndexValid(int i, int j, int baris, int kolom) {
+    if (i < 0 || i > baris || j < 0 || j > kolom) {
+      throw IndexOutOfBound();
+    }
+  }
+
+void Player::isPenyimpananHaveProduct()
+{
+  bool valid = false;
+  int i = 0;
+  while (i < getData().getM() && !valid)
+  {
+    int j = 0;
+    while (j < getData().getN() && !valid)
+    {
+      if (getData().getElementNoException(i, j) != nullptr)
+      {
+        if (getData().getElementNoException(i, j)->getTipe() == "PRODUCT_FRUIT_PLANT" || getData().getElementNoException(i, j)->getTipe() == "PRODUCT_ANIMAL")
+        {
+          valid = true;
+        }
+      }
+      j++;
+    }
+    i++;
+  }
+  if (!valid)
+  {
+    throw PenyimpananDontHaveProduct();
+  }
+}
+
+void Player::makan(GameObject objek)
+{
+  try
+  {
+    isPenyimpananHaveProduct();
+    cout << "Pilih makanan dari penyimpanan" << endl
+         << endl;
+
+    data.cetakPenyimpanan();
+
+    while (true)
+    {
+      try
+      {
+        string Slot;
+        cout << "Slot: ";
+        cin >> Slot;
+        cout << endl;
+
+        int kolom = ((int)Slot[0] - 'A') + 1;
+        int baris = (int)stoi(Slot.substr(1, 2));
+
+        isIndexValid(baris - 1, kolom - 1, data.getM(), data.getN());
+
+        isElementNull(baris - 1, kolom - 1);
+        isElementNotProduct(baris - 1, kolom - 1);
+
+        Item *item = data.getElementNoException(baris - 1, kolom - 1);
+
+        berat_badan += objek.findProduk(item->getNama()).getBeratTambahan();
+        cout << "Dengan lahapnya, kamu memakanan hidangan itu" << endl;
+        cout << "Berat badanmu bertambah menjadi " << berat_badan << endl;
+        data.removeElement(baris - 1, kolom - 1);
+        data.cetakPenyimpanan();
+        break;
+      }
+      catch (IndexOutOfBound &e)
+      {
+        cout << e.what() << endl
+             << endl;
+      }
+      catch (ElementNotFound &e)
+      {
+        cout << e.what() << endl
+             << endl;
+      }
+      catch (ElementNotConsumable &e)
+      {
+        cout << e.what() << endl
+             << endl;
+      }
+    }
+  }
+  catch (const PenyimpananDontHaveProduct &e)
+  {
+    cout << e.what() << endl;
+  }
+}
 void Player::printPlayer() {
   cout << "ID Player: " << this->IdPlayer << endl; 
   cout << "Username: " << this->username << endl;
   cout << "Uang: " << this->uang << endl;
   cout << "Berat Badan: " << getBeratBadan() << endl;
-
 }

@@ -11,9 +11,9 @@
 class Petani : public Player, public Toko {
   protected:
     int jumlahBangunan;
+    Ladang dataLadang;
 
   public:
-    Ladang dataLadang;
 
     /* Constructor */
     Petani();
@@ -36,6 +36,11 @@ class Petani : public Player, public Toko {
 
     /* Mencetak Data Player */
     void printPlayer();
+    void isInventoryFull();
+    void isInventoryHavePlant();
+    void isElementTanaman(int, int);
+    void isElementKosong(int, int);
+    void isSlotValid(string);
 
     /* Virtual Function Toko. Fungsi Jual Beli*/
     void beli();
