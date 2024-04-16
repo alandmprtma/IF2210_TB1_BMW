@@ -40,9 +40,13 @@ public:
     Player* getCurrentPlayer() const;
     Player* getPlayer(int);
     Petani getPetani(string username);
+    int getIndeksPetani(string username);
+    void setPetani(int indeks, Petani p);
     Peternak getPeternak(string username);
+    int getIndeksPeternak(string username);
+    void setPeternak(int indeks, Peternak p);
     Walikota& getWalikota();
-    Toko getToko();
+    Toko& getToko();
 
 
     bool isEndGame();
@@ -58,7 +62,9 @@ public:
     void makan();
     void memberiPangan();
     void membeli();
-    void menjual();
+    void menjualWalikota(GameObject game_object);
+    void menjualPeternak(string nama, GameObject game_object);
+    void menjualPetani(string nama, GameObject game_object);
     void memanen();
     void muat(string path,GameObject objek);
     void simpan(string path, GameObject objek);
