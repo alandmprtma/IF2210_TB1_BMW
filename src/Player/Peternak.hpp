@@ -37,6 +37,7 @@ class Peternak : public Player, public Toko {
 
     /* Mencetak Data Player */
     void printPlayer();
+    void isSlotValid(string);
 
     /* Virtual Function Toko. Fungsi Jual Beli*/
     void jual();

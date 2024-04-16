@@ -7,6 +7,7 @@
 #include "../Penyimpanan/PetiRahasia.hpp"
 #include "../Exception/Exception.hpp"
 #include <regex>
+#include <limits>
 using namespace std;
 
 #define DEFAULT_GULDEN 50
