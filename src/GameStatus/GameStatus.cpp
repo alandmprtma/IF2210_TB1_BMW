@@ -40,15 +40,8 @@ void GameStatus::lexicographicSort() {
         // Swap
         Player* temp = playerTurnList[i];
         playerTurnList[i] = playerTurnList[min];
-        cout<<"min: "<<min<<" "<<playerTurnList[min]->getUsername()<<endl;
         playerTurnList[min] = temp;
-        cout<<"temp: "<<temp->getUsername()<<endl;
 
-        cout<<playerTurnList[i]->getUsername()<<endl;
-    }
-    cout<<playerTurnList.size()<<endl;
-    for (size_t i = 0;i<playerTurnList.size();i++){
-        cout<<playerTurnList[i]->getUsername()<<endl;
     }
 }
 void GameStatus::nextTurn(GameObject objek){

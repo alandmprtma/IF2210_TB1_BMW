@@ -97,8 +97,16 @@ int main()
         cout << endl <<"Pilih Opsi yang ingin digunakan: ";
         cin >> opsi;
         cout << endl;
+        if (opsi==0){
+            // GetIdentitas
+            cout<<"   --- Status Pemain ---   "<<endl;
+            cout<<"ID: "<<game_status.getCurrentPlayer()->getId()<<endl;
+            cout<<"Username: "<<game_status.getCurrentPlayer()->getUsername()<<endl;
+            cout<<"Peran: "<<game_status.getCurrentPlayer()->getPeran()<<endl;
+            cout<<"Uang: "<<game_status.getCurrentPlayer()->getUang()<<endl;
+            cout<<"Berat Badan: "<<game_status.getCurrentPlayer()->getBeratBadan()<<endl;
 
-        if (opsi == 1)
+        }else if (opsi == 1)
         {
             // Panggil fungsi
             game_status.nextTurn(game_object);
@@ -274,20 +282,12 @@ int main()
         else if (opsi == 14)
         {
             // validasi
-            string pathMuat;
-            cout << "Masukkan path file untuk dimuat: ";
-            cin >> pathMuat;
-            game_status.muat(pathMuat, game_object);
-        }
-        else if (opsi == 15)
-        {
-            // validasi
             string pathSimpan;
             cout << "Masukkan path file untuk disimpan: ";
             cin >> pathSimpan;
             game_status.simpan(pathSimpan, game_object);
         }
-        else if (opsi == 16)
+        else if (opsi == 15)
         {
             // validasi
             try{
