@@ -32,13 +32,16 @@ class Player {
     
     /* Validator */
     bool isKosong();
+    bool isPenuh();
 
     /* Setter Username */
     void setUsername(string);
     string getUsername();
     PetiRahasia& getData();
     int getUang();
+    int getSisaPenyimpanan();
     void setUang(int);
+    void batalPakaiGulden(int num);
 
     int getId();
 

@@ -279,15 +279,18 @@ int main()
         }
         else if (opsi == 11)
         {
-            // validasi
-            game_status.membeli();
-        }
-        else if (opsi == 12)
-        {
-            try
-            {
-                if (game_status.getCurrentPlayer()->getPeran() == "Walikota")
-                {
+            if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+                game_status.membeliWalikota(game_object);
+            }
+             else if(game_status.getCurrentPlayer()->getPeran() == "Peternak"){
+                game_status.membeliPeternak(game_status.getCurrentPlayer()->getUsername(),game_object);
+            }
+            else if(game_status.getCurrentPlayer()->getPeran() == "Petani"){
+                game_status.membeliPetani(game_status.getCurrentPlayer()->getUsername(),game_object);
+            }
+        }else if (opsi==12){
+            try{
+                if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
                     game_status.menjualWalikota(game_object);
                 }
                 else if (game_status.getCurrentPlayer()->getPeran() == "Peternak")

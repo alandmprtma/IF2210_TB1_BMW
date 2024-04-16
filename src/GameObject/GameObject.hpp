@@ -30,6 +30,7 @@ private:
 public:
     
     GameObject();
+    bool isBangunan(string nama);
     void muatTanaman(string pathTanaman);
     void muatProduk(string pathProduk);
     void muatHewan(string pathHewan);

@@ -77,54 +77,6 @@ class PenyimpananSudahPenuh : public Exception {
         return "Penyimpanan Anda sudah penuh, tidak ada petak kosong yang tersisa!";
     }
 };
-class IndexOutOfBound : public Exception {
-    public:
-    const char* what() const throw(){
-        return "Index yang dimasukkan melebihi batas penyimpanan!";
-    }
-};
-class PlayerAlreadyExist : public Exception {
-    public:
-    const char* what() const throw(){
-        return "Username Pemain sudah Terdaftar!";
-    }
-};
-class PeranTidakValid : public Exception {
-    public:
-    const char* what() const throw(){
-        return "Peran Tidak Valid!";
-    }
-};
-class PeranTidakSesuai : public Exception {
-    public:
-    const char* what() const throw(){
-        return "Perintah tidak dapat diakses karena peran tidak sesuai!";
-    }
-};
-class UangTidakCukup : public Exception {
-    public:
-    const char* what() const throw(){
-        return "Uang Pemain Tidak Cukup!";
-    }
-};
-class WalikotaSurrend : public Exception {
-    public:
-    const char* what() const throw(){
-        return "YTH Walikota, jangan surrend ! (T_T) ";
-    }
-};
-class OpsiTidakValid : public Exception {
-    public:
-    const char* what() const throw(){
-        return "Opsi tidak valid! ";
-    }
-};
-class HarapanKosong : public Exception{
-    public:
-    const char* what() const throw(){
-        return "Anda mengambil harapan kosong dari penyimpanan.";
-    }
-};
 
 class InvalidPlayer : public Exception {
     public:
@@ -193,6 +145,74 @@ class SlotTidakValid : public Exception {
     public:
     const char* what() const throw(){
         return "Slot tidak valid!";
+    }
+};
+
+class IndexOutOfBound : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Index yang dimasukkan melebihi batas penyimpanan!";
+    }
+};
+class PlayerAlreadyExist : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Username Pemain sudah Terdaftar!";
+    }
+};
+class PeranTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Peran Tidak Valid!";
+    }
+};
+class PeranTidakSesuai : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Perintah tidak dapat diakses karena peran tidak sesuai!";
+    }
+};
+class UangTidakCukup : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Uang Pemain Tidak Cukup!";
+    }
+};
+class WalikotaSurrend : public Exception {
+    public:
+    const char* what() const throw(){
+        return "YTH Walikota, jangan surrend ! (T_T) ";
+    }
+};
+class OpsiTidakValid : public Exception {
+    public:
+    const char* what() const throw(){
+        return "Opsi tidak valid! ";
+    }
+};
+class HarapanKosong : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Anda mengambil harapan kosong dari penyimpanan.";
+    }
+};
+class PenyimpananPenuh : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda Penuh!";
+    }
+};
+class GuldenTidakCukupException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Gulden Anda tidak cukup!";
+    }
+};
+
+class BarangTidakCukup : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Kuantitas barang tidak cukup untuk dibeli!";
     }
 };
 

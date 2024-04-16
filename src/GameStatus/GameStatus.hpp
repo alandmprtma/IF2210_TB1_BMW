@@ -9,8 +9,8 @@
 #include "../Toko/Toko.hpp"
 #include "../GameObject/GameObject.hpp"
 #include "../Exception/Exception.hpp"
-#include <limits>
 #include <algorithm>
+#include <limits>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -40,17 +40,18 @@ public:
 
     Player* getCurrentPlayer() const;
     Player* getPlayer(int);
-    Petani& getPetani(string username);
+    Petani getPetani(string username);
     int getIndeksPetani(string username);
+
     void setPetani(int indeks, Petani p);
-    Peternak& getPeternak(string username);
+    Peternak getPeternak(string username);
     int getIndeksPeternak(string username);
     void setPeternak(int indeks, Peternak p);
     Walikota& getWalikota();
     Toko& getToko();
     void lexicographicSort();
-
     void CurrentPlayerValidation(string);
+
     bool isEndGame(GameObject objek);
     void nextTurn(GameObject objek);
     void Inisiasi(GameObject);
@@ -63,7 +64,9 @@ public:
     void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
     void makan(GameObject&);
     void memberiPangan();
-    void membeli();
+    void membeliWalikota(GameObject game_object);
+    void membeliPeternak(string nama, GameObject game_object);
+    void membeliPetani(string nama, GameObject GameObject);
     void menjualWalikota(GameObject game_object);
     void menjualPeternak(string nama, GameObject game_object);
     void menjualPetani(string nama, GameObject game_object);
