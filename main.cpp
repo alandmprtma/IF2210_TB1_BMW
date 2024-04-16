@@ -21,41 +21,49 @@
 using namespace std;
 
 // ANSI color codes
-#define RESET   "\033[0m"      // Reset color
-#define RED     "\033[31m"     // Red color
-#define GREEN   "\033[32m"     // Green color
-#define YELLOW  "\033[33m"     // Yellow color
-#define BLUE    "\033[34m"     // Blue color
-#define MAGENTA "\033[35m"     // Magenta color
-#define CYAN    "\033[36m"     // Cyan color
-#define WHITE   "\033[37m"     // White color
+#define RESET "\033[0m"         // Reset color
+#define RED "\033[31m"          // Red color
+#define GREEN "\033[32m"        // Green color
+#define YELLOW "\033[33m"       // Yellow color
+#define BLUE "\033[34m"         // Blue color
+#define MAGENTA "\033[35m"      // Magenta color
+#define CYAN "\033[36m"         // Cyan color
+#define WHITE "\033[37m"        // White color
 #define ORANGE "\033[38;5;208m" // Orange color
 
-void printASCII(string filename) {
+void printASCII(string filename)
+{
     string line = " ";
     ifstream inFile;
     inFile.open(filename);
 
-    if (inFile.is_open()) {
-        while (getline(inFile, line)) {
+    if (inFile.is_open())
+    {
+        while (getline(inFile, line))
+        {
             cout << line << endl;
         }
-    } else {
+    }
+    else
+    {
         cout << "File not found" << endl;
     }
     inFile.close();
 }
 
-int main (){
+int main()
+{
     GameObject game_object = GameObject();
-    try{
+    try
+    {
         game_object.muatTanaman("Config/plant.txt");
         game_object.muatHewan("Config/animal.txt");
         game_object.muatProduk("Config/product.txt");
         game_object.muatBangunan("Config/recipe.txt");
         game_object.muatMisc("Config/misc.txt");
     }
-    catch (const FileNotFoundError &e){
+    catch (const FileNotFoundError &e)
+    {
         cout << e.what() << endl;
     }
 
@@ -65,10 +73,11 @@ int main (){
     cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl;
     string filename = "ascii.txt";
     printASCII(filename);
-    cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl  << endl;
+    cout << "✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦ . 　⁺ 　 . ✦" << endl
+         << endl;
 
     game_status.Inisiasi(game_object);
-    
+
     // game_status.muat("Config/state.txt",game_object);
     // cout<<game_status.getWalikota().getUsername()<<endl;
     // cout<<game_status.getWalikota().getId()<<endl;
@@ -76,167 +85,222 @@ int main (){
     // game_status.getWalikota().getData().setElement(b,0,0);
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
-    // game_status.getToko().welcome(); 
+    // game_status.getToko().welcome();
     // cout<<game_status.getWalikota().getData().getElement(0,1)->getNama()<<endl;
-    // Game 
-    cout<<"Sekarang Giliran "<<game_status.getCurrentPlayer()->getUsername()<<" untuk Jalan!"<<endl;
+    // Game
+    cout << "Sekarang Giliran " << game_status.getCurrentPlayer()->getUsername() << " untuk Jalan!" << endl;
 
-    while (! game_status.isEndGame(game_object))
+    while (!game_status.isEndGame(game_object))
     {
         // TODO: List fungsi apa aja
         int opsi;
-        cout<<"Pilih Opsi yang ingin digunakan: ";
-        cin>>opsi;
+        cout << endl <<"Pilih Opsi yang ingin digunakan: ";
+        cin >> opsi;
+        cout << endl;
 
-        if (opsi==1){
-            // Validasi 
-
+        if (opsi == 1)
+        {
             // Panggil fungsi
             game_status.nextTurn(game_object);
-        }else if (opsi==2){
-            // Validasi
-
+        }
+        else if (opsi == 2)
+        {
             // Panggil fungsi
             game_status.cetakPenyimpanan();
-        }else if (opsi==3){
-            // Validasi
-
-            // Panggil fungsi
-            game_status.pungutPajak();
-        }else if (opsi==4){
-            // Validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Petani"){
-                game_status.cetakPeternakan();
+        }
+        else if (opsi == 3)
+        {
+            if (game_status.getCurrentPlayer()->getPeran() == "Walikota")
+            {
+                game_status.pungutPajak(game_object);
             }
             else{
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
-            }
-
-        }else if (opsi==5){
-            if (game_status.getCurrentPlayer()->getPeran()=="Peternak"){
-                game_status.cetakLadang();
-            } else{
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
+                cout << "Perintah ini hanya bisa dilakukan oleh walikota! " << endl;
             }
         }
-        else if (opsi==6){
+        else if (opsi == 4)
+        {
+            // Validasi
+            if (game_status.getCurrentPlayer()->getPeran() == "Petani")
+            {
+                game_status.cetakPenyimpanan();
+            }
+            else
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
+            }
+        }
+        else if (opsi == 5)
+        {
+            if (game_status.getCurrentPlayer()->getPeran() == "Peternak")
+            {
+                game_status.cetakPenyimpanan();
+            }
+            else
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
+            }
+        }
+        else if (opsi == 6)
+        {
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Petani"){
+            if (game_status.getCurrentPlayer()->getPeran() == "Petani")
+            {
                 game_status.tanam();
-            }else{
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
             }
-        }else if (opsi==7){
+            else
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
+            }
+        }
+        else if (opsi == 7)
+        {
             // validasi
 
-            if (game_status.getCurrentPlayer()->getPeran()=="Peternak"){
+            if (game_status.getCurrentPlayer()->getPeran() == "Peternak")
+            {
                 game_status.ternak();
-            } else{
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
             }
-
-        }else if (opsi==8){
-             // validasi
+            else
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
+            }
+        }
+        else if (opsi == 8)
+        {
+            // validasi
             // cout<<"11";
             // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
-                try{
-                    cout<<"Resep bangunan yang ada adalah sebagai berikut." << endl;
-                     for (const auto& bangunan: game_object.getBangunanList()) {
-                        cout << bangunan.getNama() << " (" << bangunan.getPrice() << " gulden, ";
-                        for (const auto& pair : bangunan.getMaterial()) {
-                            cout << pair.first << " " << pair.second << ", ";
-                        }
-                        cout << "\b\b)" << endl;
+            try
+            {
+                cout << "Resep bangunan yang ada adalah sebagai berikut." << endl;
+                for (const auto &bangunan : game_object.getBangunanList())
+                {
+                    cout << bangunan.getNama() << " (" << bangunan.getPrice() << " gulden, ";
+                    for (const auto &pair : bangunan.getMaterial())
+                    {
+                        cout << pair.first << " " << pair.second << ", ";
                     }
-                    cout<<"Bangunan yang ingin dibangun: ";
-                    string nama_bangunan;
-                    cin >> nama_bangunan;
-                    bool found = false;
-                    auto bangunanList = game_object.getBangunanList();
-                    auto it = bangunanList.begin();
-                    while (it != bangunanList.end() && found == false) {
-                        if (it->getNama() == nama_bangunan) {
-                            found = true;
-                        }
-                        ++it;
-                    }
-                    if (found == false){
-                        throw RecipeNotFoundException();
-                    }
-                }catch(const RecipeNotFoundException& e){
-                    cout << e.what() << endl;
+                    cout << "\b\b)" << endl;
                 }
+                cout << "Bangunan yang ingin dibangun: ";
+                string nama_bangunan;
+                cin >> nama_bangunan;
+                bool found = false;
+                auto bangunanList = game_object.getBangunanList();
+                auto it = bangunanList.begin();
+                while (it != bangunanList.end() && found == false)
+                {
+                    if (it->getNama() == nama_bangunan)
+                    {
+                        found = true;
+                    }
+                    ++it;
+                }
+                if (found == false)
+                {
+                    throw RecipeNotFoundException();
+                }
+            }
+            catch (const RecipeNotFoundException &e)
+            {
+                cout << e.what() << endl;
+            }
             // }
             // else{
-            //     cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl; 
+            //     cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
             // }
 
             // game_status.bangunBangunan();
-
-        }else if (opsi==9){
+        }
+        else if (opsi == 9)
+        {
             // validasi
 
             game_status.makan();
-        }else if (opsi==10){
+        }
+        else if (opsi == 10)
+        {
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Peternak"){
+            if (game_status.getCurrentPlayer()->getPeran() == "Peternak")
+            {
                 game_status.memberiPangan();
             }
-            
-        }else if (opsi==11){
+        }
+        else if (opsi == 11)
+        {
             // validasi
             game_status.membeli();
-        }else if (opsi==12){
-            try{
-                if(game_status.getWalikota().isKosong()){
+        }
+        else if (opsi == 12)
+        {
+            try
+            {
+                if (game_status.getWalikota().isKosong())
+                {
                     throw PenyimpananKosong();
                 }
                 game_status.getToko().welcome();
                 cout << "Berikut merupakan penyimpanan Anda" << endl;
                 cout << game_status.getWalikota().getData().getN();
                 // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
-                    game_status.getWalikota().getData().cetakPenyimpanan();
-                    cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
-                    string petak;
-                    cout << "Petak : ";
-                    cin >> petak;
+                game_status.getWalikota().getData().cetakPenyimpanan();
+                cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
+                string petak;
+                cout << "Petak : ";
+                cin >> petak;
                 // }
-            }catch(const PenyimpananKosong& e){
+            }
+            catch (const PenyimpananKosong &e)
+            {
                 cout << e.what();
                 cout << " Anda tidak dapat melakukan penjualan!" << endl;
             }
             // validasi
             // game_status.menjual();
-        }else if (opsi==13){
+        }
+        else if (opsi == 13)
+        {
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Walikota"){
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
-            }else{
+            if (game_status.getCurrentPlayer()->getPeran() == "Walikota")
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
+            }
+            else
+            {
                 game_status.memanen();
             }
-        }else if (opsi==14){
+        }
+        else if (opsi == 14)
+        {
             // validasi
             string pathMuat;
-            cout<<"Masukkan path file untuk dimuat: ";
-            cin>>pathMuat;
-            game_status.muat(pathMuat,game_object);
-        }else if (opsi==15){
+            cout << "Masukkan path file untuk dimuat: ";
+            cin >> pathMuat;
+            game_status.muat(pathMuat, game_object);
+        }
+        else if (opsi == 15)
+        {
             // validasi
             string pathSimpan;
-            cout<<"Masukkan path file untuk disimpan: ";
-            cin>>pathSimpan;
-            game_status.simpan(pathSimpan,game_object);
-        }else if (opsi==16){
+            cout << "Masukkan path file untuk disimpan: ";
+            cin >> pathSimpan;
+            game_status.simpan(pathSimpan, game_object);
+        }
+        else if (opsi == 16)
+        {
             // validasi
-            if (game_status.getCurrentPlayer()->getPeran()=="Walikota" && game_status.getCurrentPlayer()->getUang()>=50){
+            if (game_status.getCurrentPlayer()->getPeran() == "Walikota" && game_status.getCurrentPlayer()->getUang() >= 50)
+            {
                 game_status.tambahPemain(game_object);
-            }else{
-                cout<<"Perintah tidak dapat diakses karena peran tidak sesuai ! "<<endl;
+            }
+            else
+            {
+                cout << "Perintah tidak dapat diakses karena peran tidak sesuai ! " << endl;
             }
         }
-
     }
-    
+
     // cout<<muat->getWinGulden()<<endl;
     // cout<<muat->getSizeCrops()[0]<<" "<<muat->getSizeCrops()[1]<<endl;
 
@@ -246,7 +310,7 @@ int main (){
     // aland.tambahSandalWood(10);
     // aland.tambahAloeWood(10);
     // aland.bangunBangunan("SMH", "SMALL HOUSE", 40, 5, 5, 5, 5);
-    
+
     // cout<<"Tanaman"<<endl;
     // for (int i=0;i<muat->getPlantList().size();i++){
     //     cout<<"Kode Huruf: "<<muat->getPlantList()[i].getKodeHuruf()<<endl;

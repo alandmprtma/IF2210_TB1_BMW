@@ -49,7 +49,7 @@ public:
     void nextTurn(GameObject objek);
     void Inisiasi(GameObject);
     void cetakPenyimpanan();
-    void pungutPajak();
+    void pungutPajak(GameObject&);
     void cetakLadang();
     void cetakPeternakan();
     void tanam();
