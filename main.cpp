@@ -235,9 +235,11 @@ int main (){
                     throw UangTidakCukup();
                 }else{
                     game_status.tambahPemain(game_object);
+                    cout<<"Pemain berhasil terdaftar!"<<endl;
                 }
             }catch(const Exception& e){
                 cout<<e.what()<<endl;
+                cout<<"Kembali ke program utama"<<endl;
             }
         }
 

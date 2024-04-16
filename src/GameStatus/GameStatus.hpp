@@ -43,6 +43,7 @@ public:
     Peternak getPeternak(string username);
     Walikota& getWalikota();
     Toko getToko();
+    void lexicographicSort();
 
 
     bool isEndGame(GameObject objek);
