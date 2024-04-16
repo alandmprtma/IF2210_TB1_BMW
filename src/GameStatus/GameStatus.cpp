@@ -4,8 +4,8 @@
 
 GameStatus::GameStatus(){
     playerTurnList = vector<Player*>();
-    petaniList = map<int,Petani>();
-    peternakList = map<int,Peternak>();
+    petaniList = vector<Petani>();
+    peternakList = vector<Peternak>();
     walikota = Walikota();
     turn = 0;
     endGame = false;
@@ -33,6 +33,7 @@ bool GameStatus::isEndGame(GameObject objek)
 
     return endGame;
 }
+
 void GameStatus::lexicographicSort() {
     // Selection Sort
     int n = this->playerTurnList.size();
@@ -567,9 +568,331 @@ void GameStatus::makan(){
 void GameStatus::memberiPangan(){
 
 }
-void GameStatus::membeli(){
+void GameStatus::membeliWalikota(GameObject game_object){
+    try{
+        if(this->getWalikota().isPenuh()){
+            throw PenyimpananPenuh();
+        }
+        this->getToko().welcome();
+        cout << "Berikut merupakan hal yang dapat Anda Beli" << endl;
+        int num = 1;
+        vector<string> Dijual;
+        if (!this->getToko().getStok().empty()){
+            for(map<string,int>::iterator i = this->getToko().getStok().begin(); i != this->getToko().getStok().end(); i++){
+                if(!game_object.isBangunan(i->first)){
+                    cout << num <<". " << i->first << " - " << game_object.findBangunan(i->first).getPrice() << " (" << i->second << ")";
+                    Dijual.push_back(i->first);
+                    num++;
+                }
+            }
+        }
+        for(size_t i=0; i<game_object.getAnimalList().size(); i++){
+            cout << num << ". " << game_object.getAnimalList()[i].getNama() << " - " << game_object.getAnimalList()[i].getHarga() << endl;
+            Dijual.push_back(game_object.getAnimalList()[i].getNama());
+            num++;
+        }
+        for(size_t i=0; i<game_object.getPlantList().size(); i++){
+            cout << num << ". " << game_object.getPlantList()[i].getNama() << " - " << game_object.getPlantList()[i].getHarga() << endl;
+            Dijual.push_back(game_object.getPlantList()[i].getNama());
+            num++;
+        }
+        cout << endl;
+        cout << "Uang Anda : " << this->getWalikota().getUang() << endl;
+        cout << "Slot penyimpanan tersedia: " << this->getWalikota().getSisaPenyimpanan() <<endl;
+        size_t pilihan;
+        cout << "Barang ingin dibeli : ";
+        cin >> pilihan;        
+        int kuantitas;
+        cout << "Kuantitas : ";
+        cin >> kuantitas;
+        int totalGulden = 0;
+        int priceProduk = game_object.findProduk(Dijual[pilihan-1]).getHarga();
+        int priceAnimal = game_object.findAnimal(Dijual[pilihan-1]).getHarga();
+        int pricePlant = game_object.findPlant(Dijual[pilihan-1]).getHarga();
+        bool Produkk = false;
+        bool Animall = false;
+        bool Plantt = false;
+        if(priceProduk != -1){
+            totalGulden += priceProduk*kuantitas;
+            Produkk = true;
+        }
+        if(priceAnimal != -1){
+            totalGulden += priceAnimal*kuantitas;
+            Animall = true;
+        }
+        if(pricePlant != -1){
+            totalGulden += pricePlant*kuantitas;
+            Plantt = true;
+        }
+        if (totalGulden > this->getWalikota().getUang()){
+            throw GuldenTidakCukupException();
+        }
 
+        if (pilihan <= this->getToko().getStok().size()){
+            if (kuantitas > this->getToko().getStok()[Dijual[pilihan-1]]){
+                throw BarangTidakCukup();
+            }
+            this->getToko().getStok()[Dijual[pilihan-1]] -= kuantitas;
+        }
+        this->getWalikota().setUang(this->getWalikota().getUang()-totalGulden);
+        cout << "Selamat anda berhasil membeli " << kuantitas << " "<< Dijual[pilihan-1] << ". Uang Anda tersisa " <<  this->getWalikota().getUang() << " gulden."<< endl;
+        cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
+        this->getWalikota().getData().cetakPenyimpanan();
+        for (int i=0; i < kuantitas; i++){
+            string petak;
+            cout << "Petak Slot barang " << i+1 << " :";
+            cin >> petak;
+            int m = stoi(petak.substr(1)) - 1;
+            int n = petak[0] - 'A';
+            if (this->getWalikota().getData().getElementNoException(m,n) != 0){
+                if(Produkk){
+                    string kodehuruf = game_object.findProduk(Dijual[pilihan-1]).getKodeHuruf();
+                    string namabarang = game_object.findProduk(Dijual[pilihan-1]).getNama();
+                    string orisinil = game_object.findProduk(Dijual[pilihan-1]).getOrisinil();
+                    int beratTam = game_object.findProduk(Dijual[pilihan-1]).getBeratTambahan();
+                    int harga = game_object.findProduk(Dijual[pilihan-1]).getHarga();
+                    Produk* p = new Produk(kodehuruf, namabarang,game_object.findProduk(Dijual[pilihan-1]).getTipe(), orisinil, beratTam, harga);
+                    this->getWalikota().getData().setElement(p,m,n);
+                }
+                if(Animall){
+                    Animal* a = new Animal(game_object.findAnimal(Dijual[pilihan-1]).getKodeHuruf(), game_object.findAnimal(Dijual[pilihan-1]).getNama(), game_object.findAnimal(Dijual[pilihan-1]).getTipe(), game_object.findAnimal(Dijual[pilihan-1]).getBerat(), game_object.findAnimal(Dijual[pilihan-1]).getHarga());
+                    this->getWalikota().getData().setElement(a,m,n);
+                }
+                if(Plantt){
+                    Plant* pl = new Plant(game_object.findPlant(Dijual[pilihan-1]).getKodeHuruf(), game_object.findPlant(Dijual[pilihan-1]).getNama(), game_object.findPlant(Dijual[pilihan-1]).getTipe(), game_object.findPlant(Dijual[pilihan-1]).getDurasiPanen(),game_object.findPlant(Dijual[pilihan-1]).getHarga());
+                    this->getWalikota().getData().setElement(pl,m,n);
+                }
+            }
+        }
+    }catch(const PenyimpananPenuh& e){
+        cout << e.what() << " Silahkan kosongkan penyimpanan Anda!" << endl;
+    }
+    catch(const GuldenTidakCukupException& e){
+        cout << e.what() << endl;
+    }
+    catch(const BarangTidakCukup& e){
+        cout << e.what() << endl;
+    }
 }
+
+void GameStatus::membeliPeternak(string nama, GameObject game_object){
+    try{
+        Peternak pet = this->getPeternak(nama);
+        if(pet.isPenuh()){
+            throw PenyimpananPenuh();
+        }
+        this->getToko().welcome();
+        cout << "Berikut merupakan hal yang dapat Anda Beli" << endl;
+        int num = 1;
+        vector<string> Dijual;
+        if (!this->getToko().getStok().empty()){
+            for(map<string,int>::iterator i = this->getToko().getStok().begin(); i != this->getToko().getStok().end(); i++){
+                if(!game_object.isBangunan(i->first)){
+                    cout << num <<". " << i->first << " - " << game_object.findBangunan(i->first).getPrice() << " (" << i->second << ")";
+                    Dijual.push_back(i->first);
+                    num++;
+                }
+            }
+        }
+        for(size_t i=0; i<game_object.getAnimalList().size(); i++){
+            cout << num << ". " << game_object.getAnimalList()[i].getNama() << " - " << game_object.getAnimalList()[i].getHarga() << endl;
+            Dijual.push_back(game_object.getAnimalList()[i].getNama());
+            num++;
+        }
+        for(size_t i=0; i<game_object.getPlantList().size(); i++){
+            cout << num << ". " << game_object.getPlantList()[i].getNama() << " - " << game_object.getPlantList()[i].getHarga() << endl;
+            Dijual.push_back(game_object.getPlantList()[i].getNama());
+            num++;
+        }
+        cout << endl;
+        cout << "Uang Anda : " << pet.getUang() << endl;
+        cout << "Slot penyimpanan tersedia: " << pet.getSisaPenyimpanan() <<endl;
+        size_t pilihan;
+        cout << "Barang ingin dibeli : ";
+        cin >> pilihan;        
+        int kuantitas;
+        cout << "Kuantitas : ";
+        cin >> kuantitas;
+        int totalGulden = 0;
+        int priceProduk = game_object.findProduk(Dijual[pilihan-1]).getHarga();
+        int priceAnimal = game_object.findAnimal(Dijual[pilihan-1]).getHarga();
+        int pricePlant = game_object.findPlant(Dijual[pilihan-1]).getHarga();
+        bool Produkk = false;
+        bool Animall = false;
+        bool Plantt = false;
+        if(priceProduk != -1){
+            totalGulden += priceProduk*kuantitas;
+            Produkk = true;
+        }
+        if(priceAnimal != -1){
+            totalGulden += priceAnimal*kuantitas;
+            Animall = true;
+        }
+        if(pricePlant != -1){
+            totalGulden += pricePlant*kuantitas;
+            Plantt = true;
+        }
+        if (totalGulden > pet.getUang()){
+            throw GuldenTidakCukupException();
+        }
+
+        if (pilihan <= this->getToko().getStok().size()){
+            if (kuantitas > this->getToko().getStok()[Dijual[pilihan-1]]){
+                throw BarangTidakCukup();
+            }
+            this->getToko().getStok()[Dijual[pilihan-1]] -= kuantitas;
+        }
+        pet.setUang(pet.getUang()-totalGulden);
+        cout << "Selamat anda berhasil membeli " << kuantitas << " "<< Dijual[pilihan-1] << ". Uang Anda tersisa " <<  this->getWalikota().getUang() << " gulden."<< endl;
+        cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
+        pet.getData().cetakPenyimpanan();
+        for (int i=0; i < kuantitas; i++){
+            string petak;
+            cout << "Petak Slot barang " << i+1 << " :";
+            cin >> petak;
+            int m = stoi(petak.substr(1)) - 1;
+            int n = petak[0] - 'A';
+            if (pet.getData().getElementNoException(m,n) != 0){
+                if(Produkk){
+                    string kodehuruf = game_object.findProduk(Dijual[pilihan-1]).getKodeHuruf();
+                    string namabarang = game_object.findProduk(Dijual[pilihan-1]).getNama();
+                    string orisinil = game_object.findProduk(Dijual[pilihan-1]).getOrisinil();
+                    int beratTam = game_object.findProduk(Dijual[pilihan-1]).getBeratTambahan();
+                    int harga = game_object.findProduk(Dijual[pilihan-1]).getHarga();
+                    Produk* p = new Produk(kodehuruf, namabarang,game_object.findProduk(Dijual[pilihan-1]).getTipe(), orisinil, beratTam, harga);
+                    this->getWalikota().getData().setElement(p,m,n);
+                }
+                if(Animall){
+                    Animal* a = new Animal(game_object.findAnimal(Dijual[pilihan-1]).getKodeHuruf(), game_object.findAnimal(Dijual[pilihan-1]).getNama(), game_object.findAnimal(Dijual[pilihan-1]).getTipe(), game_object.findAnimal(Dijual[pilihan-1]).getBerat(), game_object.findAnimal(Dijual[pilihan-1]).getHarga());
+                    this->getWalikota().getData().setElement(a,m,n);
+                }
+                if(Plantt){
+                    Plant* pl = new Plant(game_object.findPlant(Dijual[pilihan-1]).getKodeHuruf(), game_object.findPlant(Dijual[pilihan-1]).getNama(), game_object.findPlant(Dijual[pilihan-1]).getTipe(), game_object.findPlant(Dijual[pilihan-1]).getDurasiPanen(),game_object.findPlant(Dijual[pilihan-1]).getHarga());
+                    this->getWalikota().getData().setElement(pl,m,n);
+                }
+            }
+            this->setPeternak(this->getIndeksPeternak(nama),pet);
+        }
+    }catch(const PenyimpananPenuh& e){
+        cout << e.what() << " Silahkan kosongkan penyimpanan Anda!" << endl;
+    }
+    catch(const GuldenTidakCukupException& e){
+        cout << e.what() << endl;
+    }
+    catch(const BarangTidakCukup& e){
+        cout << e.what() << endl;
+    }
+}
+
+void GameStatus::membeliPetani(string nama, GameObject game_object){
+    try{
+        Petani pet = this->getPetani(nama);
+        if(pet.isPenuh()){
+            throw PenyimpananPenuh();
+        }
+        this->getToko().welcome();
+        cout << "Berikut merupakan hal yang dapat Anda Beli" << endl;
+        int num = 1;
+        vector<string> Dijual;
+        if (!this->getToko().getStok().empty()){
+            for(map<string,int>::iterator i = this->getToko().getStok().begin(); i != this->getToko().getStok().end(); i++){
+                if(!game_object.isBangunan(i->first)){
+                    cout << num <<". " << i->first << " - " << game_object.findBangunan(i->first).getPrice() << " (" << i->second << ")";
+                    Dijual.push_back(i->first);
+                    num++;
+                }
+            }
+        }
+        for(size_t i=0; i<game_object.getAnimalList().size(); i++){
+            cout << num << ". " << game_object.getAnimalList()[i].getNama() << " - " << game_object.getAnimalList()[i].getHarga() << endl;
+            Dijual.push_back(game_object.getAnimalList()[i].getNama());
+            num++;
+        }
+        for(size_t i=0; i<game_object.getPlantList().size(); i++){
+            cout << num << ". " << game_object.getPlantList()[i].getNama() << " - " << game_object.getPlantList()[i].getHarga() << endl;
+            Dijual.push_back(game_object.getPlantList()[i].getNama());
+            num++;
+        }
+        cout << endl;
+        cout << "Uang Anda : " << pet.getUang() << endl;
+        cout << "Slot penyimpanan tersedia: " << pet.getSisaPenyimpanan() <<endl;
+        size_t pilihan;
+        cout << "Barang ingin dibeli : ";
+        cin >> pilihan;        
+        int kuantitas;
+        cout << "Kuantitas : ";
+        cin >> kuantitas;
+        int totalGulden = 0;
+        int priceProduk = game_object.findProduk(Dijual[pilihan-1]).getHarga();
+        int priceAnimal = game_object.findAnimal(Dijual[pilihan-1]).getHarga();
+        int pricePlant = game_object.findPlant(Dijual[pilihan-1]).getHarga();
+        bool Produkk = false;
+        bool Animall = false;
+        bool Plantt = false;
+        if(priceProduk != -1){
+            totalGulden += priceProduk*kuantitas;
+            Produkk = true;
+        }
+        if(priceAnimal != -1){
+            totalGulden += priceAnimal*kuantitas;
+            Animall = true;
+        }
+        if(pricePlant != -1){
+            totalGulden += pricePlant*kuantitas;
+            Plantt = true;
+        }
+        if (totalGulden > pet.getUang()){
+            throw GuldenTidakCukupException();
+        }
+
+        if (pilihan <= this->getToko().getStok().size()){
+            if (kuantitas > this->getToko().getStok()[Dijual[pilihan-1]]){
+                throw BarangTidakCukup();
+            }
+            this->getToko().getStok()[Dijual[pilihan-1]] -= kuantitas;
+        }
+        pet.setUang(pet.getUang()-totalGulden);
+        cout << "Selamat anda berhasil membeli " << kuantitas << " "<< Dijual[pilihan-1] << ". Uang Anda tersisa " <<  this->getWalikota().getUang() << " gulden."<< endl;
+        cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
+        pet.getData().cetakPenyimpanan();
+        for (int i=0; i < kuantitas; i++){
+            string petak;
+            cout << "Petak Slot barang " << i+1 << " :";
+            cin >> petak;
+            int m = stoi(petak.substr(1)) - 1;
+            int n = petak[0] - 'A';
+            if (pet.getData().getElementNoException(m,n) != 0){
+                if(Produkk){
+                    string kodehuruf = game_object.findProduk(Dijual[pilihan-1]).getKodeHuruf();
+                    string namabarang = game_object.findProduk(Dijual[pilihan-1]).getNama();
+                    string orisinil = game_object.findProduk(Dijual[pilihan-1]).getOrisinil();
+                    int beratTam = game_object.findProduk(Dijual[pilihan-1]).getBeratTambahan();
+                    int harga = game_object.findProduk(Dijual[pilihan-1]).getHarga();
+                    Produk* p = new Produk(kodehuruf, namabarang,game_object.findProduk(Dijual[pilihan-1]).getTipe(), orisinil, beratTam, harga);
+                    this->getWalikota().getData().setElement(p,m,n);
+                }
+                if(Animall){
+                    Animal* a = new Animal(game_object.findAnimal(Dijual[pilihan-1]).getKodeHuruf(), game_object.findAnimal(Dijual[pilihan-1]).getNama(), game_object.findAnimal(Dijual[pilihan-1]).getTipe(), game_object.findAnimal(Dijual[pilihan-1]).getBerat(), game_object.findAnimal(Dijual[pilihan-1]).getHarga());
+                    this->getWalikota().getData().setElement(a,m,n);
+                }
+                if(Plantt){
+                    Plant* pl = new Plant(game_object.findPlant(Dijual[pilihan-1]).getKodeHuruf(), game_object.findPlant(Dijual[pilihan-1]).getNama(), game_object.findPlant(Dijual[pilihan-1]).getTipe(), game_object.findPlant(Dijual[pilihan-1]).getDurasiPanen(),game_object.findPlant(Dijual[pilihan-1]).getHarga());
+                    this->getWalikota().getData().setElement(pl,m,n);
+                }
+            }
+            this->setPetani(this->getIndeksPetani(nama),pet);
+        }
+    }catch(const PenyimpananPenuh& e){
+        cout << e.what() << " Silahkan kosongkan penyimpanan Anda!" << endl;
+    }
+    catch(const GuldenTidakCukupException& e){
+        cout << e.what() << endl;
+    }
+    catch(const BarangTidakCukup& e){
+        cout << e.what() << endl;
+    }
+}
+
 void GameStatus::menjualWalikota(GameObject game_object){
     if(this->getWalikota().isKosong()){
         throw PenyimpananKosong();
@@ -578,7 +901,7 @@ void GameStatus::menjualWalikota(GameObject game_object){
     cout << "Berikut merupakan penyimpanan Anda" << endl;
     // cout << game_status.getWalikota().data.getN();
     // if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
-    this->getWalikota().data.cetakPeti("Penyimpanan");
+    this->getWalikota().getData().cetakPenyimpanan();
     cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
     string petak;
     cout << "Petak : ";
@@ -611,7 +934,7 @@ void GameStatus::menjualWalikota(GameObject game_object){
     for (const auto& t : tokens) {
         int i = stoi(t.substr(1)) - 1;
         int j = t[0] - 'A';
-        if(this->getWalikota().data.getElement(i,j)==0){
+        if(this->getWalikota().getData().getElement(i,j)==0){
             throw HarapanKosong();
         }
     }
@@ -619,7 +942,7 @@ void GameStatus::menjualWalikota(GameObject game_object){
     for (const auto& t : tokens) {
         int i = stoi(t.substr(1)) - 1;
         int j = t[0] - 'A';
-        namaBarang = this->getWalikota().data.getElement(i,j)->getNama();
+        namaBarang = this->getWalikota().getData().getElement(i,j)->getNama();
         this->getWalikota().getData().removeElement(i,j);
         int priceProduk = game_object.findProduk(namaBarang).getHarga();
         int priceAnimal = game_object.findAnimal(namaBarang).getHarga();
@@ -649,11 +972,11 @@ void GameStatus::menjualPeternak(string nama, GameObject game_object){
         throw PenyimpananKosong();
     }
     Peternak p = this->getPeternak(nama);
-    p.data.getElement(1,1);
+    p.getData().getElement(1,1);
 
     this->getToko().welcome();
     cout << "Berikut merupakan penyimpanan Anda" << endl;
-    p.data.cetakPeti("Penyimpanan");
+    p.getData().cetakPenyimpanan();
 
     cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
     string petak;
@@ -688,16 +1011,16 @@ void GameStatus::menjualPeternak(string nama, GameObject game_object){
         cout << i;
         cout << j;
         try{
-        if(p.data.getElement(i,j) == nullptr){
-            throw HarapanKosong();
-        }
-        }catch(const bad_alloc& e){
+            if(p.getData().getElement(i,j) == nullptr){
+                throw HarapanKosong();
+            }
+        }catch(const bad_alloc& e){}
     }
     string namaBarang;
     for (const auto& t : tokens) {
         int i = stoi(t.substr(1)) - 1;
         int j = t[0] - 'A';
-        namaBarang = this->getPeternak(nama).data.getElement(i,j)->getNama();
+        namaBarang = this->getPeternak(nama).getData().getElement(i,j)->getNama();
         p.getData().removeElement(i,j);
         int priceProduk = game_object.findProduk(namaBarang).getHarga();
         int priceAnimal = game_object.findAnimal(namaBarang).getHarga();
@@ -721,7 +1044,6 @@ void GameStatus::menjualPeternak(string nama, GameObject game_object){
     this->getToko().setStok(namaBarang);
         // cout << tokens.size();
     // }
-    }
 }
 
 void GameStatus::menjualPetani(string nama, GameObject game_object){
@@ -732,7 +1054,7 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
 
     this->getToko().welcome();
     cout << "Berikut merupakan penyimpanan Anda" << endl;
-    p.data.cetakPeti("Penyimpanan");
+    p.getData().cetakPenyimpanan();
 
     cout << "Silahkan pilih petak yang ingin anda jual!" << endl;
     string petak;
@@ -767,7 +1089,7 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
         cout << i;
         cout << j;
         try{
-        if(p.data.getElement(i,j) == nullptr){
+        if(p.getData().getElement(i,j) == nullptr){
             throw HarapanKosong();
         }
         }catch(const bad_alloc& e){
@@ -776,7 +1098,7 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
     for (const auto& t : tokens) {
         int i = stoi(t.substr(1)) - 1;
         int j = t[0] - 'A';
-        namaBarang = p.data.getElement(i,j)->getNama();
+        namaBarang = p.getData().getElement(i,j)->getNama();
         p.getData().removeElement(i,j);
         int priceProduk = game_object.findProduk(namaBarang).getHarga();
         int priceAnimal = game_object.findAnimal(namaBarang).getHarga();
@@ -796,8 +1118,8 @@ void GameStatus::menjualPetani(string nama, GameObject game_object){
     }
     p.setUang(p.getUang()+totalGulden);
     this->setPetani(this->getIndeksPetani(nama),p);
-    this->getPetani(nama).data.cetakPeti("Baru");
     cout << "Barang Anda berhasil dijual! Uang Anda bertambah " << totalGulden << " gulden!" << endl;
+    cout << this->getPetani(nama).getUang();
     this->getToko().setStok(namaBarang);
         // cout << tokens.size();
     // }

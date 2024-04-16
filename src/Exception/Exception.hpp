@@ -120,5 +120,23 @@ class HarapanKosong : public Exception{
         return "Anda mengambil harapan kosong dari penyimpanan.";
     }
 };
+class PenyimpananPenuh : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Penyimpanan Anda Penuh!";
+    }
+};
+class GuldenTidakCukupException : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Gulden Anda tidak cukup!";
+    }
+};
 
+class BarangTidakCukup : public Exception{
+    public:
+    const char* what() const throw(){
+        return "Kuantitas barang tidak cukup untuk dibeli!";
+    }
+};
 #endif

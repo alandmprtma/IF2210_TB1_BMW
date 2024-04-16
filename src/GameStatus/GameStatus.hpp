@@ -47,7 +47,6 @@ public:
     void setPeternak(int indeks, Peternak p);
     Walikota& getWalikota();
     Toko& getToko();
-    Toko getToko();
     void lexicographicSort();
 
 
@@ -63,7 +62,9 @@ public:
     void bangunBangunan(string kodeHuruf, string namaBangunan, int price, int teak, int sandalwood, int aloe, int ironwood);
     void makan();
     void memberiPangan();
-    void membeli();
+    void membeliWalikota(GameObject game_object);
+    void membeliPeternak(string nama, GameObject game_object);
+    void membeliPetani(string nama, GameObject GameObject);
     void menjualWalikota(GameObject game_object);
     void menjualPeternak(string nama, GameObject game_object);
     void menjualPetani(string nama, GameObject game_object);

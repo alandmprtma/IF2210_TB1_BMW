@@ -8,6 +8,15 @@ GameObject::GameObject(){
     this->bangunanList = std::vector<Bangunan>();
 }
 
+bool GameObject::isBangunan(string nama){
+    for (size_t i=0;i<bangunanList.size();i++){
+        if (bangunanList[i].getNama() == nama){
+            return true;
+        }
+    }
+    return false;
+}
+
 std::vector<Plant> GameObject::getPlantList(){
     return this->plantList;
 }

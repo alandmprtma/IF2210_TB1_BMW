@@ -29,7 +29,7 @@ bool Player::isKosong() {
   while (i < data.getM() && empty) {
       int j = 0;
       while (j < data.getN() && empty) {
-          if (data.getElement(i, j) != 0) {
+          if (data.getElementNoException(i, j) != 0) {
               empty = false;
           }
           j++;
@@ -37,6 +37,23 @@ bool Player::isKosong() {
       i++;
   }
   return empty;
+}
+
+bool Player::isPenuh(){
+  bool full = true;
+  int i = 0;
+
+  while (i < data.getM() && full) {
+      int j = 0;
+      while (j < data.getN() && full) {
+          if (data.getElementNoException(i, j) == 0) {
+              full = false;
+          }
+          j++;
+      }
+      i++;
+  }
+  return full;
 }
 
 void Player::setUsername(string username) {
@@ -53,6 +70,22 @@ string Player::getUsername() {
 
 PetiRahasia &Player::getData() {
   return this->data;
+}
+
+int Player::getSisaPenyimpanan(){
+  int i = 0;
+  int sisa = 0;
+  while (i < data.getM()) {
+      int j = 0;
+      while (j < data.getN()) {
+          if (data.getElementNoException(i, j) == 0) {
+              sisa++;
+          }
+          j++;
+      }
+      i++;
+  }
+  return sisa;
 }
 
 int Player::getUang() {

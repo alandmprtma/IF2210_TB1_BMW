@@ -99,13 +99,13 @@ int main()
     game_status.getWalikota().getData().setElement(c,1,1);
     Animal *a = new Animal("COW", "COW", "HERBIVORE", 20, 6);
     Peternak peternak = game_status.getPeternak("Peternak1");
-    peternak.data.setElement(a,1,1);
+    peternak.getData().setElement(a,1,1);
     // cout << peternak.data.getElement(1,1)->getNama();
     game_status.setPeternak(game_status.getIndeksPeternak("Peternak1"),peternak);
 
     Plant *bayam = new Plant("APL", "APPLE_TREE", "FRUIT_PLANT",13,4);
     Petani petani = game_status.getPetani("Petani1");
-    petani.data.setElement(bayam,1,1);
+    petani.getData().setElement(bayam,1,1);
     game_status.setPetani(game_status.getIndeksPetani("Petani1"),petani);
     // game_status.getWalikota().getData().removeElement(0,0);
     // cout<<game_status.getWalikota().getData().getElement(0,0)->getNama()<<endl;
@@ -262,8 +262,15 @@ int main()
         }
         else if (opsi == 11)
         {
-            // validasi
-            game_status.membeli();
+            if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
+                game_status.membeliWalikota(game_object);
+            }
+             else if(game_status.getCurrentPlayer()->getPeran() == "Peternak"){
+                game_status.membeliPeternak(game_status.getCurrentPlayer()->getUsername(),game_object);
+            }
+            else if(game_status.getCurrentPlayer()->getPeran() == "Petani"){
+                game_status.membeliPetani(game_status.getCurrentPlayer()->getUsername(),game_object);
+            }
         }else if (opsi==12){
             try{
                 if(game_status.getCurrentPlayer()->getPeran() == "Walikota"){
