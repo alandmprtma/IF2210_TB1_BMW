@@ -84,11 +84,31 @@ public:
       throw PenyimpananKosong();
     }
   }
+
   void isElementNotEmpty(int i, int j){
     if (data[i][j] != nullptr){
       throw PenyimpananSudahTerisi();
     }
   }
+
+  void isInventoryFull() {
+    bool isFilled = true;
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (data[i][j] == nullptr) {
+                isFilled = false;
+                break;
+            }
+        }
+        if (!isFilled)
+            break;
+    }
+
+    if (isFilled)
+        throw PenyimpananSudahPenuh();
+  }
+
 
   /* Get Element */
   T getElement(int i, int j) {
@@ -108,19 +128,25 @@ public:
     return nullptr;
   }
 
+  /* Get Element No Exception */
   T getElementNoException(int i, int j){
       return data[i][j];
   }
+  
   /* Set Element */
   void setElement(T newElement, int i, int j) {
     try 
     {
+      isInventoryFull();
       isIndexValid(i, j);
       isElementNotEmpty(i,j);
       data[i][j] = newElement;
       NEff++;
   
     } 
+    catch (const PenyimpananSudahTerisi& e) {
+      cout << e.what() << endl;
+    }
     catch (const IndexOutOfBound& e) 
     {
       cout << e.what() << endl;
