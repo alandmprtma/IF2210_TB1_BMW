@@ -734,6 +734,7 @@ void GameStatus::membeliPeternak(string nama, GameObject game_object){
                 }
             }
         }
+        cout << "tes";
         for(size_t i=0; i<game_object.getAnimalList().size(); i++){
             cout << num << ". " << game_object.getAnimalList()[i].getNama() << " - " << game_object.getAnimalList()[i].getHarga() << endl;
             Dijual.push_back(game_object.getAnimalList()[i].getNama());
